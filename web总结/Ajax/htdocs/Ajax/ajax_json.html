@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="jquery-1.11.0.min.js" type="text/javascript"></script>  
+<script type="text/javascript">  
+$(document).ready(function()
+  {
+		$('#button').click(function()
+		{
+			$.ajax({
+			type:"GET",
+			url:"music.txt",
+			dataType:"json",
+			success:function(data)
+			{
+				var music="<ul>";
+				//i表示在data中的索引位置，n表示包含的信息的对象
+				$.each(data,function(i,n)
+				{
+				  
+				  //获取对象中属性为optionsValue的值
+				  music+="<li>"+n["optionValue"]+"</li>";
+				});
+				music+="</ul>";
+				$('#result').append(music);
+			},
+			error:function()
+			{ 
+			  return false;
+			} 
+			
+			});
+			
+		});
+	}); 
+	</script>  
+    </head>  
+    <body>  
+      <div>点击按钮获取JSON数据</div>
+<input type="button" id="button" value="确定" />
+<div id="result"></div> 
+    </body>  
+    </html>  

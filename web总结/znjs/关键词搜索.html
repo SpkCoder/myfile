@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+
+</style>
+<script>
+window.onload = function()
+{  
+  var oUl = document.getElementById("ul1");
+  var aLi = oUl.getElementsByTagName("li");
+  var oBtn = document.getElementById("btn");
+  var oText = document.getElementById("text");
+  
+/*  oBtn.onclick = function()
+  {
+  
+	  for(var i=0; i<aLi.length; i++)
+	  {
+		 if(aLi[i].innerHTML==oText.value)
+		 {
+		    aLi[i].style.background="red";
+		 }
+		 else
+		 {
+		    aLi[i].style.background="";
+		 }
+	  } 
+	  
+  };
+*/  
+  
+  
+  
+  oBtn.onclick = function()
+  {
+  
+	  for(var i=0; i<aLi.length; i++)
+	  {
+	     var a = aLi[i].innerHTML.toLowerCase();       //toLowerCase()  转成小写      toUpperCase () 转成大写
+	     var b = oText.value.toLowerCase();
+		 if(a.search(b)!=-1)                        //search(b)!=-1   表示b包含在a之内
+		 {
+		    aLi[i].style.background="red";
+		 }
+		 else
+		 {
+		    aLi[i].style.background="";
+		 }
+	  } 
+	  
+  };
+  
+  
+   
+   
+};
+ 
+ 
+
+
+
+ 
+ 
+</script>
+</head>
+
+<body>
+<div>
+<p><input id="text" type="text" value="请输入"><button id="btn">搜索</button></p>
+<ul id="ul1" >
+ 	<li>张三</li>
+ 	<li>张三丰</li>
+ 	<li>李四</li>
+  	<li>abc</li>
+ 	<li>王五</li>
+  	<li>四爷</li>
+  	<li>ABC</li>
+</ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="author" content="古成">
+<title>弹出全屏遮罩层播放视频</title>
+<style type="text/css">
+.box-mask {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #000;
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+	z-index: 99;
+	display: none;
+}
+
+.box {
+	position: absolute;
+	width: 1000px;
+	height: 620px;
+	
+	line-height:620px;
+	
+	text-align: center;
+	z-index: 101;
+	display: none;
+}
+.demo{width:100%; height:100%;margin:0 auto;}
+.btnDel {
+	font: "微软雅黑";
+	font-size: 14px;
+	width: 125px;
+	height: 33px;
+	line-height: 33px;
+	vertical-align: middle;
+	background-image: url(images/btn.png);
+	background-repeat: no-repeat;
+	border: 0px !important;
+	color: #fff;
+	cursor: pointer;
+	background-color: transparent;
+}
+</style>
+<script src="demo_data/jquery.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    var isOpen = 0;
+    //全局变量，判断是否已经打开弹出框
+    $(".btnDel").click(function() {
+        //$(".box-mask").css({"display":"block"});
+        $(".box-mask").fadeIn(500);
+        center($(".box"));
+        //载入弹出窗口上的按钮事件
+        checkEvent($(this).parent(), $(".btnSure"), $(".btnCancel"));
+    });
+    function center(obj) {
+        //obj这个参数是弹出框的整个对象
+        var screenWidth = $(window).width(), screenHeigth = $(window).height();
+        //获取屏幕宽高
+        var scollTop = $(document).scrollTop();
+        //当前窗口距离页面顶部的距离
+        var objLeft = (screenWidth - obj.width()) / 2;
+        ///弹出框距离左侧距离
+        var objTop = (screenHeigth - obj.height()) / 2 + scollTop;
+        ///弹出框距离顶部的距离
+        obj.css({
+            left:objLeft + "px",
+            top:objTop + "px"
+        });
+        obj.fadeIn(500);
+        //弹出框淡入
+        isOpen = 1;
+        //弹出框打开后这个变量置1 说明弹出框是打开装填
+        //当窗口大小发生改变时
+        $(window).resize(function() {
+            //只有isOpen状态下才执行
+            if (isOpen == 1) {
+                //重新获取数据
+                screenWidth = $(window).width();
+                screenHeigth = $(window).height();
+                var scollTop = $(document).scrollTop();
+                objLeft = (screenWidth - obj.width()) / 2;
+                var objTop = (screenHeigth - obj.height()) / 2 + scollTop;
+                obj.css({
+                    left:objLeft + "px",
+                    top:objTop + "px"
+                });
+                obj.fadeIn(500);
+            }
+        });
+        //当滚动条发生改变的时候
+        $(window).scroll(function() {
+            if (isOpen == 1) {
+                //重新获取数据
+                screenWidth = $(window).width();
+                screenHeigth = $(window).height();
+                var scollTop = $(document).scrollTop();
+                objLeft = (screenWidth - obj.width()) / 2;
+                var objTop = (screenHeigth - obj.height()) / 2 + scollTop;
+                obj.css({
+                    left:objLeft + "px",
+                    top:objTop + "px"
+                });
+                obj.fadeIn(500);
+            }
+        });
+    }
+    //导入两个按钮事件 obj整个页面的内容对象，obj1为确认按钮，obj2为取消按钮
+    function checkEvent(obj, obj1, obj2) {
+        //确认后删除页面所有东西
+        obj1.click(function() {
+            //移除所有父标签内容
+            obj.remove();
+            //调用closed关闭弹出框
+            closed($(".box-mask"), $(".box"));
+        });
+        //取消按钮事件
+        obj2.click(function() {
+            //调用closed关闭弹出框
+            closed($(".box-mask"), $(".box"));
+        });
+    }
+    //关闭弹出窗口事件
+    function closed(obj1, obj2) {
+        obj1.fadeOut(500);
+        obj2.fadeOut(500);
+        isOpen = 0;
+    }
+});
+</script>
+</head>
+
+<body>
+<a class="btnDel" href="#">观看电影</a>
+<div class="box-mask" style="display: none;"></div>
+<div class="box" style="left: 460px; top: 144.5px; display: none;">
+ <input class="btnCancel" style="float:right;" value="关闭" type="button">
+  <script type="text/javascript" src="demo_data/swfobject.js"></script>
+    <div class="demo">
+	<p id="player1"><embed type="application/x-shockwave-flash" src="demo_data/flvplayer.swf" style="undefined" id="single" name="single" quality="high" allowfullscreen="true" flashvars="file=video.flv&amp;image=preview.jpg&amp;width=1000&amp;height=600" height="600" width="1000">
+    </p>
+</div>
+  
+</div>
+
+
+</body></html>

@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="jquery-1.11.0.min.js" type="text/javascript"></script>  
+<script type="text/javascript">  
+$(document).ready(function()
+  {
+  
+  
+		$('#button').click(function()
+		{
+			$.ajax({
+			type:"GET",
+			url:"json_php.php?time="+new Date().getTime(),
+			dataType:"json",
+			success:function(data)
+			{
+			    var books = data;
+                var music="<ul>";
+				alert(books.b);
+				for(var i=0;i<books.Pascal.length;i++)
+				{   
+				    music+="<li>"+books.Pascal[i].Name+":"+books.Pascal[i].price+"</li>";
+				}
+				
+				
+				music+="</ul>";
+				$('#result').append(music);
+				
+
+			},
+			error:function()
+			{ 
+			  return false;
+			} 
+			
+			});
+			
+		});
+	}); 
+	</script>  
+    </head>  
+    <body>  
+      <div>点击按钮获取JSON数据</div>
+<input type="button" id="button" value="确定" />
+<div id="result"></div> 
+    </body>  
+    </html>  

@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>团购——限时抢</title>
+</head>
+
+<body>
+
+<div class="Lefttime" id="LeftTime"><span class="day_elem"></span>&nbsp;&nbsp;<span class="hour_elem"></span>&nbsp;<span class="minute_elem"></span>&nbsp;<span class="second_elem"></span></div>
+<script src="js/jquery-1.11.0.min.js" ></script> 
+<script>
+
+function FreshTime()
+{
+        var endtime=new Date("2017/9/15,12:20:12");//结束时间
+        var nowtime = new Date();//当前时间
+        var lefttime=parseInt((endtime.getTime()-nowtime.getTime())/1000); 
+        d=parseInt(lefttime/3600/24);
+        h=parseInt(lefttime/3600%24);
+        m=parseInt((lefttime/60)%60);
+        s=parseInt(lefttime%60);
+        //parseInt取整
+        $(".day_elem").text(d+"天"); //计算天
+        $(".hour_elem").text(h < 10 ? "0" + h+"时" : h+"时"); //计算小时
+        $(".minute_elem").text(m < 10 ? "0" + m+"分" : m+"分"); //计算分钟
+        $(".second_elem").text(s < 10 ? "0" + s+"秒" : s+"秒"); //计算秒杀
+        if(lefttime<=0){
+        document.getElementById("LeftTime").innerHTML="抢购结束";
+        clearInterval(sh); 
+        }
+}
+FreshTime();
+var sh;
+sh=setInterval(FreshTime,1000);
+</script>
+</body>
+</html>

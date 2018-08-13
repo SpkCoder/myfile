@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+
+
+
+<script>
+window.onload = function()
+{  
+   var OTxt1 = document.getElementById("txt1");
+   var OTxt2 = document.getElementById("txt2");
+   var OBtn = document.getElementById("btn");
+   OBtn.onclick = function()
+   {
+	 //alert(OTxt1.value + OTxt2.value);  //123
+	 //alert(typeof OTxt1.value);   //string
+	 alert(parseInt(OTxt1.value )+ parseInt(OTxt2.value));  // parseInt 将字符串转换为数字
+   };
+};
+ 
+ 
+</script>
+</head>
+
+<body>
+<input id="txt1" type="text">
+<input id="txt2" type="text">
+<input id="btn" type="button" value="求和">
+</body>
+</html>

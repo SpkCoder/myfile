@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>SVG</title>
+</head>
+
+<body>
+
+
+
+
+<!--矩形-->
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <rect width="300" height="100"  style="fill:rgb(0,0,255);stroke-width:1;stroke:rgb(0,0,0)"/>
+</svg> 
+<br>
+
+
+<!--圆形-->
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+  <circle cx="100" cy="50" r="40" stroke="black" stroke-width="2" fill="red"/>
+</svg> 
+<br>
+
+
+<!--椭圆-->
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1000" height="200">
+  <ellipse cx="300" cy="80" rx="100" ry="50" style="fill:yellow;stroke:purple;stroke-width:2"/>
+</svg> 
+<br>
+
+
+<!--直线-->
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+	<line x1="0" y1="0" x2="200" y2="200" style="stroke:rgb(255,0,0); stroke-width:2"/>
+</svg>
+<br>
+
+
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+  <g fill="none" stroke="black" stroke-width="6">
+    <path stroke-linecap="butt" d="M5 20 l215 0" />
+    <path stroke-linecap="round" d="M5 40 l215 0" />
+    <path stroke-linecap="square" d="M5 60 l215 0" />
+  </g>
+</svg>
+<br>
+
+
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+  <g fill="none" stroke="black" stroke-width="4">
+    <path stroke-dasharray="5,5" d="M5 20 l215 0" />
+    <path stroke-dasharray="10,10" d="M5 40 l215 0" />
+    <path stroke-dasharray="20,10,5,5,5,10" d="M5 60 l215 0" />
+  </g>
+</svg>
+<br>
+
+
+
+<!--多边形-->
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+  <polygon points="200,10 250,190 160,210"  style="fill:lime;stroke:purple;stroke-width:1"/>
+</svg> 
+<br>
+
+
+<!--曲线-->
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+  <polyline points="20,20 40,25 60,40 80,120 120,140 200,180" style="fill:none;stroke:black;stroke-width:3" />
+</svg> 
+<br>
+
+
+<!--路径-->
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="400" width="450">
+  <path id="lineAB" d="M 100 350 l 150 -300" stroke="red" stroke-width="3" fill="none" />
+  <path id="lineBC" d="M 250 50 l 150 300" stroke="red" stroke-width="3" fill="none" />
+  <path d="M 175 200 l 150 0" stroke="green" stroke-width="3" fill="none" />
+  <path d="M 100 350 q 150 -300 300 0" stroke="blue" stroke-width="5" fill="none" />
+  <!-- Mark relevant points -->
+  <g stroke="black" stroke-width="3" fill="black">
+    <circle id="pointA" cx="100" cy="350" r="3" />
+    <circle id="pointB" cx="250" cy="50" r="3" />
+    <circle id="pointC" cx="400" cy="350" r="3" />
+  </g>
+  <!-- Label the points -->
+  <g font-size="30" font="sans-serif" fill="black" stroke="none" text-anchor="middle">
+    <text x="100" y="350" dx="-30">A</text>
+    <text x="250" y="50" dy="-10">B</text>
+    <text x="400" y="350" dx="30">C</text>
+  </g>
+</svg>
+<br>
+
+
+
+<!--SVG 文本-->
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+  <text x="30" y="30" fill="red" transform="rotate(30 20,40)">I love SVG</text>
+</svg>
+<br>
+
+
+
+<!--SVG 路径文字-->
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <path id="path1" d="M75,20 a1,1 0 0,0 100,0" />
+  </defs>
+  <text x="10" y="100" style="fill:red;">
+    <textpath xlink:href="#path1">I love SVG I love SVG</textpath>
+  </text>
+</svg>
+<br>
+
+
+
+
+
+</body>
+</html>

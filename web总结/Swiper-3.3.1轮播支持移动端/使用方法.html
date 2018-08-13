@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<div class="full">
+  <div class="innerbox">
+    <h1  class="sw-title"> Swiper使用方法</h1>
+    <p class="title"> 1.首先加载插件，需要用到的文件有<a href="/download/index.html#file7" target="_blank">swiper.min.js</a>和<a href="/download/index.html#file5" target="_blank">swiper.min.css</a>文件。</p>
+    <pre class="code">
+<code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    ...
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;path/to/<strong>swiper.min.css</strong>&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    ...
+    &lt;script src=&quot;path/to/<strong>swiper.min.js</strong>&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    <p> 如果你的页面加载了<a href="/download/index.html#file2">jQuery.js</a>或者<a href="/download/index.html#file3">zepto.js</a>，你可以选择使用更轻便的<a href="/download/index.html#file4" target="_blank">swiper.jquery.min.js</a>。</p>
+    <pre class="code">
+<code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    ...
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;path/to/<strong>swiper.min.css</strong>&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    ...
+    &lt;script src=&quot;path/to/<strong>jquery.js</strong>&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;path/to/<strong>swiper.jquery.min.js</strong>&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    <p class="title"> 2.HTML内容。</p>
+    <pre class="code">
+<code>&lt;div class=&quot;swiper-container&quot;&gt;
+    &lt;div class=&quot;swiper-wrapper&quot;&gt;
+        &lt;div class=&quot;swiper-slide&quot;&gt;Slide 1&lt;/div&gt;
+        &lt;div class=&quot;swiper-slide&quot;&gt;Slide 2&lt;/div&gt;
+        &lt;div class=&quot;swiper-slide&quot;&gt;Slide 3&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- 如果需要分页器 --&gt;
+    &lt;div class=&quot;swiper-pagination&quot;&gt;&lt;/div&gt;
+    
+    &lt;!-- 如果需要导航按钮 --&gt;
+    &lt;div class=&quot;swiper-button-prev&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;swiper-button-next&quot;&gt;&lt;/div&gt;
+    
+    &lt;!-- 如果需要滚动条 --&gt;
+    &lt;div class=&quot;swiper-scrollbar&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+<span style="color:#a9a9a9;"><span style="font-size:12px;">导航等组件可以放在container之外</span></span></code></pre>
+    <p class="title"> 3.你可能想要给Swiper定义一个大小，当然不要也行。</p>
+    <pre class="code">
+<code>.swiper-container {
+    width: 600px;
+    height: 300px;
+}  </code></pre>
+    <p class="title"> 4.初始化Swiper：最好是挨着&lt;/body&gt;标签</p>
+    <pre class="code">
+<code>&lt;script&gt;        
+  var mySwiper = new Swiper (&#39;.swiper-container&#39;, {
+    direction: &#39;vertical&#39;,
+    loop: true,
+    
+    // 如果需要分页器
+    pagination: &#39;.swiper-pagination&#39;,
+    
+    // 如果需要前进后退按钮
+    nextButton: &#39;.swiper-button-next&#39;,
+    prevButton: &#39;.swiper-button-prev&#39;,
+    
+    // 如果需要滚动条
+    scrollbar: &#39;.swiper-scrollbar&#39;,
+  })        
+  &lt;/script&gt;
+&lt;/body&gt;</code></pre>
+    <p> 如果不能写在HTML内容的后面，则需要在页面加载完成后再初始化。</p>
+    <pre class="code">
+<code>&lt;script type=&quot;text/javascript&quot;&gt;
+window.onload = function() {
+  ...
+}
+&lt;/script&gt;</code></pre>
+    <p class="title"> 或者这样（Jquery和Zepto）</p>
+    <pre class="code">
+<code>&lt;script type=&quot;text/javascript&quot;&gt;
+$(document).ready(function () {
+ ...
+})
+&lt;/script&gt;</code></pre>
+    <p class="title"> 5.完成。恭喜你，现在你的Swiper应该已经能正常切换了，如果没有，你可以参考下这个<a href="/download/index.html#file1" target="_blank">测试包</a>。现在开始添加各种<a href="/api/index.html" target="_blank">选项和参数</a>丰富你的Swiper，开启华丽移动前端创作之旅。</p>
+    <br />
+    <br />
+    *建议不使用Source Map功能，请把js压缩文件最后一行<span style="color:#999;">//# sourceMappingURL=maps/swiper.min.js.map </span>删掉。以免在某些浏览器出现以下提示：<br />
+    <br />
+    <img alt="" src="/uploads/allimg/150319/1-150319103129544.png" style="width: 668px; height: 25px;" /><br />
+    <br />
+    如需要使用Source Map，<a href="/download/index.html#file6" target="_blank">演示包</a>里面有该map文件，请放在相应的位置。关于<a href="http://bbs.swiper.com.cn/forum.php?mod=viewthread&amp;tid=7&amp;page=1&amp;extra=#pid7" target="_blank">Source Map</a> <br />
+    <br />
+  </div>
+</div>
+</body>
+</html>

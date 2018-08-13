@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jquary常用方法</title>
+<style>
+*{ margin: 0; padding: 0; list-style: none; }
+.ullist { position:relative; width:1000px; margin:100px 0 0 150px; overflow:hidden; }
+.ullist ul {position:relative; margin-left:100px; margin-top:100px; }
+.ullist ul li{ float: left; width:200px; height: 100px; background:#CB3A3A; border:3px solid #52CB28; padding:10px; margin-right:30px;}
+
+</style>
+</head>
+
+<body>
+    <div class="ullist">
+        <ul class="ul1">
+            <li>1</li>
+            <li><a href="www" target="_blank" >2</a></li>
+            <li class="li3" value="9"></li>
+        </ul>
+    </div>
+
+    <div class="ullist">
+        <ul class="ul2">
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    
+    <div class="ullist">
+        <ul class="ul3">
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+
+<script src="js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+
+//alert($("ul li").length);                           //获取li的长度
+
+//alert($("ul li").height());                           //获取li的高度
+
+//alert($("ul li").width());                           //获取li的宽度
+
+//alert($("ul li").outerWidth());                         //获取li的宽度度 包括border padding
+
+//alert($("ul li").outerWidth(true));                         //获取li的宽度度 包括border padding margin
+
+//alert($(window).height());                           //浏览器当前窗口可视区域高度
+
+//alert($(document).height());                        //浏览器当前窗口文档的高度
+
+//alert($(document.body).height());                //浏览器当前窗口文档body的高度
+
+//alert($(document.body).outerHeight(true));  //浏览器当前窗口文档body的总高度 包括border padding margin
+
+//alert($(window).width());                            //浏览器当前窗口可视区域宽度
+
+//alert($(document).width());                        //浏览器当前窗口文档对象宽度
+
+//alert($(document.body).width());                //浏览器当前窗口文档body的宽度
+
+//alert($(document.body).outerWidth(true));  //浏览器当前窗口文档body的总宽度 包括border padding margin
+
+//alert($(window).scrollTop());                            //滚动条向上滚动的距离
+
+//alert($("ul li").text());                           //获取文本
+
+//alert($(".ul1").html());                           //获取html
+
+//alert($(".li3").val());                           //获取初始值
+
+//alert($("a").attr("target"));                           //获取属性值
+
+//$("a").removeAttr("href")                          //移除属性值
+
+//$("li").addClass("curr")                          //加入class
+
+//$("li").removeClass("curr")                          //移除class
+
+//alert($(".ul1").offset().left);                           //获取.ul1距Window窗口左边的距离
+
+//alert($(".ul1").offset().top);                            //获取.ul1距整个文档顶部的距离
+
+
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

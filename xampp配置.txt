@@ -1,0 +1,47 @@
+#Listen 12.34.56.78:80
+Listen 80
+Listen 8080
+Listen 8081
+
+
+
+
+<Directory />
+   #AllowOverride none
+   #Require all denied
+   AllowOverride All
+   #Require all granted
+</Directory>
+
+
+
+
+
+# 多端口虚拟主机配置 #
+
+<virtualhost *:8080>
+
+    ServerName localhost
+
+    DocumentRoot E:\mywork\Hui
+
+</virtualhost>
+
+# 多端口虚拟主机配置 #
+
+<virtualhost *:8081>
+
+    ServerName localhost
+
+    DocumentRoot E:\mywork\sccl-admin
+
+</virtualhost>
+
+
+
+
+（1）记事本打开 C:\Windows\System32\drivers\etc\hosts
+
+（2）在该文件底部添加以下代码并保存：
+
+127.0.0.1 localhost

@@ -1,0 +1,156 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{ margin: 0; padding: 0; list-style: none; }
+.conLoop { width: 400px; height: 300px;  margin: 100px auto; position: relative; }
+.conLoop .conIn{height:100%; overflow: hidden;  position: relative; }
+.conLoop .imgList{ width:20000px;  position: relative;  left: 0; top: 0;}
+.conLoop .imgList li{ float: left; width: 400px; height: 300px; }
+.conLoop .imgList li img{width:100%; height:100%; }
+.conLoop .ArrowList a{ display:block; width: 27px; height: 44px; position: absolute; z-index:9; top: 50%; margin-top:-22px;}
+.conLoop .ArrowList .left { left: 0px; background: url(images/prev.png) no-repeat center;}
+.conLoop .ArrowList .right {right: 0px;  background: url(images/next.png) no-repeat center; }
+.conLoop .btnList{position: absolute; z-index:8; width: 100%; height: 10px;  bottom:15px; text-align:center;}
+.conLoop .btnList li{ display:inline-block; width: 10px; height: 10px; overflow:hidden; text-indent:100px; border-radius:100%; background:#d7d7d7;  cursor:pointer; margin-right:10px; }
+.conLoop .btnList li.current {background:#FBE94D;}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="conLoop">
+    <div class="conIn">
+        <ul class="imgList">
+            <li><img src="images/ban1.jpg"  alt=""/></li>
+            <li><img src="images/ban2.jpg"  alt=""/></li>
+            <li><img src="images/ban3.jpg"  alt=""/></li>
+            <li><img src="images/ban4.jpg"  alt=""/></li>
+            <!---克隆的li---->
+        </ul>
+    </div>
+    
+    <ol class="btnList" ></ol>
+    <div class="ArrowList"><a  class="left"></a><a  class="right"></a></div>
+    
+</div>
+
+
+<script src="js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+        
+        var liwidth = $('.imgList li').width();
+		
+       //一定要在克临时工隆之前获取imgList li 的长度
+        var lilength = $('.imgList li').length;
+		
+		//append圆点
+		for(var x=0; x<lilength; x++){
+			  $('.btnList').append('<li>'+[x+1]+'</li>');
+			};
+		
+       //定义一个变量，用来模拟那个不断在改变点的序号
+        var dianKey=0;
+        //定义一个变量，用来模拟那个不断在改变图片的序号
+        var imgKey=0;
+        var timer;
+		
+        //实现无缝的关键就是：请临时工
+        var firstLi=$('.imgList li:first').clone(true);
+        $('.imgList').append(firstLi);
+
+        var nextFn=function(){
+
+            //需要点的不断改变的序号：0 1 2 3
+            dianKey++;
+            if(dianKey>lilength-1){
+                dianKey=0;
+            }
+
+            //让下一张的小点具备current...
+            $('.btnList li').eq(dianKey).addClass('current').siblings('li').removeClass('current');
+
+            //需要图片不断改变的序号：0 1 2 3 4
+            imgKey++;
+            if(imgKey>lilength){
+                //当你在临时工身上时，用户以为他看到的是第一张，但实际上它是临时工；
+                //用户希望看到的下一张是第1张
+                imgKey=1;
+                //这里一瞬间需要让盒子回到0的位置
+                //因为我需要实现每次都走400PX，所以一瞬间回到0，从0到-400过渡
+                $('.imgList').css('left', 0);
+
+            }
+
+
+            //移动公式：imgKey*-400
+            var s=imgKey*-liwidth;
+            $('.imgList').stop().animate({'left':s}, 500);
+
+        }
+
+        var prevFn=function(){
+
+            dianKey--;
+            if(dianKey<0){
+                dianKey=lilength-1;
+            }
+            //让上一张的小点具备current...
+            $('.btnList li').eq(dianKey).addClass('current').siblings('li').removeClass('current');
+
+
+            imgKey--;
+            if(imgKey<0){
+                //用户希望看到的上一张是第3张（临时工前面的那一张）
+                imgKey=lilength-1;
+                //为了实现无缝，也就是每次都走400PX
+                //这里一瞬间需要让盒子回到-1600PX的位置
+                //从-1600PX向-1200PX进行过渡 
+                $('.imgList').css('left', -lilength*liwidth);
+            }
+
+            //移动公式：imgKey*-400
+            var s=imgKey*-liwidth;
+            $('.imgList').stop().animate({'left':s}, 500);
+
+        }
+
+        $('.right').click(nextFn);
+        $('.left').click(prevFn);
+
+        //给单击小点绑定事件
+        $('.btnList li').click(function(event) {
+
+            //先获取到序号
+            var i=$(this).index();
+            var s=i*-liwidth;
+            //让小点走走
+            $('.btnList li').eq(i).addClass('current').siblings('li').removeClass('current');
+            //让图片走走
+            $('.imgList').stop().animate({'left':s}, 500);
+            //为了让当前这个序号能够影响到上一张和下一张，
+            //还有一个很重要的步骤：序号同步（两个全局变量都需要同步）
+            imgKey=i;
+            dianKey=i;
+
+        });
+
+        //使用定时器实现自动走
+        timer=setInterval(nextFn, 1500);
+
+        //鼠标悬停时，停止定时器
+        $('.conLoop').hover(function() {
+            clearInterval(timer);
+        }, function() {
+            clearInterval(timer);
+            timer=setInterval(nextFn, 1500);
+        });
+        
+        
+</script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+function Appear(){
+    if($(window).scrollTop()+$(window).height()>$(".footer").offset().top){
+        var ideal_number = Math.floor($(window).width()/200);//Number of blocks that fit in a row
+        var add = ideal_number*2;//Add two rows
+        var off = $(".show_this").length%ideal_number;//If the even row got messed up due to page resize
+        if(off){add = ideal_number*2+(ideal_number-off);}
+        var existing = $(".show_this").length;
+        $(".page_item").slice(existing,existing+add).addClass("show_this");
+    }
+}
+$(document).ready(function(){
+    Appear();
+    setInterval(check,5000);
+});

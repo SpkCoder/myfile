@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=3.0; user-scalable=yes">
+<title>Document</title>
+</head>
+<body>
+
+<div id="div1"></div>
+
+<script type="text/javascript">
+   
+
+
+var u=navigator.userAgent;
+var app=navigator.appVersion;
+var browser = {
+
+     isMac:function() {
+               return /macintosh|mac os x/i.test(u);
+           }(),
+     isWindows:function() {
+               return /windows|win32/i.test(u);
+              }(),
+     isLinux:function() {
+                return /linux/i.test(u);
+             }(),
+     rSafari:function() {
+                return /safari/i.test(u);
+             }(),
+     ios: function() {
+                return /safari/i.test(u);
+             }(),
+     ios: function() {
+          return !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); 
+          }(),
+     android: function() {
+          return u.indexOf('Android') > -1 || u.indexOf('Linux') > -1;
+          }(),
+     iPhone:function() {
+          return u.indexOf('iPhone') > -1; 
+          }(),
+     iPad: function() {
+          return u.indexOf('iPad') > -1 ; 
+           }()   
+     
+
+};
+
+
+document.getElementById('div1').innerHTML=browser;
+console.log(browser);
+
+
+</script>
+	
+</body>
+</html>

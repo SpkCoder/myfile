@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+
+</style>
+<script>
+window.onload = function()
+{  
+  var oUl = document.getElementById("ul1");
+  var aA = oUl.getElementsByTagName("a");
+  
+  for(var i=0; i<aA.length; i++)
+  {
+     aA[i].onclick=function()
+	 {
+	    oUl.removeChild(this.parentNode);
+	 }
+  } 
+   
+   
+};
+ 
+ 
+
+
+
+ 
+ 
+</script>
+</head>
+
+<body>
+<div>
+<ul id="ul1" >
+ 	<li>123<a href="javascript:;">删除</a></li>
+ 	<li>123<a href="javascript:;">删除</a></li>
+ 	<li>123<a href="javascript:;">删除</a></li>
+ 	<li>123<a href="javascript:;">删除</a></li>
+  	<li>123<a href="javascript:;">删除</a></li>
+</ul>
+</div>
+</body>
+</html>

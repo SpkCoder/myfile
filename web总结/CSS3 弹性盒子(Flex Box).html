@@ -1,0 +1,207 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CSS3 弹性盒子(Flex Box)</title>
+<style> 
+.flex-container {
+    width: 400px;
+    height: 250px;
+    background-color: lightgrey;
+}
+
+.flex-item {
+    width: 100px;
+    height: 100px;
+	margin: 10px;
+    background-color: cornflowerblue;
+}
+
+	
+ .flex1{
+	display: flex;
+	justify-content:space-between;       /*flex-start左对齐； flex-end右对齐； center水平居中对齐； space-between水平居中分布 两边不留间隔 ； space-around水平居中分布 两边留间隔*/
+}	
+	
+	
+	
+ .flex2{
+	display: flex;
+	flex-direction:row-reverse;       /*row左至右； row-reverse左至右反转； column上至下； column-reverse上至下反转；*/
+}	
+
+
+ .flex3{
+	display: flex;
+	align-items: center;       /*stretch默认； flex-start顶对齐； flex-end底对齐； center垂直居中对齐； baseline不常用;*/
+}	
+
+
+	
+ .flex4{
+	display: flex;
+	flex-wrap: wrap;
+	align-content: center;       /*stretch默认； flex-start顶对齐； flex-end底对齐； center垂直居中对齐； space-between垂直居中分布 两边不留间隔 ； space-around垂直居中分布 两边留间隔*/
+}	
+	
+	
+	
+ .flex5{
+	display: flex;
+	flex-wrap: wrap;     /*nowrap不换行; wrap换行  wrap-reverse换行反转*/
+}	
+	
+	
+	
+ .flex6{
+	display: flex;
+}	
+ .flex6 .flex-item:first-child {         /*margin-right: auto;*/
+    margin-right: auto;
+}		
+	
+	
+	
+	
+ .flex7{
+	display: flex;
+}	
+ .flex7 .flex-item:{         /*水平垂直居中*/
+    margin: auto;
+}		
+	
+	
+	
+	
+ .flex8{
+	display: flex;
+}	
+	
+.flex8 .item1 {
+    align-self: flex-start;
+}
+.flex8 .item2 {
+    align-self: flex-end;
+}
+
+.flex8 .item3 {
+    align-self: center;
+}
+
+.flex8 .item4 {
+    align-self: baseline;
+}
+
+.flex8 .item5 {
+    align-self: stretch;
+}	
+	
+	
+	
+	
+	
+
+ .flex9{
+	display: flex;
+}	
+.flex9 .item1 {
+    flex: 2;
+}
+.flex9 .item2 {
+    flex: 1;
+}
+
+.flex9 .item3 {
+    flex: 1;
+}
+	
+	
+	
+	
+	
+</style>
+</head>
+
+<body>
+
+<div class="flex-container flex1">
+  <div class="flex-item">flex item 1</div>
+  <div class="flex-item">flex item 2</div>
+  <div class="flex-item">flex item 3</div>
+</div>
+<br>
+
+<div class="flex-container flex2">
+  <div class="flex-item">flex item 1</div>
+  <div class="flex-item">flex item 2</div>
+  <div class="flex-item">flex item 3</div>
+</div>
+<br>
+
+
+<div class="flex-container flex3">
+  <div class="flex-item">flex item 1</div>
+  <div class="flex-item">flex item 2</div>
+  <div class="flex-item">flex item 3</div>
+</div>
+<br>
+
+
+<div class="flex-container flex4">
+  <div class="flex-item">flex item 1</div>
+  <div class="flex-item">flex item 2</div>
+  <div class="flex-item">flex item 3</div>
+  <div class="flex-item">flex item 2</div>
+  <div class="flex-item">flex item 3</div>
+</div>
+<br>
+
+
+<div class="flex-container flex5">
+  <div class="flex-item">flex item 1</div>
+  <div class="flex-item">flex item 2</div>
+  <div class="flex-item">flex item 3</div>
+  <div class="flex-item">flex item 2</div>
+  <div class="flex-item">flex item 3</div>
+</div>
+<br>
+
+
+<div class="flex-container flex6">
+  <div class="flex-item">flex item 1</div>
+  <div class="flex-item">flex item 2</div>
+  <div class="flex-item">flex item 3</div>
+</div>
+<br>
+
+
+<div class="flex-container flex7">
+  <div class="flex-item" style="margin: auto;">flex item 1</div>
+</div>
+<br>
+
+
+
+<div class="flex-container flex8">
+  <div class="flex-item item1">flex-start</div>
+  <div class="flex-item item2">flex-end</div>
+  <div class="flex-item item3">center</div>
+  <div class="flex-item item4">baseline</div>
+  <div class="flex-item item5">stretch</div>
+</div>
+
+
+
+
+
+<div class="flex-container flex9">
+  <div class="flex-item item1" style="width: auto;">flex item 1</div>
+  <div class="flex-item item2"  style="width: auto;">flex item 2</div>
+  <div class="flex-item item3"  style="width: auto;">flex item 3</div>  
+</div>
+
+
+
+
+</body>
+</html>

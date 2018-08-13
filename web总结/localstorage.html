@@ -1,0 +1,128 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>localStorage</title>
+<link rel="shortcut icon" href="favicon.ico">
+
+<script language="JavaScript" type="text/javascript">
+
+
+//localStorage 方法存储的数据没有时间限制。第二天、第二周或下一年之后，数据依然可用。
+  // Check browser support
+if (typeof(Storage) !== "undefined") {
+    // Store
+    localStorage.setItem("all",'{"name1":"Gate","name2":"tom"}');
+    // Retrieve
+    var user = JSON.parse(localStorage.getItem("all"));
+    console.log(user.name1);
+
+} else {
+   
+}
+
+
+
+
+if (localStorage.pagecount)
+	{
+	  localStorage.pagecount=Number(localStorage.pagecount) +1;
+	}
+else
+	{
+	  localStorage.pagecount=1;
+	}
+//console.log("Visits: " + localStorage.pagecount + " time(s).");
+
+
+//刷新页面会看到计数器在增长。
+//请关闭浏览器窗口，然后再试一次，计数器会继续计数。
+
+
+
+
+// sessionStorage 方法针对一个 session 进行数据存储。当用户关闭浏览器窗口后，数据会被删除。
+
+
+function clickCounter() {
+    if(typeof(Storage) !== "undefined") {
+        if (sessionStorage.clickcount) {
+            sessionStorage.clickcount = Number(sessionStorage.clickcount)+1;
+        } else {
+            sessionStorage.clickcount = 1;
+        }
+        console.log(sessionStorage.clickcount + " 次。");
+    } else {
+        console.log("抱歉！您的浏览器不支持 Web Storage ...");
+    }
+}
+
+
+// 1.判断本地存储是否可用：
+
+    
+// if(window.localStorage) { 
+//  // localStorge可用 
+//  }else { 
+// // localStorge不可用 
+//  } 
+
+// 2.存储数据：　　
+    
+// // 获取本地存储对象 
+// var localStorage =window.localStorage; 
+// // 存储 
+// localStorage.setItem("key",content); 
+
+// 3.取出数据　　
+
+// var myKey =localStorage.getItem("key"); 
+
+// 4.删除指定数据　　
+
+    
+// localStorage.removeItem("key"); 
+
+// 5.清空全部数据：localStorage.clear() 
+
+
+// 6.存储与读取json数据　　
+
+// 7.获取全部数据：localStorage.valueOf() 示例：
+
+// 8.获取本地存储数据数量：localStorage.length
+
+// 9.获取第 i 个数据的 key 键值：localStorage.key(i)
+
+    
+// // 定义json变量 
+
+//var json ={username:"杨朝来",sex:1,age:25,birthday:"1990-08-21",phonenumber:13812345678,disease:"肺小结节",insurance:1,avatar:"images/male.png"}; 
+// // json变量转化成json字符串 
+// var jsonstr =JSON.stringify(json); 
+// // 存储json字符串 
+// window.localStorage.setItem("jsonkey",jsonstr); 
+// // 取出json字符串 
+// var jsonstr =window.localStorage.getItem("jsonkey"); 
+// // 还原json对象 
+// var json =JSON.parse(jsonstr); 
+// // 取出json里面的username 
+// var username =json.username;  
+
+
+
+
+
+
+</script> 
+
+<body>
+
+<h2>hello</h2>
+<p><button onclick="clickCounter()" type="button">请点击这里</button></p>
+
+</body>
+</html>

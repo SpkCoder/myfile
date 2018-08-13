@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)async_hooks.html -->
+<html lang="zh-cmn-Hans"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width">
+  <title>async_hooks | Node.js API 文档</title>
+  <link rel="stylesheet" href="./async_hooks_files/api.css">
+  <link rel="icon" sizes="32x32" type="image/png" href="http://nodejs.cn/static/favicon.png">
+</head>
+<body class="alt apidoc" id="api-section-async_hooks">
+  <div id="content" class="clearfix">
+    <div id="column2" class="interior">
+      <div id="intro" class="interior">
+        <a href="http://nodejs.cn/">
+          Node.js 中文网
+        </a>
+        <div>
+          <input placeholder="API 快速搜索" id="search_input">
+        </div>
+      </div>
+      <ul>
+<li><a class="nav-assert" href="assert.html">assert - 断言</a></li>
+<li><a class="nav-buffer" href="buffer.html">Buffer - 缓冲器</a></li>
+<li><a class="nav-child_process" href="child_process.html">child_process - 子进程</a></li>
+<li><a class="nav-cluster" href="cluster.html">cluster - 集群</a></li>
+<li><a class="nav-console" href="console.html">console - 控制台</a></li>
+<li><a class="nav-crypto" href="crypto.html">crypto - 加密</a></li>
+<li><a class="nav-dgram" href="dgram.html">dgram - 数据报</a></li>
+<li><a class="nav-dns" href="dns.html">dns - 域名服务器</a></li>
+<li><a class="nav-errors" href="errors.html">Error - 异常</a></li>
+<li><a class="nav-events" href="events.html">events - 事件</a></li>
+<li><a class="nav-fs" href="fs.html">fs - 文件系统</a></li>
+<li><a class="nav-globals" href="globals.html">global - 全局变量</a></li>
+<li><a class="nav-http" href="http.html">http - HTTP</a></li>
+<li><a class="nav-https" href="https.html">https - HTTPS</a></li>
+<li><a class="nav-modules" href="modules.html">module - 模块</a></li>
+<li><a class="nav-net" href="net.html">net - 网络</a></li>
+<li><a class="nav-os" href="os.html">os - 操作系统</a></li>
+<li><a class="nav-path" href="path.html">path - 路径</a></li>
+<li><a class="nav-process" href="process.html">process - 进程</a></li>
+<li><a class="nav-querystring" href="querystring.html">querystring - 查询字符串</a></li>
+<li><a class="nav-readline" href="readline.html">readline - 逐行读取</a></li>
+<li><a class="nav-repl" href="repl.html">repl - 交互式解释器</a></li>
+<li><a class="nav-stream" href="stream.html">stream - 流</a></li>
+<li><a class="nav-string_decoder" href="string_decoder.html">string_decoder - 字符串解码器</a></li>
+<li><a class="nav-timers" href="timers.html">timer - 定时器</a></li>
+<li><a class="nav-tls" href="tls.html">tls - 安全传输层</a></li>
+<li><a class="nav-tty" href="tty.html">tty - 终端</a></li>
+<li><a class="nav-url" href="url.html">url - 网址</a></li>
+<li><a class="nav-util" href="util.html">util - 实用工具</a></li>
+<li><a class="nav-v8" href="v8.html">v8 - V8引擎</a></li>
+<li><a class="nav-vm" href="vm.html">vm - 虚拟机</a></li>
+<li><a class="nav-zlib" href="zlib.html">zlib - 压缩</a></li>
+</ul>
+<div class="line"></div>
+
+<ul>
+<li><a class="nav--api-documentation-documentation_stability_index" href="documentation.html#documentation_stability_index">试验的API</a></li>
+<li><a class="nav-async_hooks active" href="async_hooks.html">async_hooks</a></li>
+<li><a class="nav-http2" href="http2.html">http2</a></li>
+<li><a class="nav-inspector" href="inspector.html">inspector</a></li>
+<li><a class="nav-n-api" href="n-api.html">napi</a></li>
+<li><a class="nav-perf_hooks" href="perf_hooks.html">perf_hooks</a></li>
+</ul>
+<div class="line"></div>
+
+<ul>
+<li><a class="nav-deprecations" href="deprecations.html">废弃的API</a></li>
+<li><a class="nav-domain" href="domain.html">domain</a></li>
+<li><a class="nav-punycode" href="punycode.html">punycode</a></li>
+</ul>
+<div class="line"></div>
+
+<ul>
+<li><a class="nav-documentation" href="documentation.html">关于本文档</a></li>
+<li><a class="nav-synopsis" href="synopsis.html">用法与例子</a></li>
+<li><a class="nav-addons" href="addons.html">C++插件</a></li>
+<li><a class="nav-cli" href="cli.html">命令行选项</a></li>
+<li><a class="nav-debugger" href="debugger.html">debugger调试器</a></li>
+<li><a class="nav-intl" href="intl.html">国际化</a></li>
+<li><a class="nav-tracing" href="tracing.html">事件跟踪</a></li>
+<li><a class="nav-esm" href="esm.html">ECMAScript 模块</a></li>
+</ul>
+
+    </div>
+
+    <div id="column1" data-id="async_hooks" class="interior">
+      <header>
+        <h1>Node.js v8.9.3 文档</h1>
+        <div id="gtoc">
+          <p>
+            <a href="" name="toc">返回文档首页</a>
+            <!--<a href="/api/all.html">单页面显示</a> |-->
+            <!--<a href="/api/async_hooks.json">JSON格式</a> |-->
+            <!--<a href="/api/en/async_hooks.html">查看英文版</a>-->
+          </p>
+        </div>
+        <hr>
+      </header>
+
+      <div id="toc">
+        <h2>目录</h2>
+        <ul>
+<li><span class="stability_1"><a href="async_hooks.html#async_hooks_async_hooks">Async Hooks - [试验的API暂不提供翻译]</a></span><ul>
+<li><span class="stability_undefined"><a href="async_hooks.html#async_hooks_terminology">Terminology</a></span></li>
+<li><span class="stability_undefined"><a href="async_hooks.html#async_hooks_public_api">Public API</a></span><ul>
+<li><span class="stability_undefined"><a href="async_hooks.html#async_hooks_overview">Overview</a></span><ul>
+<li><span class="stability_undefined"><a href="async_hooks.html#async_hooks_async_hooks_createhook_callbacks"><code>async_hooks.createHook(callbacks)</code></a></span><ul>
+<li><span class="stability_undefined"><a href="async_hooks.html#async_hooks_error_handling">Error Handling</a></span></li>
+<li><span class="stability_undefined"><a href="async_hooks.html#async_hooks_printing_in_asynchooks_callbacks">Printing in AsyncHooks callbacks</a></span></li>
+</ul>
+</li>
+<li><span class="stability_undefined"><a href="async_hooks.html#async_hooks_asynchook_enable"><code>asyncHook.enable()</code></a></span></li>
+<li><span class="stability_undefined"><a href="async_hooks.html#async_hooks_asynchook_disable"><code>asyncHook.disable()</code></a></span></li>
+<li><span class="stability_undefined"><a href="async_hooks.html#async_hooks_hook_callbacks">Hook Callbacks</a></span><ul>
+<li><span class="stability_undefined"><a href="async_hooks.html#async_hooks_init_asyncid_type_triggerasyncid_resource"><code>init(asyncId, type, triggerAsyncId, resource)</code></a></span><ul>
+<li><span class="stability_undefined"><a href="async_hooks.html#async_hooks_type"><code>type</code></a></span></li>
+<li><span class="stability_undefined"><a href="async_hooks.html#async_hooks_triggerid"><code>triggerId</code></a></span></li>
+<li><span class="stability_undefined"><a href="async_hooks.html#async_hooks_resource"><code>resource</code></a></span></li>
+<li><span class="stability_undefined"><a href="async_hooks.html#async_hooks_asynchronous_context_example">Asynchronous context example</a></span></li>
+</ul>
+</li>
+<li><span class="stability_undefined"><a href="async_hooks.html#async_hooks_before_asyncid"><code>before(asyncId)</code></a></span></li>
+<li><span class="stability_undefined"><a href="async_hooks.html#async_hooks_after_asyncid"><code>after(asyncId)</code></a></span></li>
+<li><span class="stability_undefined"><a href="async_hooks.html#async_hooks_destroy_asyncid"><code>destroy(asyncId)</code></a></span></li>
+<li><span class="stability_undefined"><a href="async_hooks.html#async_hooks_promiseresolve_asyncid"><code>promiseResolve(asyncId)</code></a></span></li>
+</ul>
+</li>
+<li><span class="stability_undefined"><a href="async_hooks.html#async_hooks_async_hooks_executionasyncid"><code>async_hooks.executionAsyncId()</code></a></span></li>
+<li><span class="stability_undefined"><a href="async_hooks.html#async_hooks_async_hooks_triggerasyncid"><code>async_hooks.triggerAsyncId()</code></a></span></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><span class="stability_undefined"><a href="async_hooks.html#async_hooks_javascript_embedder_api">JavaScript Embedder API</a></span><ul>
+<li><span class="stability_undefined"><a href="async_hooks.html#async_hooks_class_asyncresource"><code>class AsyncResource()</code></a></span><ul>
+<li><span class="stability_undefined"><a href="async_hooks.html#async_hooks_asyncresource_type_triggerasyncid"><code>AsyncResource(type[, triggerAsyncId])</code></a></span></li>
+<li><span class="stability_undefined"><a href="async_hooks.html#async_hooks_asyncresource_emitbefore"><code>asyncResource.emitBefore()</code></a></span></li>
+<li><span class="stability_undefined"><a href="async_hooks.html#async_hooks_asyncresource_emitafter"><code>asyncResource.emitAfter()</code></a></span></li>
+<li><span class="stability_undefined"><a href="async_hooks.html#async_hooks_asyncresource_emitdestroy"><code>asyncResource.emitDestroy()</code></a></span></li>
+<li><span class="stability_undefined"><a href="async_hooks.html#async_hooks_asyncresource_asyncid"><code>asyncResource.asyncId()</code></a></span></li>
+<li><span class="stability_undefined"><a href="async_hooks.html#async_hooks_asyncresource_triggerasyncid"><code>asyncResource.triggerAsyncId()</code></a></span></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      </div>
+
+      <div id="apicontent">
+        <h1>Async Hooks<span><a class="mark" href="async_hooks.html#async_hooks_async_hooks" id="async_hooks_async_hooks">#</a></span></h1><p style="font-size:12px;margin-top:-1em;color:#43853d;">[试验的API暂不提供翻译]</p>
+<div class="api_stability api_stability_1"><a href="documentation.html#documentation_stability_index">Stability: 1</a> - Experimental</div><p>The <code>async_hooks</code> module provides an API to register callbacks tracking the
+lifetime of asynchronous resources created inside a Node.js application.
+It can be accessed using:</p>
+<pre class="sh_sourceCode"><code class="lang-js"><span class="sh_keyword">const</span> async_hooks <span class="sh_symbol">=</span> <span class="sh_function">require</span><span class="sh_symbol">(</span><span class="sh_string">'async_hooks'</span><span class="sh_symbol">);</span>
+</code></pre>
+<h2>Terminology<span><a class="mark" href="async_hooks.html#async_hooks_terminology" id="async_hooks_terminology">#</a></span></h2><p style="font-size:12px;margin-top:-1em;color:#43853d;">[试验的API暂不提供翻译]</p>
+<p>An asynchronous resource represents an object with an associated callback.
+This callback may be called multiple times, for example, the <code>connection</code> event
+in <code>net.createServer</code>, or just a single time like in <code>fs.open</code>. A resource
+can also be closed before the callback is called. AsyncHook does not
+explicitly distinguish between these different cases but will represent them
+as the abstract concept that is a resource.</p>
+<h2>Public API<span><a class="mark" href="async_hooks.html#async_hooks_public_api" id="async_hooks_public_api">#</a></span></h2>
+<h3>Overview<span><a class="mark" href="async_hooks.html#async_hooks_overview" id="async_hooks_overview">#</a></span></h3><p style="font-size:12px;margin-top:-1em;color:#43853d;">[试验的API暂不提供翻译]</p>
+<p>Following is a simple overview of the public API.</p>
+<pre class="sh_sourceCode"><code class="lang-js"><span class="sh_keyword">const</span> async_hooks <span class="sh_symbol">=</span> <span class="sh_function">require</span><span class="sh_symbol">(</span><span class="sh_string">'async_hooks'</span><span class="sh_symbol">);</span>
+
+<span class="sh_comment">// Return the ID of the current execution context.</span>
+<span class="sh_keyword">const</span> eid <span class="sh_symbol">=</span> async_hooks<span class="sh_symbol">.</span><span class="sh_function">executionAsyncId</span><span class="sh_symbol">();</span>
+
+<span class="sh_comment">// Return the ID of the handle responsible for triggering the callback of the</span>
+<span class="sh_comment">// current execution scope to call.</span>
+<span class="sh_keyword">const</span> tid <span class="sh_symbol">=</span> async_hooks<span class="sh_symbol">.</span><span class="sh_function">triggerAsyncId</span><span class="sh_symbol">();</span>
+
+<span class="sh_comment">// Create a new AsyncHook instance. All of these callbacks are optional.</span>
+<span class="sh_keyword">const</span> asyncHook <span class="sh_symbol">=</span>
+    async_hooks<span class="sh_symbol">.</span><span class="sh_function">createHook</span><span class="sh_symbol">(</span><span class="sh_cbracket">{</span> init<span class="sh_symbol">,</span> before<span class="sh_symbol">,</span> after<span class="sh_symbol">,</span> destroy<span class="sh_symbol">,</span> promiseResolve <span class="sh_cbracket">}</span><span class="sh_symbol">);</span>
+
+<span class="sh_comment">// Allow callbacks of this AsyncHook instance to call. This is not an implicit</span>
+<span class="sh_comment">// action after running the constructor, and must be explicitly run to begin</span>
+<span class="sh_comment">// executing callbacks.</span>
+asyncHook<span class="sh_symbol">.</span><span class="sh_function">enable</span><span class="sh_symbol">();</span>
+
+<span class="sh_comment">// Disable listening for new asynchronous events.</span>
+asyncHook<span class="sh_symbol">.</span><span class="sh_function">disable</span><span class="sh_symbol">();</span>
+
+<span class="sh_comment">//</span>
+<span class="sh_comment">// The following are the callbacks that can be passed to createHook().</span>
+<span class="sh_comment">//</span>
+
+<span class="sh_comment">// init is called during object construction. The resource may not have</span>
+<span class="sh_comment">// completed construction when this callback runs, therefore all fields of the</span>
+<span class="sh_comment">// resource referenced by "asyncId" may not have been populated.</span>
+<span class="sh_keyword">function</span> <span class="sh_function">init</span><span class="sh_symbol">(</span>asyncId<span class="sh_symbol">,</span> type<span class="sh_symbol">,</span> triggerAsyncId<span class="sh_symbol">,</span> resource<span class="sh_symbol">)</span> <span class="sh_cbracket">{</span> <span class="sh_cbracket">}</span>
+
+<span class="sh_comment">// before is called just before the resource's callback is called. It can be</span>
+<span class="sh_comment">// called 0-N times for handles (e.g. TCPWrap), and will be called exactly 1</span>
+<span class="sh_comment">// time for requests (e.g. FSReqWrap).</span>
+<span class="sh_keyword">function</span> <span class="sh_function">before</span><span class="sh_symbol">(</span>asyncId<span class="sh_symbol">)</span> <span class="sh_cbracket">{</span> <span class="sh_cbracket">}</span>
+
+<span class="sh_comment">// after is called just after the resource's callback has finished.</span>
+<span class="sh_keyword">function</span> <span class="sh_function">after</span><span class="sh_symbol">(</span>asyncId<span class="sh_symbol">)</span> <span class="sh_cbracket">{</span> <span class="sh_cbracket">}</span>
+
+<span class="sh_comment">// destroy is called when an AsyncWrap instance is destroyed.</span>
+<span class="sh_keyword">function</span> <span class="sh_function">destroy</span><span class="sh_symbol">(</span>asyncId<span class="sh_symbol">)</span> <span class="sh_cbracket">{</span> <span class="sh_cbracket">}</span>
+
+<span class="sh_comment">// promiseResolve is called only for promise resources, when the</span>
+<span class="sh_comment">// `resolve` function passed to the `Promise` constructor is invoked</span>
+<span class="sh_comment">// (either directly or through other means of resolving a promise).</span>
+<span class="sh_keyword">function</span> <span class="sh_function">promiseResolve</span><span class="sh_symbol">(</span>asyncId<span class="sh_symbol">)</span> <span class="sh_cbracket">{</span> <span class="sh_cbracket">}</span>
+</code></pre>
+<h4><code>async_hooks.createHook(callbacks)</code><span><a class="mark" href="async_hooks.html#async_hooks_async_hooks_createhook_callbacks" id="async_hooks_async_hooks_createhook_callbacks">#</a></span></h4><p style="font-size:12px;margin-top:-1em;color:#43853d;">[试验的API暂不提供翻译]</p>
+<div class="api_metadata">
+<span>新增于: v8.1.0</span>
+</div><ul>
+<li><code>callbacks</code> 
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="type">&lt;Object&gt;</a> The <a href="async_hooks.html#async_hooks_hook_callbacks">Hook Callbacks</a> to register<ul>
+<li><code>init</code> 
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="type">&lt;Function&gt;</a> The <a href="async_hooks.html#async_hooks_init_asyncid_type_triggerasyncid_resource"><code>init</code> callback</a>.</li>
+<li><code>before</code> 
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="type">&lt;Function&gt;</a> The <a href="async_hooks.html#async_hooks_before_asyncid"><code>before</code> callback</a>.</li>
+<li><code>after</code> 
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="type">&lt;Function&gt;</a> The <a href="async_hooks.html#async_hooks_after_asyncid"><code>after</code> callback</a>.</li>
+<li><code>destroy</code> 
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="type">&lt;Function&gt;</a> The <a href="async_hooks.html#async_hooks_destroy_asyncid"><code>destroy</code> callback</a>.</li>
+</ul>
+</li>
+<li>Returns: <code>{AsyncHook}</code> Instance used for disabling and enabling hooks</li>
+</ul>
+<p>Registers functions to be called for different lifetime events of each async
+operation.</p>
+<p>The callbacks <code>init()</code>/<code>before()</code>/<code>after()</code>/<code>destroy()</code> are called for the
+respective asynchronous event during a resource's lifetime.</p>
+<p>All callbacks are optional. For example, if only resource cleanup needs to
+be tracked, then only the <code>destroy</code> callback needs to be passed. The
+specifics of all functions that can be passed to <code>callbacks</code> is in the
+<a href="async_hooks.html#async_hooks_hook_callbacks">Hook Callbacks</a> section.</p>
+<pre class="sh_sourceCode"><code class="lang-js"><span class="sh_keyword">const</span> async_hooks <span class="sh_symbol">=</span> <span class="sh_function">require</span><span class="sh_symbol">(</span><span class="sh_string">'async_hooks'</span><span class="sh_symbol">);</span>
+
+<span class="sh_keyword">const</span> asyncHook <span class="sh_symbol">=</span> async_hooks<span class="sh_symbol">.</span><span class="sh_function">createHook</span><span class="sh_symbol">(</span><span class="sh_cbracket">{</span>
+  <span class="sh_function">init</span><span class="sh_symbol">(</span>asyncId<span class="sh_symbol">,</span> type<span class="sh_symbol">,</span> triggerAsyncId<span class="sh_symbol">,</span> resource<span class="sh_symbol">)</span> <span class="sh_cbracket">{</span> <span class="sh_cbracket">}</span><span class="sh_symbol">,</span>
+  <span class="sh_function">destroy</span><span class="sh_symbol">(</span>asyncId<span class="sh_symbol">)</span> <span class="sh_cbracket">{</span> <span class="sh_cbracket">}</span>
+<span class="sh_cbracket">}</span><span class="sh_symbol">);</span>
+</code></pre>
+<p>Note that the callbacks will be inherited via the prototype chain:</p>
+<pre class="sh_sourceCode"><code class="lang-js"><span class="sh_keyword">class</span> MyAsyncCallbacks <span class="sh_cbracket">{</span>
+  <span class="sh_function">init</span><span class="sh_symbol">(</span>asyncId<span class="sh_symbol">,</span> type<span class="sh_symbol">,</span> triggerAsyncId<span class="sh_symbol">,</span> resource<span class="sh_symbol">)</span> <span class="sh_cbracket">{</span> <span class="sh_cbracket">}</span>
+  <span class="sh_function">destroy</span><span class="sh_symbol">(</span>asyncId<span class="sh_symbol">)</span> <span class="sh_cbracket">{}</span>
+<span class="sh_cbracket">}</span>
+
+<span class="sh_keyword">class</span> MyAddedCallbacks <span class="sh_keyword">extends</span> MyAsyncCallbacks <span class="sh_cbracket">{</span>
+  <span class="sh_function">before</span><span class="sh_symbol">(</span>asyncId<span class="sh_symbol">)</span> <span class="sh_cbracket">{</span> <span class="sh_cbracket">}</span>
+  <span class="sh_function">after</span><span class="sh_symbol">(</span>asyncId<span class="sh_symbol">)</span> <span class="sh_cbracket">{</span> <span class="sh_cbracket">}</span>
+<span class="sh_cbracket">}</span>
+
+<span class="sh_keyword">const</span> asyncHook <span class="sh_symbol">=</span> async_hooks<span class="sh_symbol">.</span><span class="sh_function">createHook</span><span class="sh_symbol">(</span><span class="sh_keyword">new</span> <span class="sh_function">MyAddedCallbacks</span><span class="sh_symbol">());</span>
+</code></pre>
+<h5>Error Handling<span><a class="mark" href="async_hooks.html#async_hooks_error_handling" id="async_hooks_error_handling">#</a></span></h5><p style="font-size:12px;margin-top:-1em;color:#43853d;">[试验的API暂不提供翻译]</p>
+<p>If any <code>AsyncHook</code> callbacks throw, the application will print the stack trace
+and exit. The exit path does follow that of an uncaught exception, but
+all <code>uncaughtException</code> listeners are removed, thus forcing the process to
+exit. The <code>'exit'</code> callbacks will still be called unless the application is run
+with <code>--abort-on-uncaught-exception</code>, in which case a stack trace will be
+printed and the application exits, leaving a core file.</p>
+<p>The reason for this error handling behavior is that these callbacks are running
+at potentially volatile points in an object's lifetime, for example during
+class construction and destruction. Because of this, it is deemed necessary to
+bring down the process quickly in order to prevent an unintentional abort in the
+future. This is subject to change in the future if a comprehensive analysis is
+performed to ensure an exception can follow the normal control flow without
+unintentional side effects.</p>
+<h5>Printing in AsyncHooks callbacks<span><a class="mark" href="async_hooks.html#async_hooks_printing_in_asynchooks_callbacks" id="async_hooks_printing_in_asynchooks_callbacks">#</a></span></h5><p style="font-size:12px;margin-top:-1em;color:#43853d;">[试验的API暂不提供翻译]</p>
+<p>Because printing to the console is an asynchronous operation, <code>console.log()</code>
+will cause the AsyncHooks callbacks to be called. Using <code>console.log()</code> or
+similar asynchronous operations inside an AsyncHooks callback function will thus
+cause an infinite recursion. An easily solution to this when debugging is
+to use a synchronous logging operation such as <code>fs.writeSync(1, msg)</code>. This
+will print to stdout because <code>1</code> is the file descriptor for stdout and will
+not invoke AsyncHooks recursively because it is synchronous.</p>
+<pre class="sh_sourceCode"><code class="lang-js"><span class="sh_keyword">const</span> fs <span class="sh_symbol">=</span> <span class="sh_function">require</span><span class="sh_symbol">(</span><span class="sh_string">'fs'</span><span class="sh_symbol">);</span>
+<span class="sh_keyword">const</span> util <span class="sh_symbol">=</span> <span class="sh_function">require</span><span class="sh_symbol">(</span><span class="sh_string">'util'</span><span class="sh_symbol">);</span>
+
+<span class="sh_keyword">function</span> <span class="sh_function">debug</span><span class="sh_symbol">(...</span>args<span class="sh_symbol">)</span> <span class="sh_cbracket">{</span>
+  <span class="sh_comment">// use a function like this one when debugging inside an AsyncHooks callback</span>
+  fs<span class="sh_symbol">.</span><span class="sh_function">writeSync</span><span class="sh_symbol">(</span><span class="sh_number">1</span><span class="sh_symbol">,</span> `$<span class="sh_cbracket">{</span>util<span class="sh_symbol">.</span><span class="sh_function">format</span><span class="sh_symbol">(...</span>args<span class="sh_symbol">)</span><span class="sh_cbracket">}</span><span class="sh_symbol">\</span>n`<span class="sh_symbol">);</span>
+<span class="sh_cbracket">}</span>
+</code></pre>
+<p>If an asynchronous operation is needed for logging, it is possible to keep
+track of what caused the asynchronous operation using the information
+provided by AsyncHooks itself. The logging should then be skipped when
+it was the logging itself that caused AsyncHooks callback to call. By
+doing this the otherwise infinite recursion is broken.</p>
+<h4><code>asyncHook.enable()</code><span><a class="mark" href="async_hooks.html#async_hooks_asynchook_enable" id="async_hooks_asynchook_enable">#</a></span></h4><p style="font-size:12px;margin-top:-1em;color:#43853d;">[试验的API暂不提供翻译]</p>
+<div class="signature"><ul>
+<li>Returns: <span class="type">&lt;AsyncHook&gt;</span> A reference to <code>asyncHook</code>.</li>
+</ul>
+</div><p>Enable the callbacks for a given <code>AsyncHook</code> instance. If no callbacks are
+provided enabling is a noop.</p>
+<p>The <code>AsyncHook</code> instance is disabled by default. If the <code>AsyncHook</code> instance
+should be enabled immediately after creation, the following pattern can be used.</p>
+<pre class="sh_sourceCode"><code class="lang-js"><span class="sh_keyword">const</span> async_hooks <span class="sh_symbol">=</span> <span class="sh_function">require</span><span class="sh_symbol">(</span><span class="sh_string">'async_hooks'</span><span class="sh_symbol">);</span>
+
+<span class="sh_keyword">const</span> hook <span class="sh_symbol">=</span> async_hooks<span class="sh_symbol">.</span><span class="sh_function">createHook</span><span class="sh_symbol">(</span>callbacks<span class="sh_symbol">).</span><span class="sh_function">enable</span><span class="sh_symbol">();</span>
+</code></pre>
+<h4><code>asyncHook.disable()</code><span><a class="mark" href="async_hooks.html#async_hooks_asynchook_disable" id="async_hooks_asynchook_disable">#</a></span></h4><p style="font-size:12px;margin-top:-1em;color:#43853d;">[试验的API暂不提供翻译]</p>
+<div class="signature"><ul>
+<li>Returns: <span class="type">&lt;AsyncHook&gt;</span> A reference to <code>asyncHook</code>.</li>
+</ul>
+</div><p>Disable the callbacks for a given <code>AsyncHook</code> instance from the global pool of
+AsyncHook callbacks to be executed. Once a hook has been disabled it will not
+be called again until enabled.</p>
+<p>For API consistency <code>disable()</code> also returns the <code>AsyncHook</code> instance.</p>
+<h4>Hook Callbacks<span><a class="mark" href="async_hooks.html#async_hooks_hook_callbacks" id="async_hooks_hook_callbacks">#</a></span></h4><p style="font-size:12px;margin-top:-1em;color:#43853d;">[试验的API暂不提供翻译]</p>
+<p>Key events in the lifetime of asynchronous events have been categorized into
+four areas: instantiation, before/after the callback is called, and when the
+instance is destroyed.</p>
+<h5><code>init(asyncId, type, triggerAsyncId, resource)</code><span><a class="mark" href="async_hooks.html#async_hooks_init_asyncid_type_triggerasyncid_resource" id="async_hooks_init_asyncid_type_triggerasyncid_resource">#</a></span></h5><p style="font-size:12px;margin-top:-1em;color:#43853d;">[试验的API暂不提供翻译]</p>
+<div class="signature"><ul>
+<li><code>asyncId</code> 
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type" class="type">&lt;number&gt;</a> A unique ID for the async resource.</li>
+<li><code>type</code> 
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#String_type" class="type">&lt;string&gt;</a> The type of the async resource.</li>
+<li><code>triggerAsyncId</code> 
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type" class="type">&lt;number&gt;</a> The unique ID of the async resource in whose
+execution context this async resource was created.</li>
+<li><code>resource</code> 
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="type">&lt;Object&gt;</a> Reference to the resource representing the async operation,
+needs to be released during <em>destroy</em>.</li>
+</ul>
+</div><p>Called when a class is constructed that has the <em>possibility</em> to emit an
+asynchronous event. This <em>does not</em> mean the instance must call
+<code>before</code>/<code>after</code> before <code>destroy</code> is called, only that the possibility
+exists.</p>
+<p>This behavior can be observed by doing something like opening a resource then
+closing it before the resource can be used. The following snippet demonstrates
+this.</p>
+<pre class="sh_sourceCode"><code class="lang-js"><span class="sh_function">require</span><span class="sh_symbol">(</span><span class="sh_string">'net'</span><span class="sh_symbol">).</span><span class="sh_function">createServer</span><span class="sh_symbol">().</span><span class="sh_function">listen</span><span class="sh_symbol">(</span><span class="sh_keyword">function</span><span class="sh_symbol">()</span> <span class="sh_cbracket">{</span> <span class="sh_keyword">this</span><span class="sh_symbol">.</span><span class="sh_function">close</span><span class="sh_symbol">();</span> <span class="sh_cbracket">}</span><span class="sh_symbol">);</span>
+<span class="sh_comment">// OR</span>
+<span class="sh_function">clearTimeout</span><span class="sh_symbol">(</span><span class="sh_function">setTimeout</span><span class="sh_symbol">(()</span> <span class="sh_symbol">=&gt;</span> <span class="sh_cbracket">{}</span><span class="sh_symbol">,</span> <span class="sh_number">10</span><span class="sh_symbol">));</span>
+</code></pre>
+<p>Every new resource is assigned an ID that is unique within the scope of the
+current process.</p>
+<h6><code>type</code><span><a class="mark" href="async_hooks.html#async_hooks_type" id="async_hooks_type">#</a></span></h6>
+<p>The <code>type</code> is a string identifying the type of resource that caused
+<code>init</code> to be called. Generally, it will correspond to the name of the
+resource's constructor.</p>
+<pre class="sh_sourceCode"><code class="lang-text">FSEVENTWRAP<span class="sh_symbol">,</span> FSREQWRAP<span class="sh_symbol">,</span> GETADDRINFOREQWRAP<span class="sh_symbol">,</span> GETNAMEINFOREQWRAP<span class="sh_symbol">,</span> HTTPPARSER<span class="sh_symbol">,</span>
+JSSTREAM<span class="sh_symbol">,</span> PIPECONNECTWRAP<span class="sh_symbol">,</span> PIPEWRAP<span class="sh_symbol">,</span> PROCESSWRAP<span class="sh_symbol">,</span> QUERYWRAP<span class="sh_symbol">,</span> SHUTDOWNWRAP<span class="sh_symbol">,</span>
+SIGNALWRAP<span class="sh_symbol">,</span> STATWATCHER<span class="sh_symbol">,</span> TCPCONNECTWRAP<span class="sh_symbol">,</span> TCPWRAP<span class="sh_symbol">,</span> TIMERWRAP<span class="sh_symbol">,</span> TTYWRAP<span class="sh_symbol">,</span>
+UDPSENDWRAP<span class="sh_symbol">,</span> UDPWRAP<span class="sh_symbol">,</span> WRITEWRAP<span class="sh_symbol">,</span> ZLIB<span class="sh_symbol">,</span> SSLCONNECTION<span class="sh_symbol">,</span> PBKDF2REQUEST<span class="sh_symbol">,</span>
+RANDOMBYTESREQUEST<span class="sh_symbol">,</span> TLSWRAP<span class="sh_symbol">,</span> Timeout<span class="sh_symbol">,</span> Immediate<span class="sh_symbol">,</span> TickObject
+</code></pre>
+<p>There is also the <code>PROMISE</code> resource type, which is used to track <code>Promise</code>
+instances and asynchronous work scheduled by them.</p>
+<p>Users are be able to define their own <code>type</code> when using the public embedder API.</p>
+<p><em>Note:</em> It is possible to have type name collisions. Embedders are encouraged
+to use a unique prefixes, such as the npm package name, to prevent collisions
+when listening to the hooks.</p>
+<h6><code>triggerId</code><span><a class="mark" href="async_hooks.html#async_hooks_triggerid" id="async_hooks_triggerid">#</a></span></h6>
+<p><code>triggerAsyncId</code> is the <code>asyncId</code> of the resource that caused (or "triggered")
+the new resource to initialize and that caused <code>init</code> to call. This is different
+from <code>async_hooks.executionAsyncId()</code> that only shows <em>when</em> a resource was
+created, while <code>triggerAsyncId</code> shows <em>why</em> a resource was created.</p>
+<p>The following is a simple demonstration of <code>triggerAsyncId</code>:</p>
+<pre class="sh_sourceCode"><code class="lang-js">async_hooks<span class="sh_symbol">.</span><span class="sh_function">createHook</span><span class="sh_symbol">(</span><span class="sh_cbracket">{</span>
+  <span class="sh_function">init</span><span class="sh_symbol">(</span>asyncId<span class="sh_symbol">,</span> type<span class="sh_symbol">,</span> triggerAsyncId<span class="sh_symbol">)</span> <span class="sh_cbracket">{</span>
+    <span class="sh_keyword">const</span> eid <span class="sh_symbol">=</span> async_hooks<span class="sh_symbol">.</span><span class="sh_function">executionAsyncId</span><span class="sh_symbol">();</span>
+    fs<span class="sh_symbol">.</span><span class="sh_function">writeSync</span><span class="sh_symbol">(</span>
+      <span class="sh_number">1</span><span class="sh_symbol">,</span> `$<span class="sh_cbracket">{</span>type<span class="sh_cbracket">}</span><span class="sh_symbol">(</span>$<span class="sh_cbracket">{</span>asyncId<span class="sh_cbracket">}</span><span class="sh_symbol">):</span> trigger<span class="sh_symbol">:</span> $<span class="sh_cbracket">{</span>triggerAsyncId<span class="sh_cbracket">}</span> execution<span class="sh_symbol">:</span> $<span class="sh_cbracket">{</span>eid<span class="sh_cbracket">}</span><span class="sh_symbol">\</span>n`<span class="sh_symbol">);</span>
+  <span class="sh_cbracket">}</span>
+<span class="sh_cbracket">}</span><span class="sh_symbol">).</span><span class="sh_function">enable</span><span class="sh_symbol">();</span>
+
+<span class="sh_function">require</span><span class="sh_symbol">(</span><span class="sh_string">'net'</span><span class="sh_symbol">).</span><span class="sh_function">createServer</span><span class="sh_symbol">((</span>conn<span class="sh_symbol">)</span> <span class="sh_symbol">=&gt;</span> <span class="sh_cbracket">{}</span><span class="sh_symbol">).</span><span class="sh_function">listen</span><span class="sh_symbol">(</span><span class="sh_number">8080</span><span class="sh_symbol">);</span>
+</code></pre>
+<p>Output when hitting the server with <code>nc localhost 8080</code>:</p>
+<pre class="sh_sourceCode"><code class="lang-console"><span class="sh_function">TCPWRAP</span><span class="sh_symbol">(</span><span class="sh_number">2</span><span class="sh_symbol">):</span> trigger<span class="sh_symbol">:</span> <span class="sh_number">1</span> execution<span class="sh_symbol">:</span> <span class="sh_number">1</span>
+<span class="sh_function">TCPWRAP</span><span class="sh_symbol">(</span><span class="sh_number">4</span><span class="sh_symbol">):</span> trigger<span class="sh_symbol">:</span> <span class="sh_number">2</span> execution<span class="sh_symbol">:</span> <span class="sh_number">0</span>
+</code></pre>
+<p>The first <code>TCPWRAP</code> is the server which receives the connections.</p>
+<p>The second <code>TCPWRAP</code> is the new connection from the client. When a new
+connection is made the <code>TCPWrap</code> instance is immediately constructed. This
+happens outside of any JavaScript stack (side note: a <code>executionAsyncId()</code> of <code>0</code>
+means it's being executed from C++, with no JavaScript stack above it).
+With only that information, it would be impossible to link resources together in
+terms of what caused them to be created, so <code>triggerAsyncId</code> is given the task of
+propagating what resource is responsible for the new resource's existence.</p>
+<h6><code>resource</code><span><a class="mark" href="async_hooks.html#async_hooks_resource" id="async_hooks_resource">#</a></span></h6>
+<p><code>resource</code> is an object that represents the actual async resource that has
+been initialized. This can contain useful information that can vary based on
+the value of <code>type</code>. For instance, for the <code>GETADDRINFOREQWRAP</code> resource type,
+<code>resource</code> provides the hostname used when looking up the IP address for the
+hostname in <code>net.Server.listen()</code>. The API for accessing this information is
+currently not considered public, but using the Embedder API, users can provide
+and document their own resource objects. For example, such a resource object
+could contain the SQL query being executed.</p>
+<p>In the case of Promises, the <code>resource</code> object will have <code>promise</code> property
+that refers to the Promise that is being initialized, and a <code>parentId</code> property
+set to the <code>asyncId</code> of a parent Promise, if there is one, and <code>undefined</code>
+otherwise. For example, in the case of <code>b = a.then(handler)</code>, <code>a</code> is considered
+a parent Promise of <code>b</code>.</p>
+<p><em>Note</em>: In some cases the resource object is reused for performance reasons,
+it is thus not safe to use it as a key in a <code>WeakMap</code> or add properties to it.</p>
+<h6>Asynchronous context example<span><a class="mark" href="async_hooks.html#async_hooks_asynchronous_context_example" id="async_hooks_asynchronous_context_example">#</a></span></h6>
+<p>The following is an example with additional information about the calls to
+<code>init</code> between the <code>before</code> and <code>after</code> calls, specifically what the
+callback to <code>listen()</code> will look like. The output formatting is slightly more
+elaborate to make calling context easier to see.</p>
+<pre class="sh_sourceCode"><code class="lang-js">let indent <span class="sh_symbol">=</span> <span class="sh_number">0</span><span class="sh_symbol">;</span>
+async_hooks<span class="sh_symbol">.</span><span class="sh_function">createHook</span><span class="sh_symbol">(</span><span class="sh_cbracket">{</span>
+  <span class="sh_function">init</span><span class="sh_symbol">(</span>asyncId<span class="sh_symbol">,</span> type<span class="sh_symbol">,</span> triggerAsyncId<span class="sh_symbol">)</span> <span class="sh_cbracket">{</span>
+    <span class="sh_keyword">const</span> eid <span class="sh_symbol">=</span> async_hooks<span class="sh_symbol">.</span><span class="sh_function">executionAsyncId</span><span class="sh_symbol">();</span>
+    <span class="sh_keyword">const</span> indentStr <span class="sh_symbol">=</span> <span class="sh_string">' '</span><span class="sh_symbol">.</span><span class="sh_function">repeat</span><span class="sh_symbol">(</span>indent<span class="sh_symbol">);</span>
+    fs<span class="sh_symbol">.</span><span class="sh_function">writeSync</span><span class="sh_symbol">(</span>
+      <span class="sh_number">1</span><span class="sh_symbol">,</span>
+      `$<span class="sh_cbracket">{</span>indentStr<span class="sh_cbracket">}</span>$<span class="sh_cbracket">{</span>type<span class="sh_cbracket">}</span><span class="sh_symbol">(</span>$<span class="sh_cbracket">{</span>asyncId<span class="sh_cbracket">}</span><span class="sh_symbol">):</span>` <span class="sh_symbol">+</span>
+      ` trigger<span class="sh_symbol">:</span> $<span class="sh_cbracket">{</span>triggerAsyncId<span class="sh_cbracket">}</span> execution<span class="sh_symbol">:</span> $<span class="sh_cbracket">{</span>eid<span class="sh_cbracket">}</span><span class="sh_symbol">\</span>n`<span class="sh_symbol">);</span>
+  <span class="sh_cbracket">}</span><span class="sh_symbol">,</span>
+  <span class="sh_function">before</span><span class="sh_symbol">(</span>asyncId<span class="sh_symbol">)</span> <span class="sh_cbracket">{</span>
+    <span class="sh_keyword">const</span> indentStr <span class="sh_symbol">=</span> <span class="sh_string">' '</span><span class="sh_symbol">.</span><span class="sh_function">repeat</span><span class="sh_symbol">(</span>indent<span class="sh_symbol">);</span>
+    fs<span class="sh_symbol">.</span><span class="sh_function">writeSync</span><span class="sh_symbol">(</span><span class="sh_number">1</span><span class="sh_symbol">,</span> `$<span class="sh_cbracket">{</span>indentStr<span class="sh_cbracket">}</span>before<span class="sh_symbol">:</span>  $<span class="sh_cbracket">{</span>asyncId<span class="sh_cbracket">}</span><span class="sh_symbol">\</span>n`<span class="sh_symbol">);</span>
+    indent <span class="sh_symbol">+=</span> <span class="sh_number">2</span><span class="sh_symbol">;</span>
+  <span class="sh_cbracket">}</span><span class="sh_symbol">,</span>
+  <span class="sh_function">after</span><span class="sh_symbol">(</span>asyncId<span class="sh_symbol">)</span> <span class="sh_cbracket">{</span>
+    indent <span class="sh_symbol">-=</span> <span class="sh_number">2</span><span class="sh_symbol">;</span>
+    <span class="sh_keyword">const</span> indentStr <span class="sh_symbol">=</span> <span class="sh_string">' '</span><span class="sh_symbol">.</span><span class="sh_function">repeat</span><span class="sh_symbol">(</span>indent<span class="sh_symbol">);</span>
+    fs<span class="sh_symbol">.</span><span class="sh_function">writeSync</span><span class="sh_symbol">(</span><span class="sh_number">1</span><span class="sh_symbol">,</span> `$<span class="sh_cbracket">{</span>indentStr<span class="sh_cbracket">}</span>after<span class="sh_symbol">:</span>   $<span class="sh_cbracket">{</span>asyncId<span class="sh_cbracket">}</span><span class="sh_symbol">\</span>n`<span class="sh_symbol">);</span>
+  <span class="sh_cbracket">}</span><span class="sh_symbol">,</span>
+  <span class="sh_function">destroy</span><span class="sh_symbol">(</span>asyncId<span class="sh_symbol">)</span> <span class="sh_cbracket">{</span>
+    <span class="sh_keyword">const</span> indentStr <span class="sh_symbol">=</span> <span class="sh_string">' '</span><span class="sh_symbol">.</span><span class="sh_function">repeat</span><span class="sh_symbol">(</span>indent<span class="sh_symbol">);</span>
+    fs<span class="sh_symbol">.</span><span class="sh_function">writeSync</span><span class="sh_symbol">(</span><span class="sh_number">1</span><span class="sh_symbol">,</span> `$<span class="sh_cbracket">{</span>indentStr<span class="sh_cbracket">}</span>destroy<span class="sh_symbol">:</span> $<span class="sh_cbracket">{</span>asyncId<span class="sh_cbracket">}</span><span class="sh_symbol">\</span>n`<span class="sh_symbol">);</span>
+  <span class="sh_cbracket">}</span><span class="sh_symbol">,</span>
+<span class="sh_cbracket">}</span><span class="sh_symbol">).</span><span class="sh_function">enable</span><span class="sh_symbol">();</span>
+
+<span class="sh_function">require</span><span class="sh_symbol">(</span><span class="sh_string">'net'</span><span class="sh_symbol">).</span><span class="sh_function">createServer</span><span class="sh_symbol">(()</span> <span class="sh_symbol">=&gt;</span> <span class="sh_cbracket">{}</span><span class="sh_symbol">).</span><span class="sh_function">listen</span><span class="sh_symbol">(</span><span class="sh_number">8080</span><span class="sh_symbol">,</span> <span class="sh_symbol">()</span> <span class="sh_symbol">=&gt;</span> <span class="sh_cbracket">{</span>
+  <span class="sh_comment">// Let's wait 10ms before logging the server started.</span>
+  <span class="sh_function">setTimeout</span><span class="sh_symbol">(()</span> <span class="sh_symbol">=&gt;</span> <span class="sh_cbracket">{</span>
+    console<span class="sh_symbol">.</span><span class="sh_function">log</span><span class="sh_symbol">(</span><span class="sh_string">'&gt;&gt;&gt;'</span><span class="sh_symbol">,</span> async_hooks<span class="sh_symbol">.</span><span class="sh_function">executionAsyncId</span><span class="sh_symbol">());</span>
+  <span class="sh_cbracket">}</span><span class="sh_symbol">,</span> <span class="sh_number">10</span><span class="sh_symbol">);</span>
+<span class="sh_cbracket">}</span><span class="sh_symbol">);</span>
+</code></pre>
+<p>Output from only starting the server:</p>
+<pre class="sh_sourceCode"><code class="lang-console"><span class="sh_function">TCPWRAP</span><span class="sh_symbol">(</span><span class="sh_number">2</span><span class="sh_symbol">):</span> trigger<span class="sh_symbol">:</span> <span class="sh_number">1</span> execution<span class="sh_symbol">:</span> <span class="sh_number">1</span>
+<span class="sh_function">TickObject</span><span class="sh_symbol">(</span><span class="sh_number">3</span><span class="sh_symbol">):</span> trigger<span class="sh_symbol">:</span> <span class="sh_number">2</span> execution<span class="sh_symbol">:</span> <span class="sh_number">1</span>
+before<span class="sh_symbol">:</span>  <span class="sh_number">3</span>
+  <span class="sh_function">Timeout</span><span class="sh_symbol">(</span><span class="sh_number">4</span><span class="sh_symbol">):</span> trigger<span class="sh_symbol">:</span> <span class="sh_number">3</span> execution<span class="sh_symbol">:</span> <span class="sh_number">3</span>
+  <span class="sh_function">TIMERWRAP</span><span class="sh_symbol">(</span><span class="sh_number">5</span><span class="sh_symbol">):</span> trigger<span class="sh_symbol">:</span> <span class="sh_number">3</span> execution<span class="sh_symbol">:</span> <span class="sh_number">3</span>
+after<span class="sh_symbol">:</span>   <span class="sh_number">3</span>
+destroy<span class="sh_symbol">:</span> <span class="sh_number">3</span>
+before<span class="sh_symbol">:</span>  <span class="sh_number">5</span>
+  before<span class="sh_symbol">:</span>  <span class="sh_number">4</span>
+    <span class="sh_function">TTYWRAP</span><span class="sh_symbol">(</span><span class="sh_number">6</span><span class="sh_symbol">):</span> trigger<span class="sh_symbol">:</span> <span class="sh_number">4</span> execution<span class="sh_symbol">:</span> <span class="sh_number">4</span>
+    <span class="sh_function">SIGNALWRAP</span><span class="sh_symbol">(</span><span class="sh_number">7</span><span class="sh_symbol">):</span> trigger<span class="sh_symbol">:</span> <span class="sh_number">4</span> execution<span class="sh_symbol">:</span> <span class="sh_number">4</span>
+    <span class="sh_function">TTYWRAP</span><span class="sh_symbol">(</span><span class="sh_number">8</span><span class="sh_symbol">):</span> trigger<span class="sh_symbol">:</span> <span class="sh_number">4</span> execution<span class="sh_symbol">:</span> <span class="sh_number">4</span>
+<span class="sh_symbol">&gt;&gt;&gt;</span> <span class="sh_number">4</span>
+    <span class="sh_function">TickObject</span><span class="sh_symbol">(</span><span class="sh_number">9</span><span class="sh_symbol">):</span> trigger<span class="sh_symbol">:</span> <span class="sh_number">4</span> execution<span class="sh_symbol">:</span> <span class="sh_number">4</span>
+  after<span class="sh_symbol">:</span>   <span class="sh_number">4</span>
+after<span class="sh_symbol">:</span>   <span class="sh_number">5</span>
+before<span class="sh_symbol">:</span>  <span class="sh_number">9</span>
+after<span class="sh_symbol">:</span>   <span class="sh_number">9</span>
+destroy<span class="sh_symbol">:</span> <span class="sh_number">4</span>
+destroy<span class="sh_symbol">:</span> <span class="sh_number">9</span>
+destroy<span class="sh_symbol">:</span> <span class="sh_number">5</span>
+</code></pre>
+<p><em>Note</em>: As illustrated in the example, <code>executionAsyncId()</code> and <code>execution</code>
+each specify the value of the current execution context; which is delineated by
+calls to <code>before</code> and <code>after</code>.</p>
+<p>Only using <code>execution</code> to graph resource allocation results in the following:</p>
+<pre class="sh_sourceCode"><code class="lang-console"><span class="sh_function">TTYWRAP</span><span class="sh_symbol">(</span><span class="sh_number">6</span><span class="sh_symbol">)</span> <span class="sh_symbol">-&gt;</span> <span class="sh_function">Timeout</span><span class="sh_symbol">(</span><span class="sh_number">4</span><span class="sh_symbol">)</span> <span class="sh_symbol">-&gt;</span> <span class="sh_function">TIMERWRAP</span><span class="sh_symbol">(</span><span class="sh_number">5</span><span class="sh_symbol">)</span> <span class="sh_symbol">-&gt;</span> <span class="sh_function">TickObject</span><span class="sh_symbol">(</span><span class="sh_number">3</span><span class="sh_symbol">)</span> <span class="sh_symbol">-&gt;</span> <span class="sh_function">root</span><span class="sh_symbol">(</span><span class="sh_number">1</span><span class="sh_symbol">)</span>
+</code></pre>
+<p>The <code>TCPWRAP</code> is not part of this graph, even though it was the reason for
+<code>console.log()</code> being called. This is because binding to a port without a
+hostname is a <em>synchronous</em> operation, but to maintain a completely asynchronous
+API the user's callback is placed in a <code>process.nextTick()</code>.</p>
+<p>The graph only shows <em>when</em> a resource was created, not <em>why</em>, so to track
+the <em>why</em> use <code>triggerAsyncId</code>.</p>
+<h5><code>before(asyncId)</code><span><a class="mark" href="async_hooks.html#async_hooks_before_asyncid" id="async_hooks_before_asyncid">#</a></span></h5><p style="font-size:12px;margin-top:-1em;color:#43853d;">[试验的API暂不提供翻译]</p>
+<div class="signature"><ul>
+<li><code>asyncId</code> 
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type" class="type">&lt;number&gt;</a></li>
+</ul>
+</div><p>When an asynchronous operation is initiated (such as a TCP server receiving a
+new connection) or completes (such as writing data to disk) a callback is
+called to notify the user. The <code>before</code> callback is called just before said
+callback is executed. <code>asyncId</code> is the unique identifier assigned to the
+resource about to execute the callback.</p>
+<p>The <code>before</code> callback will be called 0 to N times. The <code>before</code> callback
+will typically be called 0 times if the asynchronous operation was cancelled
+or, for example, if no connections are received by a TCP server. Persistent
+asynchronous resources like a TCP server will typically call the <code>before</code>
+callback multiple times, while other operations like <code>fs.open()</code> will call
+it only once.</p>
+<h5><code>after(asyncId)</code><span><a class="mark" href="async_hooks.html#async_hooks_after_asyncid" id="async_hooks_after_asyncid">#</a></span></h5><p style="font-size:12px;margin-top:-1em;color:#43853d;">[试验的API暂不提供翻译]</p>
+<div class="signature"><ul>
+<li><code>asyncId</code> 
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type" class="type">&lt;number&gt;</a></li>
+</ul>
+</div><p>Called immediately after the callback specified in <code>before</code> is completed.</p>
+<p><em>Note:</em> If an uncaught exception occurs during execution of the callback, then
+<code>after</code> will run <em>after</em> the <code>'uncaughtException'</code> event is emitted or a
+<code>domain</code>'s handler runs.</p>
+<h5><code>destroy(asyncId)</code><span><a class="mark" href="async_hooks.html#async_hooks_destroy_asyncid" id="async_hooks_destroy_asyncid">#</a></span></h5><p style="font-size:12px;margin-top:-1em;color:#43853d;">[试验的API暂不提供翻译]</p>
+<div class="signature"><ul>
+<li><code>asyncId</code> 
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type" class="type">&lt;number&gt;</a></li>
+</ul>
+</div><p>Called after the resource corresponding to <code>asyncId</code> is destroyed. It is also
+called asynchronously from the embedder API <code>emitDestroy()</code>.</p>
+<p><em>Note:</em> Some resources depend on garbage collection for cleanup, so if a
+reference is made to the <code>resource</code> object passed to <code>init</code> it is possible that
+<code>destroy</code> will never be called, causing a memory leak in the application. If
+the resource does not depend on garbage collection, then this will not be an
+issue.</p>
+<h5><code>promiseResolve(asyncId)</code><span><a class="mark" href="async_hooks.html#async_hooks_promiseresolve_asyncid" id="async_hooks_promiseresolve_asyncid">#</a></span></h5><p style="font-size:12px;margin-top:-1em;color:#43853d;">[试验的API暂不提供翻译]</p>
+<div class="signature"><ul>
+<li><code>asyncId</code> 
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type" class="type">&lt;number&gt;</a></li>
+</ul>
+</div><p>Called when the <code>resolve</code> function passed to the <code>Promise</code> constructor is
+invoked (either directly or through other means of resolving a promise).</p>
+<p>Note that <code>resolve()</code> does not do any observable synchronous work.</p>
+<p><em>Note:</em> This does not necessarily mean that the <code>Promise</code> is fulfilled or
+rejected at this point, if the <code>Promise</code> was resolved by assuming the state
+of another <code>Promise</code>.</p>
+<p>For example:</p>
+<pre class="sh_sourceCode"><code class="lang-js"><span class="sh_keyword">new</span> <span class="sh_function">Promise</span><span class="sh_symbol">((</span>resolve<span class="sh_symbol">)</span> <span class="sh_symbol">=&gt;</span> <span class="sh_function">resolve</span><span class="sh_symbol">(</span><span class="sh_keyword">true</span><span class="sh_symbol">)).</span><span class="sh_function">then</span><span class="sh_symbol">((</span>a<span class="sh_symbol">)</span> <span class="sh_symbol">=&gt;</span> <span class="sh_cbracket">{}</span><span class="sh_symbol">);</span>
+</code></pre>
+<p>calls the following callbacks:</p>
+<pre class="sh_sourceCode"><code class="lang-text">init <span class="sh_keyword">for</span> PROMISE <span class="sh_keyword">with</span> id <span class="sh_number">5</span><span class="sh_symbol">,</span> trigger id<span class="sh_symbol">:</span> <span class="sh_number">1</span>
+  promise resolve <span class="sh_number">5</span>      # corresponds to <span class="sh_function">resolve</span><span class="sh_symbol">(</span><span class="sh_keyword">true</span><span class="sh_symbol">)</span>
+init <span class="sh_keyword">for</span> PROMISE <span class="sh_keyword">with</span> id <span class="sh_number">6</span><span class="sh_symbol">,</span> trigger id<span class="sh_symbol">:</span> <span class="sh_number">5</span>  # the Promise returned by <span class="sh_function">then</span><span class="sh_symbol">()</span>
+  before <span class="sh_number">6</span>               # the <span class="sh_function">then</span><span class="sh_symbol">()</span> callback is entered
+  promise resolve <span class="sh_number">6</span>      # the <span class="sh_function">then</span><span class="sh_symbol">()</span> callback resolves the promise by returning
+  after <span class="sh_number">6</span>
+</code></pre>
+<h4><code>async_hooks.executionAsyncId()</code><span><a class="mark" href="async_hooks.html#async_hooks_async_hooks_executionasyncid" id="async_hooks_async_hooks_executionasyncid">#</a></span></h4><p style="font-size:12px;margin-top:-1em;color:#43853d;">[试验的API暂不提供翻译]</p>
+<div class="signature"><ul>
+<li>Returns: 
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type" class="type">&lt;number&gt;</a> The <code>asyncId</code> of the current execution context. Useful to
+track when something calls.</li>
+</ul>
+</div><p>For example:</p>
+<pre class="sh_sourceCode"><code class="lang-js"><span class="sh_keyword">const</span> async_hooks <span class="sh_symbol">=</span> <span class="sh_function">require</span><span class="sh_symbol">(</span><span class="sh_string">'async_hooks'</span><span class="sh_symbol">);</span>
+
+console<span class="sh_symbol">.</span><span class="sh_function">log</span><span class="sh_symbol">(</span>async_hooks<span class="sh_symbol">.</span><span class="sh_function">executionAsyncId</span><span class="sh_symbol">());</span>  <span class="sh_comment">// 1 - bootstrap</span>
+fs<span class="sh_symbol">.</span><span class="sh_function">open</span><span class="sh_symbol">(</span>path<span class="sh_symbol">,</span> <span class="sh_string">'r'</span><span class="sh_symbol">,</span> <span class="sh_symbol">(</span>err<span class="sh_symbol">,</span> fd<span class="sh_symbol">)</span> <span class="sh_symbol">=&gt;</span> <span class="sh_cbracket">{</span>
+  console<span class="sh_symbol">.</span><span class="sh_function">log</span><span class="sh_symbol">(</span>async_hooks<span class="sh_symbol">.</span><span class="sh_function">executionAsyncId</span><span class="sh_symbol">());</span>  <span class="sh_comment">// 6 - open()</span>
+<span class="sh_cbracket">}</span><span class="sh_symbol">);</span>
+</code></pre>
+<p>It is important to note that the ID returned fom <code>executionAsyncId()</code> is related
+to execution timing, not causality (which is covered by <code>triggerAsyncId()</code>). For
+example:</p>
+<pre class="sh_sourceCode"><code class="lang-js"><span class="sh_keyword">const</span> server <span class="sh_symbol">=</span> net<span class="sh_symbol">.</span><span class="sh_function">createServer</span><span class="sh_symbol">(</span><span class="sh_keyword">function</span> <span class="sh_function">onConnection</span><span class="sh_symbol">(</span>conn<span class="sh_symbol">)</span> <span class="sh_cbracket">{</span>
+  <span class="sh_comment">// Returns the ID of the server, not of the new connection, because the</span>
+  <span class="sh_comment">// onConnection callback runs in the execution scope of the server's</span>
+  <span class="sh_comment">// MakeCallback().</span>
+  async_hooks<span class="sh_symbol">.</span><span class="sh_function">executionAsyncId</span><span class="sh_symbol">();</span>
+
+<span class="sh_cbracket">}</span><span class="sh_symbol">).</span><span class="sh_function">listen</span><span class="sh_symbol">(</span>port<span class="sh_symbol">,</span> <span class="sh_keyword">function</span> <span class="sh_function">onListening</span><span class="sh_symbol">()</span> <span class="sh_cbracket">{</span>
+  <span class="sh_comment">// Returns the ID of a TickObject (i.e. process.nextTick()) because all</span>
+  <span class="sh_comment">// callbacks passed to .listen() are wrapped in a nextTick().</span>
+  async_hooks<span class="sh_symbol">.</span><span class="sh_function">executionAsyncId</span><span class="sh_symbol">();</span>
+<span class="sh_cbracket">}</span><span class="sh_symbol">);</span>
+</code></pre>
+<h4><code>async_hooks.triggerAsyncId()</code><span><a class="mark" href="async_hooks.html#async_hooks_async_hooks_triggerasyncid" id="async_hooks_async_hooks_triggerasyncid">#</a></span></h4><p style="font-size:12px;margin-top:-1em;color:#43853d;">[试验的API暂不提供翻译]</p>
+<div class="signature"><ul>
+<li>Returns: 
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type" class="type">&lt;number&gt;</a> The ID of the resource responsible for calling the callback
+that is currently being executed.</li>
+</ul>
+</div><p>For example:</p>
+<pre class="sh_sourceCode"><code class="lang-js"><span class="sh_keyword">const</span> server <span class="sh_symbol">=</span> net<span class="sh_symbol">.</span><span class="sh_function">createServer</span><span class="sh_symbol">((</span>conn<span class="sh_symbol">)</span> <span class="sh_symbol">=&gt;</span> <span class="sh_cbracket">{</span>
+  <span class="sh_comment">// The resource that caused (or triggered) this callback to be called</span>
+  <span class="sh_comment">// was that of the new connection. Thus the return value of triggerAsyncId()</span>
+  <span class="sh_comment">// is the asyncId of "conn".</span>
+  async_hooks<span class="sh_symbol">.</span><span class="sh_function">triggerAsyncId</span><span class="sh_symbol">();</span>
+
+<span class="sh_cbracket">}</span><span class="sh_symbol">).</span><span class="sh_function">listen</span><span class="sh_symbol">(</span>port<span class="sh_symbol">,</span> <span class="sh_symbol">()</span> <span class="sh_symbol">=&gt;</span> <span class="sh_cbracket">{</span>
+  <span class="sh_comment">// Even though all callbacks passed to .listen() are wrapped in a nextTick()</span>
+  <span class="sh_comment">// the callback itself exists because the call to the server's .listen()</span>
+  <span class="sh_comment">// was made. So the return value would be the ID of the server.</span>
+  async_hooks<span class="sh_symbol">.</span><span class="sh_function">triggerAsyncId</span><span class="sh_symbol">();</span>
+<span class="sh_cbracket">}</span><span class="sh_symbol">);</span>
+</code></pre>
+<h2>JavaScript Embedder API<span><a class="mark" href="async_hooks.html#async_hooks_javascript_embedder_api" id="async_hooks_javascript_embedder_api">#</a></span></h2><p style="font-size:12px;margin-top:-1em;color:#43853d;">[试验的API暂不提供翻译]</p>
+<p>Library developers that handle their own asychronous resources performing tasks
+like I/O, connection pooling, or managing callback queues may use the <code>AsyncWrap</code>
+JavaScript API so that all the appropriate callbacks are called.</p>
+<h3><code>class AsyncResource()</code><span><a class="mark" href="async_hooks.html#async_hooks_class_asyncresource" id="async_hooks_class_asyncresource">#</a></span></h3><p style="font-size:12px;margin-top:-1em;color:#43853d;">[试验的API暂不提供翻译]</p>
+<p>The class <code>AsyncResource</code> was designed to be extended by the embedder's async
+resources. Using this users can easily trigger the lifetime events of their
+own resources.</p>
+<p>The <code>init</code> hook will trigger when an <code>AsyncResource</code> is instantiated.</p>
+<p><em>Note</em>: It is important that <code>before</code>/<code>after</code> calls are unwound
+in the same order they are called. Otherwise an unrecoverable exception
+will occur and the process will abort.</p>
+<p>The following is an overview of the <code>AsyncResource</code> API.</p>
+<pre class="sh_sourceCode"><code class="lang-js"><span class="sh_keyword">const</span> <span class="sh_cbracket">{</span> AsyncResource <span class="sh_cbracket">}</span> <span class="sh_symbol">=</span> <span class="sh_function">require</span><span class="sh_symbol">(</span><span class="sh_string">'async_hooks'</span><span class="sh_symbol">);</span>
+
+<span class="sh_comment">// AsyncResource() is meant to be extended. Instantiating a</span>
+<span class="sh_comment">// new AsyncResource() also triggers init. If triggerAsyncId is omitted then</span>
+<span class="sh_comment">// async_hook.executionAsyncId() is used.</span>
+<span class="sh_keyword">const</span> asyncResource <span class="sh_symbol">=</span> <span class="sh_keyword">new</span> <span class="sh_function">AsyncResource</span><span class="sh_symbol">(</span>type<span class="sh_symbol">,</span> triggerAsyncId<span class="sh_symbol">);</span>
+
+<span class="sh_comment">// Call AsyncHooks before callbacks.</span>
+asyncResource<span class="sh_symbol">.</span><span class="sh_function">emitBefore</span><span class="sh_symbol">();</span>
+
+<span class="sh_comment">// Call AsyncHooks after callbacks.</span>
+asyncResource<span class="sh_symbol">.</span><span class="sh_function">emitAfter</span><span class="sh_symbol">();</span>
+
+<span class="sh_comment">// Call AsyncHooks destroy callbacks.</span>
+asyncResource<span class="sh_symbol">.</span><span class="sh_function">emitDestroy</span><span class="sh_symbol">();</span>
+
+<span class="sh_comment">// Return the unique ID assigned to the AsyncResource instance.</span>
+asyncResource<span class="sh_symbol">.</span><span class="sh_function">asyncId</span><span class="sh_symbol">();</span>
+
+<span class="sh_comment">// Return the trigger ID for the AsyncResource instance.</span>
+asyncResource<span class="sh_symbol">.</span><span class="sh_function">triggerAsyncId</span><span class="sh_symbol">();</span>
+</code></pre>
+<h4><code>AsyncResource(type[, triggerAsyncId])</code><span><a class="mark" href="async_hooks.html#async_hooks_asyncresource_type_triggerasyncid" id="async_hooks_asyncresource_type_triggerasyncid">#</a></span></h4><p style="font-size:12px;margin-top:-1em;color:#43853d;">[试验的API暂不提供翻译]</p>
+<div class="signature"><ul>
+<li><code>type</code> 
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#String_type" class="type">&lt;string&gt;</a> The type of async event.</li>
+<li><code>triggerAsyncId</code> 
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type" class="type">&lt;number&gt;</a> The ID of the execution context that created this
+async event.</li>
+</ul>
+</div><p>Example usage:</p>
+<pre class="sh_sourceCode"><code class="lang-js"><span class="sh_keyword">class</span> DBQuery <span class="sh_keyword">extends</span> AsyncResource <span class="sh_cbracket">{</span>
+  <span class="sh_function">constructor</span><span class="sh_symbol">(</span>db<span class="sh_symbol">)</span> <span class="sh_cbracket">{</span>
+    <span class="sh_keyword">super</span><span class="sh_symbol">(</span><span class="sh_string">'DBQuery'</span><span class="sh_symbol">);</span>
+    <span class="sh_keyword">this</span><span class="sh_symbol">.</span>db <span class="sh_symbol">=</span> db<span class="sh_symbol">;</span>
+  <span class="sh_cbracket">}</span>
+
+  <span class="sh_function">getInfo</span><span class="sh_symbol">(</span>query<span class="sh_symbol">,</span> callback<span class="sh_symbol">)</span> <span class="sh_cbracket">{</span>
+    <span class="sh_keyword">this</span><span class="sh_symbol">.</span>db<span class="sh_symbol">.</span><span class="sh_function">get</span><span class="sh_symbol">(</span>query<span class="sh_symbol">,</span> <span class="sh_symbol">(</span>err<span class="sh_symbol">,</span> data<span class="sh_symbol">)</span> <span class="sh_symbol">=&gt;</span> <span class="sh_cbracket">{</span>
+      <span class="sh_keyword">this</span><span class="sh_symbol">.</span><span class="sh_function">emitBefore</span><span class="sh_symbol">();</span>
+      <span class="sh_function">callback</span><span class="sh_symbol">(</span>err<span class="sh_symbol">,</span> data<span class="sh_symbol">);</span>
+      <span class="sh_keyword">this</span><span class="sh_symbol">.</span><span class="sh_function">emitAfter</span><span class="sh_symbol">();</span>
+    <span class="sh_cbracket">}</span><span class="sh_symbol">);</span>
+  <span class="sh_cbracket">}</span>
+
+  <span class="sh_function">close</span><span class="sh_symbol">()</span> <span class="sh_cbracket">{</span>
+    <span class="sh_keyword">this</span><span class="sh_symbol">.</span>db <span class="sh_symbol">=</span> <span class="sh_keyword">null</span><span class="sh_symbol">;</span>
+    <span class="sh_keyword">this</span><span class="sh_symbol">.</span><span class="sh_function">emitDestroy</span><span class="sh_symbol">();</span>
+  <span class="sh_cbracket">}</span>
+<span class="sh_cbracket">}</span>
+</code></pre>
+<h4><code>asyncResource.emitBefore()</code><span><a class="mark" href="async_hooks.html#async_hooks_asyncresource_emitbefore" id="async_hooks_asyncresource_emitbefore">#</a></span></h4><p style="font-size:12px;margin-top:-1em;color:#43853d;">[试验的API暂不提供翻译]</p>
+<div class="signature"><ul>
+<li>Returns: 
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Undefined_type" class="type">&lt;undefined&gt;</a></li>
+</ul>
+</div><p>Call all <code>before</code> callbacks to notify that a new asynchronous execution context
+is being entered. If nested calls to <code>emitBefore()</code> are made, the stack of
+<code>asyncId</code>s will be tracked and properly unwound.</p>
+<h4><code>asyncResource.emitAfter()</code><span><a class="mark" href="async_hooks.html#async_hooks_asyncresource_emitafter" id="async_hooks_asyncresource_emitafter">#</a></span></h4><p style="font-size:12px;margin-top:-1em;color:#43853d;">[试验的API暂不提供翻译]</p>
+<div class="signature"><ul>
+<li>Returns: 
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Undefined_type" class="type">&lt;undefined&gt;</a></li>
+</ul>
+</div><p>Call all <code>after</code> callbacks. If nested calls to <code>emitBefore()</code> were made, then
+make sure the stack is unwound properly. Otherwise an error will be thrown.</p>
+<p>If the user's callback throws an exception, <code>emitAfter()</code> will automatically be
+called for all <code>asyncId</code>s on the stack if the error is handled by a domain or
+<code>'uncaughtException'</code> handler.</p>
+<h4><code>asyncResource.emitDestroy()</code><span><a class="mark" href="async_hooks.html#async_hooks_asyncresource_emitdestroy" id="async_hooks_asyncresource_emitdestroy">#</a></span></h4><p style="font-size:12px;margin-top:-1em;color:#43853d;">[试验的API暂不提供翻译]</p>
+<div class="signature"><ul>
+<li>Returns: 
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Undefined_type" class="type">&lt;undefined&gt;</a></li>
+</ul>
+</div><p>Call all <code>destroy</code> hooks. This should only ever be called once. An error will
+be thrown if it is called more than once. This <strong>must</strong> be manually called. If
+the resource is left to be collected by the GC then the <code>destroy</code> hooks will
+never be called.</p>
+<h4><code>asyncResource.asyncId()</code><span><a class="mark" href="async_hooks.html#async_hooks_asyncresource_asyncid" id="async_hooks_asyncresource_asyncid">#</a></span></h4><p style="font-size:12px;margin-top:-1em;color:#43853d;">[试验的API暂不提供翻译]</p>
+<div class="signature"><ul>
+<li>Returns: 
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type" class="type">&lt;number&gt;</a> The unique <code>asyncId</code> assigned to the resource.</li>
+</ul>
+</div><h4><code>asyncResource.triggerAsyncId()</code><span><a class="mark" href="async_hooks.html#async_hooks_asyncresource_triggerasyncid" id="async_hooks_asyncresource_triggerasyncid">#</a></span></h4><p style="font-size:12px;margin-top:-1em;color:#43853d;">[试验的API暂不提供翻译]</p>
+<div class="signature"><ul>
+<li>Returns: 
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type" class="type">&lt;number&gt;</a> The same <code>triggerAsyncId</code> that is passed to the <code>AsyncResource</code>
+constructor.</li>
+</ul>
+</div>
+      </div>
+    </div>
+  </div>
+  <!-- 搜索弹窗 -->
+  <div id="modal_search_bg"></div>
+  <div id="modal_search">
+    <input placeholder="API 快速搜索" id="modal_search_input">
+    <div id="modal_search_result"></div>
+  </div>
+  <!-- js -->
+  <!--[if lt IE 10]><script src="/static/lib/placeholders.js?20170426"></script><![endif]-->
+  <script src="./async_hooks_files/hm.js.下载"></script><script src="./async_hooks_files/api.js.下载"></script>
+
+</body></html>

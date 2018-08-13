@@ -1,0 +1,91 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script type="text/javascript">
+window.onload=function()
+{
+
+  
+      var oDiv1= document.getElementById("div1");
+      var oDivBox= document.getElementById("div_box");
+      oDiv1.onclick=function(e)
+      {
+      	alert("div1");
+        stopBubble(e)
+      };
+       oDivBox.onclick=function()
+      {
+      	alert("div_box");
+      };
+
+
+
+
+
+
+   
+        //阻止浏览器的默认行为 
+        function stopDefault(e){ 
+           
+            if (e && e.preventDefault )
+            {
+            	//chrome&&firfox
+                e.preventDefault(); 
+            }  
+            else{
+            	//IE
+                window.event.returnValue = false; 
+                return false; 
+            }  
+        }
+
+
+
+
+
+
+          //取消冒泡事件
+          function stopBubble(e)
+          {
+              if(e && e.stopPropagation)
+              {
+              	 //chrome&&firfox
+              	 alert("chrome&&firfox");
+                 e.stopPropagation();
+              }
+              else
+              {
+              	 //IE
+              	 alert("IE");
+              	 window.event.cancelBubble=true;
+              }
+          }
+
+
+  
+
+
+};
+
+
+
+
+
+
+</script>
+</head>
+
+<body>
+	<div id="div_box" style="position:relative; width:500px; height:500px; background:#999; margin: 100px auto;">
+		<div id="div1" style="position:absolute; left: 0; top:0; width:150px; height:150px; background:#060; ">
+		<form style="margin: 5px;" id="form1">
+		  <p>1</p>
+		  <input style="width: 100%" type="text" name="" value="input">
+		</form>
+		</div>
+		
+	</div>
+</body>
+</html>

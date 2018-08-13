@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+<script>
+
+window.onload = function()
+{
+	var oBtn =document.getElementById("btn");
+	oBtn.onclick = function()
+	{
+		//alert(0);
+	};
+	
+	
+	$(oBtn).click(function(){     //转换为jquery对象
+		//alert(0);
+	});
+
+	
+	
+	
+	
+	$(".btn").click(function(){     
+		//alert(0);
+	});
+	
+	var v = $(".btn")[0];     //转换为js对象
+	v.onclick = function()
+	{
+		alert(0);
+	};
+	
+	
+	
+	
+};
+
+</script>
+</head>
+
+<body>
+<button class="b1" id="btn">点击</button><br>
+<button class="b1" >点击</button><strong></strong>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

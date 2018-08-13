@@ -1,0 +1,133 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>cookie</title>
+<link rel="shortcut icon" href="favicon.ico">
+
+<script language="JavaScript" type="text/javascript">
+
+   // document.cookie="userId=828";
+   // document.cookie="userName=hulk";
+   // var strCookie=document.cookie;
+   // console.log(strCookie);
+   
+
+
+    //将多cookie切割为多个名/值对
+    // document.cookie="userId=828";
+    // document.cookie="userName=hulk";
+    // var strCookie=document.cookie;
+	// var arrCookie=strCookie.split(";");
+	// var userId;
+	// //遍历cookie数组，处理每个cookie对
+	// for(var i=0;i<arrCookie.length;i++)
+	// {
+	//     var arr=arrCookie[i].split("=");
+	//     //找到名称为userId的cookie，并返回它的值
+	//     if("userId"==arr[0])
+	//     {
+	//        userId=arr[1];
+	//        break;
+	//     }
+	// }
+	// console.log(userId); 
+    
+
+
+    //将cookie设置为10天后过期
+    // var strCookie=document.cookie;
+    // console.log(strCookie);
+    // 获取当前时间
+	// var date=new Date();
+	// var expiresDays=7;
+	// //将date设置为10天以后的时间
+	// date.setTime(date.getTime()+expiresDays*24*3600*1000);
+	// //将userId和userName两个cookie设置为10天后过期
+	// document.cookie="userId=828;expires="+date.toGMTString();
+	// document.cookie="userName=hulk";
+	
+ 
+
+    // 删除cookie
+    //获取当前时间
+	// var date=new Date();
+	// //将date设置为过去的时间
+	// date.setTime(date.getTime()-10000);
+	// //将userId这个cookie删除
+	// document.cookie="userId=828;expires="+date.toGMTString(); 
+	// var strCookie=document.cookie;
+    // console.log(strCookie);
+   
+
+
+    //控制cookie可以访问的目录
+    //document.cookie="userId=320; path=/shop";
+    //就表示当前cookie仅能在shop目录下使用。 
+    //document.cookie="userId=320; path=/"; 
+    //使cookie在整个网站下可用
+
+
+
+    //创建cookie函数
+    function addCookie(name,value,expiresHours)
+    {
+       var cookieString=name+"="+escape(value);
+	  //判断是否设置过期时间
+	  if(expiresHours>0)
+	  {
+	    var date=new Date();
+	    date.setTime(date.getTime+expiresHours*3600*1000);
+	    cookieString=cookieString+"; expires="+date.toGMTString();
+	  }
+	  document.cookie=cookieString;
+	} 
+    
+    //function addCookie(name,value,expiresHours)
+
+
+    //获取指定名称的cookie值
+    function getCookie(name)
+    {
+		var strCookie=document.cookie;
+		var arrCookie=strCookie.split(";");
+		for(var i=0;i<arrCookie.length;i++)
+		{
+			var arr=arrCookie[i].split("=");
+			if(arr[0]==name)return arr[1];
+		}
+		return "";
+	} 
+
+    // getCookie(name)
+
+
+
+     // 删除指定名称的cookie
+     function deleteCookie(name)
+     {
+         var date=new Date();
+         date.setTime(date.getTime()-10000);
+         document.cookie=name+"=v; expires="+date.toGMTString();
+     } 
+
+     //deleteCookie(name);
+
+
+
+
+
+</script> 
+
+
+
+<body>
+
+<h2>hello</h2>
+
+
+</body>
+</html>

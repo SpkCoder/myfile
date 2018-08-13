@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+<title>测试页面</title>
+<style type="text/css">
+.div1 {
+position: relative;
+width: 600px;
+height: 600px; 
+margin:100px auto;
+background: #999;
+text-align: center;
+color: #333;
+}
+
+</style>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.js"></script>
+<script type="text/javascript">
+$(function() {
+	//document.getElementsByTagName('body')[0].style.zoom=0.5;
+	var r = $(window).width() / ($(document).width());
+	document.getElementsByTagName('body')[0].style.zoom=r;
+	// $("body").css({"transform":"scale("+ r +")","-webkit-transform":"scale("+ r +")","-ms-transform":"scale("+ r +")","-moz-transform":"scale("+ r +")","-o-transform":"scale("+ r +")"});
+	console.log($(document).width());
+	console.log($(window).width());
+	console.log(r);
+
+});
+$(window).resize(function() {
+	var r = $(window).width() / ($(document).width());
+	document.getElementsByTagName('body')[0].style.zoom=r;
+	// $("body").css({"transform":"scale("+ r +")","-webkit-transform":"scale("+ r +")","-ms-transform":"scale("+ r +")","-moz-transform":"scale("+ r +")","-o-transform":"scale("+ r +")"});
+	console.log($(document).width());
+	console.log($(window).width());
+	console.log(r);
+});
+</script>
+</head>
+<body style="width: 1280px;">
+<div class="div1">
+   <div style=" width: 200px; height: 200px; background: #f00;">
+   </div>
+   <h2 style="font-size: 30px">123456</h2>
+    <div style="position: absolute; bottom: 0; right: 0; width: 200px; height: 200px; background: #0f0; border-radius: 100%;">
+   </div>
+</div>
+</body>
+</html> 

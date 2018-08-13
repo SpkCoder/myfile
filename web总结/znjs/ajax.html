@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script type="text/javascript" src="ajax.js"></script>
+<style>
+#div1{position:absolute;top: 0px; left: 0px; width:100px; height: 100px; background: #f00;}
+</style>
+
+
+<script>
+window.onload = function()
+{
+	
+	
+	var oBtn = document.getElementById("btn");
+	
+/*	oBtn.onclick = function()
+	{
+	   //1创建Ajax对象
+	   if(window.XMLHttpRequest)
+	   {
+	      var oAjax = new XMLHttpRequest();                   //其他浏览器
+	   }
+	   else
+	   {
+	      var oAjax = new ActiveXObject(Microsoft.XMLHttp);    //IE6以下
+	   }
+	   
+	   //2连接服务器
+	   //open（方法， 文件路径， 异步传输）；
+	   oAjax.open("GET","a.txt?time="new Date().getTime(),true);     //?time="new Date().getTime()  加一个这样的后缀可以清除缓存
+	   
+	   
+	   //3发送请求
+	   oAjax.send();
+	   
+	   
+	   //4接收返回
+	   oAjax.onreadystatechange = function()
+	   {
+	       //oAjax.readyState  服务器和浏览器进行到哪一步了
+		   if(oAjax.readyState==4)   //读取完成
+		   {
+		      
+			  if(oAjax.status==200)   //成功
+			  {
+			     alert("成功"+oAjax.responseText);
+			  }
+			  else
+			  {
+			     alert("失败"+oAjax.status);
+			  }
+			  
+		   }
+		   
+		   
+	   };
+	   
+	   
+	
+	};
+*/	
+	
+
+	oBtn.onclick = function()
+	{	
+	
+	  
+	   var FnSucc = function(str)
+	   {
+	       alert(str);
+	   };
+	   
+	   var FnFaild = function(ftr)
+	   {
+	       alert(ftr);
+	   };
+	   
+	   ajax("a.txt",FnSucc,FnFaild);
+	   
+	   
+
+	};
+
+
+	
+};
+
+
+
+
+</script>
+</head>
+
+<body>
+<button id="btn">点击</button>
+</body>
+</html>

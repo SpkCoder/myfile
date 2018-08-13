@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>jQuery下拉框城市选择插件 - 站长素材</title>
+
+<link rel="stylesheet" type="text/css" href="css/hzw-city-picker.css">
+
+</head>
+<body>
+<input type="text" id="cityChoice" value="选择城市" style="margin: 134px 0 0 557px;">
+
+<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="js/city-data.js"></script>
+<script type="text/javascript" src="js/hzw-city-picker.min.js"></script>
+<script type="text/javascript">
+    var cityPicker = new HzwCityPicker({
+        data: data,
+        target: 'cityChoice',
+        valType: 'k-v',
+        hideCityInput: {
+            name: 'city',
+            id: 'city'
+        },
+        hideProvinceInput: {
+            name: 'province',
+            id: 'province'
+        },
+        callback: function(){
+            //alert('OK');
+        }
+    });
+
+    cityPicker.init();
+</script>
+
+
+</body>
+</html>

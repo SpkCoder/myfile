@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+
+</style>
+<script>
+window.onload = function()
+{    
+  var oUl = document.getElementById("ul1");
+  for(var i=0; i<oUl.childNodes.length; i++)     //childNodes  包括文本节点和元素节点
+  {
+  
+     //nodeType==3   文本节点
+     //nodeType==1   元素节点
+     if(oUl.childNodes[i].nodeType==1)           //nodeType  节点类型
+	 {
+	    //oUl.childNodes[i].style.background="red";
+	 }
+  }
+  
+  
+  //alert(oUl.children.length);    //children  只包括元素节点，一般有用children来获取子节点
+  
+  //alert(oUl.parentNode);    //parentNode  获取父节点
+  
+  
+  
+  
+  
+  //IE6-8
+  //oUl.firstChild.style.background="red";
+  
+  //其他
+  //oUl.firstElementChild.style.background="red";
+  
+  if(oUl.firstElementChild)
+  {
+    oUl.firstElementChild.style.background="red";    //firstElementChild 获取第一个元素节点
+  }
+  else
+  {
+    oUl.firstChild.style.background="red";           //firstChild 获取第一个节点
+  }
+  
+  
+  //lastElementChild
+  //firstChild 
+  
+  //nextElementSibling   //兄弟节点
+  //nextSibling  
+  
+  //previousElementSibling
+  //previousSibling
+  
+  
+  
+};
+ 
+ 
+ 
+ 
+ 
+</script>
+</head>
+
+<body>
+<div>
+<ul id="ul1">
+  <li>123</li>
+  <li>123</li>
+  <li>123</li>
+</ul>
+</div>
+</body>
+</html>

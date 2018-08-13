@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+</head>
+
+<body>
+<div class="form">
+   <h2>form</h2>
+	<h4>get</h4>
+	<form name="form1" action="http://tool.chinaz.com/Tools/httptest.aspx" method="GET">
+	name: <input type="text" name="name"> 
+	age: <input type="text" name="age">
+	<input type="submit" value="提交">
+	</form>
+	<br>
+
+	<h4>post</h4>
+	<form name="form2" action="http://tool.chinaz.com/Tools/httptest.aspx" method="POST">
+	name: <input type="text" name="name">
+	age: <input type="text" name="age">
+	<input type="submit" value="提交">
+	</form>
+	<br>
+    
+	<h4>文件上传</h4>
+	<form name="form3" action="http://tool.chinaz.com/Tools/httptest.aspx" method="POST">
+	<input type="file" name="image" size="500" />
+	<input type="submit" value="上传文件" />
+	</form>
+</div>
+<br>
+<br>
+<div class="ajax">
+   <h2>ajax</h2>
+	<h4>get</h4>
+	<form name="form4" action="http://tool.chinaz.com/Tools/httptest.aspx" method="GET">
+	name: <input type="text" name="name">
+	age: <input type="text" name="age">
+	<input type="button" value="提交" onclick="_get()">
+	</form>
+	<br>
+
+	<h4>post</h4>
+	<form name="form5" action="http://tool.chinaz.com/Tools/httptest.aspx" method="POST">
+	name: <input type="text" name="name">
+	age: <input type="text" name="age">
+	<input type="button" value="提交" onclick="_post()">
+	</form>
+	<br>
+
+	<h4>文件上传</h4>
+	<form name="form6" action="http://tool.chinaz.com/Tools/httptest.aspx" method="POST">
+	<input type="file" name="image" size="500" />
+	<input type="button" value="上传文件" onclick="_postfile()"/>
+	</form>
+</div>
+
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+    
+    function _get() {
+    	var name = $("form[name=form4] input[name=name").val();
+    	var age = $("form[name=form4] input[name=age").val();
+    	var data = "name="+name+"&age="+age;
+    	$.ajax({
+              url: "http://tool.chinaz.com/Tools/httptest.aspx?"+data,
+              type: "GET",
+              dataType:"html",
+              success: function (data,status,xhr) {
+              	alert("请求成功");
+              },
+              error: function (xhr,status,error) {
+                alert("请求失败"); 
+                console.log(xhr); 
+                console.log(status); 
+                console.log(error); 
+              }
+    	});
+    }
+
+
+    function _post() {
+    	var name = $("form[name=form5] input[name=name").val();
+    	var age = $("form[name=form5] input[name=age").val();
+    	//var data = {"name": name,"age": age};
+    	var data = "name=yuxian&age=25";
+    	$.ajax({
+              url: "http://tool.chinaz.com/Tools/httptest.aspx",
+              type: "POST",
+              dataType:"html",
+              data:data,
+              success: function (data,status,xhr) {
+              	alert("请求成功");
+              },
+              error: function (xhr,status,error) {
+                console.log(xhr); 
+                console.log(status); 
+                console.log(error); 
+              }
+    	});
+    }
+
+
+    
+
+</script>
+
+</body>
+</html>

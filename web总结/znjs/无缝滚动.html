@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{ margin:0; padding:0;}
+#loop{ position:relative; width:800px; height:100px; background:red ;margin:100px auto; overflow:hidden;}
+#loop ul{position:absolute; z-index:2; top:0; left:0;}
+#loop ul li { width:200px; height:200px; float:left; list-style:none; }
+#loop div a{position:absolute; z-index:3; top:48%; width:20px; height:20px; display:block }
+#loop div #pre{ left:0px;}
+#loop div #next{right:0px;}
+</style>
+<script>
+window.onload = function()
+{  
+
+    var oLoop = document.getElementById("loop");
+    var oUl =oLoop.getElementsByTagName("ul")[0];
+    var oLi =oUl.getElementsByTagName("li");
+    var oPre = document.getElementById("pre");
+    var oNext = document.getElementById("next");
+    oUl.innerHTML+=oUl.innerHTML;
+    oUl.style.width = oLi[0].offsetWidth*oLi.length + "px";
+	var speed = -2;
+	var timer = null;
+    function move()
+	{
+		if(oUl.offsetLeft<-oUl.offsetWidth/2)
+		{
+			oUl.style.left = "0px";
+		}
+		else if(oUl.offsetLeft>0)
+		{
+			oUl.style.left =-oUl.offsetWidth/2 + "px";
+		}
+		else
+		{
+			oUl.style.left =oUl.offsetLeft + speed + "px";
+		}
+    };	
+	
+	timer = setInterval(move,30);
+	
+	oUl.onmouseover= function()
+	{
+		clearInterval(timer);
+	};
+	
+	oUl.onmouseout= function()
+	{
+	    timer = setInterval(move,30);
+	};
+	
+	
+	oPre.onclick = function()
+	{
+		if(speed>0)
+		{
+		   speed = -speed;
+		}
+	};
+	
+	oNext.onclick = function()
+	{   
+		if(speed<0)
+		{
+		  speed = -speed;
+		}
+	};
+
+
+	
+};
+ 
+ 
+</script>
+</head>
+
+<body>
+<div id="loop">
+   <ul>
+      <li><img alt="" src="images/loop1.png"></li>
+      <li><img alt="" src="images/loop2.png"></li>
+      <li><img alt="" src="images/loop3.png"></li>
+      <li><img alt="" src="images/loop4.png"></li>
+   </ul>
+   <div><a id="pre"><img alt="" src="images/pre.png"></a><a id="next"><img alt="" src="images/next.png"></a></div>
+</div>
+
+</body>
+</html>

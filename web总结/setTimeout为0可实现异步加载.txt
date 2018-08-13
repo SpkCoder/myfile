@@ -1,0 +1,18 @@
+<script type="text/javascript">
+       var time1 = new Date().getTime();
+       console.log("time1:"+time1);
+       setTimeout("mytest()",0);
+       function mytest() {
+          var num = 0;
+          for(var i=0; i<100000000; i++){
+             num+=1;
+          }
+          var time2 = new Date().getTime();
+          console.log("time2:"+time2);
+          console.log(time2-time1);
+       }
+       var time3 = new Date().getTime();
+       console.log("time3:"+time3);
+
+	 
+</script>

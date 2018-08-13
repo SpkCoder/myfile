@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+
+<script>
+window.onload = function()
+{
+	
+	
+	var oBtn = document.getElementById("btn");
+	
+	oBtn.onclick = function()
+	{
+	  //1创建Ajax对象
+	   if(window.XMLHttpRequest)
+	   {
+	      var oAjax = new XMLHttpRequest();                   //其他浏览器
+	   }
+	   else
+	   {
+	      var oAjax = new ActiveXObject(Microsoft.XMLHttp);    //IE6以下
+	   }
+	   
+	   //2连接服务器
+	   //open（方法， 文件路径， 异步传输）；
+	   oAjax.open("GET","data.json?time="+new Date().getTime(),true);     //?time="new Date().getTime()  加一个这样的后缀可以清除
+	   
+	   
+	   //3发送请求
+	   oAjax.send();
+	   
+	   
+	   //4接收返回
+	   oAjax.onreadystatechange = function()
+	   {
+	       //oAjax.readyState  服务器和浏览器进行到哪一步了
+		   if(oAjax.readyState==4)   //读取完成
+		   {
+		      
+			  if(oAjax.status==200)   //成功
+			  {
+			    var obj = JSON.parse(oAjax.responseText);  // 也使用eval('(' +oAjax.responseText+')')解析 JSON 数据 并不安全,无法保证类型转换为JS对象；
+				
+				document.getElementById("Name").innerHTML = obj.name;
+				document.getElementById("Country").innerHTML = obj.country;
+			  }
+			  else
+			  {
+			     alert("失败"+oAjax.status);
+			  }
+			  
+		   }
+		   
+		   
+	   }
+	    
+	   
+	   
+	}
+	
+}
+
+	
+</script>
+</head>
+
+<body>
+<h1>Cricketer Details</h1>
+<table class="src">
+<tr><th>Name</th><th>Country</th></tr>
+<tr><td><div id="Name">Sachin</div></td>
+<td><div id="Country">India</div></td></tr>
+</table>
+<button id="btn">点击</button>
+</body>
+</html>

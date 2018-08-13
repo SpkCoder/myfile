@@ -1,0 +1,130 @@
+@charset "utf-8";
+/* CSS Document */
+*{margin: 0; padding: 0; vertical-align: middle; }
+body { min-width:1300px; font-family:'Microsoft YaHei', 'Arial'; font-size: 13px; color: #333; line-height:24px;}
+ol, ul { list-style: none ;}
+a {text-decoration: none; color: #333;}
+img { border:0;  }
+input, button, select, textarea { outline:none; border:none;} 
+
+
+/* 清除浮动*/
+.clearfix:after{content:'';display:block;height:0;clear:both;visibility:hidden;}
+
+/* 清除margin*/
+.ulm2n li:nth-child(2n){ margin-right:0px;}
+.ulm3n li:nth-child(3n){ margin-right:0px;}
+.ulm4n li:nth-child(4n){ margin-right:0px;}
+.ulm5n li:nth-child(5n){ margin-right:0px;}
+.ulm6n li:nth-child(6n){ margin-right:0px;}
+
+/* 清除padding*/
+.ulp2n li:nth-child(2n){ padding-right:0px;}
+.ulp3n li:nth-child(3n){ padding-right:0px;}
+.ulp4n li:nth-child(4n){ padding-right:0px;}
+.ulp5n li:nth-child(5n){ padding-right:0px;}
+.ulp6n li:nth-child(6n){ padding-right:0px;}
+
+
+
+
+
+/*supslit*/
+.supslit{position: relative; overflow: hidden; width: 100%; border-bottom:20px solid #999;}
+.supslit .container { position: relative; width:1200px; margin:10px auto;}
+
+
+
+/* 左滚动1 */
+.leftLoop1{position: relative; width:1120px; margin:0px auto;}
+
+.leftLoop1 .hd{position:absolute; width:100%; z-index:9;}
+.leftLoop1 .hd a{position:absolute; display:block;  width:40px; height:40px; cursor:pointer;}
+.leftLoop1 .hd .prev{left:-40px; top:60px;  background:url("../images/prevPro4.png") no-repeat left top;transition: all 0.3s ease-in-out;-moz-transition: all 0.3s ease-in-out;-webkit-transition: all 0.3s ease-in-out;-o-transition: all 0.3s ease-in-out;}
+.leftLoop1 .hd .prev:hover{ background:url("../images/prevPro4.png") no-repeat left bottom;  }
+.leftLoop1 .hd .next{right:-40px; top:60px;  display:block;  background:url("../images/nextPro4.png") no-repeat right top;transition: all 0.3s ease-in-out;-moz-transition: all 0.3s ease-in-out;-webkit-transition: all 0.3s ease-in-out;-o-transition: all 0.3s ease-in-out;}
+.leftLoop1 .hd .next:hover{ background:url("../images/nextPro4.png") no-repeat right bottom;  }
+
+.leftLoop1 .bd{position:relative; width:100%; text-align:center; overflow:hidden; }
+.leftLoop1 .bd ul{ margin:0px; padding:0; list-style:none;}
+.leftLoop1 .bd ul li{ float:left; overflow:hidden; width:280px;  text-align:center; border:0px solid #f00; }
+.leftLoop1 .bd ul li div{ width:220px;  border:1px solid #d7d7d7; margin:0 auto; }
+.leftLoop1 .bd ul li img{width:100%;}
+.leftLoop1 .bd ul li p{ margin-top:10px; font-size:12px; }
+
+
+
+
+/* 左滚动2 */
+.leftLoop2{position: relative; width:280px; margin:0px auto;}
+
+.leftLoop2 .hd{position:absolute; width:100%; z-index:9;}
+.leftLoop2 .hd a{position:absolute; display:block;  width:40px; height:40px; cursor:pointer;}
+.leftLoop2 .hd .prev{left:-40px; top:60px;  background:url("../images/prevPro4.png") no-repeat left top;transition: all 0.3s ease-in-out;-moz-transition: all 0.3s ease-in-out;-webkit-transition: all 0.3s ease-in-out;-o-transition: all 0.3s ease-in-out;}
+.leftLoop2 .hd .prev:hover{ background:url("../images/prevPro4.png") no-repeat left bottom;  }
+.leftLoop2 .hd .next{right:-40px; top:60px;  display:block;  background:url("../images/nextPro4.png") no-repeat right top;transition: all 0.3s ease-in-out;-moz-transition: all 0.3s ease-in-out;-webkit-transition: all 0.3s ease-in-out;-o-transition: all 0.3s ease-in-out;}
+.leftLoop2 .hd .next:hover{ background:url("../images/nextPro4.png") no-repeat right bottom;  }
+
+.leftLoop2 .bd{position:relative; width:100%; text-align:center; overflow:hidden; }
+.leftLoop2 .bd ul{ margin:0px; padding:0; list-style:none;}
+.leftLoop2 .bd ul li{ float:left; overflow:hidden; width:280px;  text-align:center; border:0px solid #f00; }
+.leftLoop2 .bd ul li div{ width:220px;  border:1px solid #d7d7d7; margin:0 auto; }
+.leftLoop2 .bd ul li img{width:100%;}
+.leftLoop2 .bd ul li p{ margin-top:10px; font-size:12px; }
+
+
+
+
+
+/* 左滚动3*/
+.leftLoop3{position: relative; width:280px; margin:0px auto;}
+
+.leftLoop3 .hd{position:absolute; width:100%; z-index:9;}
+.leftLoop3 .hd a{position:absolute; display:block;  width:40px; height:40px; cursor:pointer;}
+.leftLoop3 .hd .prev{left:-40px; top:60px;  background:url("../images/prevPro4.png") no-repeat left top;transition: all 0.3s ease-in-out;-moz-transition: all 0.3s ease-in-out;-webkit-transition: all 0.3s ease-in-out;-o-transition: all 0.3s ease-in-out;}
+.leftLoop3 .hd .prev:hover{ background:url("../images/prevPro4.png") no-repeat left bottom;  }
+.leftLoop3 .hd .next{right:-40px; top:60px;  display:block;  background:url("../images/nextPro4.png") no-repeat right top;transition: all 0.3s ease-in-out;-moz-transition: all 0.3s ease-in-out;-webkit-transition: all 0.3s ease-in-out;-o-transition: all 0.3s ease-in-out;}
+.leftLoop3 .hd .next:hover{ background:url("../images/nextPro4.png") no-repeat right bottom;  }
+
+.leftLoop3 .bd{position:relative; width:100%; text-align:center; overflow:hidden; }
+.leftLoop3 .bd ul{ margin:0px; padding:0; list-style:none;}
+.leftLoop3 .bd ul li{ float:left; overflow:hidden; width:280px;  text-align:center; border:0px solid #f00; }
+.leftLoop3 .bd ul li div{ width:220px;  border:1px solid #d7d7d7; margin:0 auto; }
+.leftLoop3 .bd ul li img{width:100%;}
+.leftLoop3 .bd ul li p{ margin-top:10px; font-size:12px; }
+
+
+
+
+
+
+/* 上滚动1*/
+.leftLoop4{position: relative; width:280px; margin:0px auto;}
+
+.leftLoop4 .hd{position:absolute; width:100%; z-index:9;}
+.leftLoop4 .hd a{position:absolute; display:block;  width:40px; height:40px; cursor:pointer;}
+.leftLoop4 .hd .prev{left:-40px; top:60px;  background:url("../images/prevPro4.png") no-repeat left top;transition: all 0.3s ease-in-out;-moz-transition: all 0.3s ease-in-out;-webkit-transition: all 0.3s ease-in-out;-o-transition: all 0.3s ease-in-out;}
+.leftLoop4 .hd .prev:hover{ background:url("../images/prevPro4.png") no-repeat left bottom;  }
+.leftLoop4 .hd .next{right:-40px; top:60px;  display:block;  background:url("../images/nextPro4.png") no-repeat right top;transition: all 0.3s ease-in-out;-moz-transition: all 0.3s ease-in-out;-webkit-transition: all 0.3s ease-in-out;-o-transition: all 0.3s ease-in-out;}
+.leftLoop4 .hd .next:hover{ background:url("../images/nextPro4.png") no-repeat right bottom;  }
+
+.leftLoop4 .bd{position:relative; width:100%; text-align:center; overflow:hidden; }
+.leftLoop4 .bd ul{ margin:0px; padding:0; list-style:none;}
+.leftLoop4 .bd ul li{ float:left; overflow:hidden; width:280px;  text-align:center; border:0px solid #f00; }
+.leftLoop4 .bd ul li div{ width:220px;  border:1px solid #d7d7d7; margin:0 auto; }
+.leftLoop4 .bd ul li img{width:100%;}
+.leftLoop4 .bd ul li p{ margin-top:10px; font-size:12px; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

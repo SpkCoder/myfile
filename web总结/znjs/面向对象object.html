@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+</style>
+
+
+<script>
+
+/*
+var obj = new Object();
+obj.name= "blue";
+obj.qq= "123456";
+obj.showName = function()
+{ 
+  alert("我的名字"+this.name);
+};
+
+obj.showqq = function()
+{ 
+  alert("我的qq"+this.qq);
+};
+
+obj.showName();
+obj.showqq();
+
+*/
+
+
+function createPertion(name,qq)
+{
+	var obj = new Object();
+	obj.name= name;
+	obj.qq= qq;
+	obj.showName = function()
+	{ 
+	  alert("我的名字"+this.name);
+	};
+
+	obj.showqq = function()
+	{ 
+	  alert("我的qq"+this.qq);
+	};
+	return obj;
+};
+
+var obj = createPertion("tom","123");
+obj.showName();
+obj.showqq();
+
+var obj2 = createPertion("tom2","123456");
+obj2.showName();
+obj2.showqq();
+
+
+</script>
+</head>
+
+
+
+<body>
+</body>
+</html>

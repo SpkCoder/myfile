@@ -1,0 +1,1765 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8" />
+        <title>PRO 6 Plus - 概述 - 魅族</title>
+        <meta name="keyword" content="魅族官网、Meizu、魅族智能手机、魅族 PRO 6、魅蓝note3、 魅蓝 3" >
+        <meta name="description" content="魅族官网提供魅族PRO系列、魅族MX系列和魅蓝系列产品的预约和购买.提供最新魅族产品资讯、完善的售后服务、社区在线交流,手机固件/应用下载." >
+        <link rel="shortcut icon" href="images/favicon_19fbf41.ico" type="image/x-icon" />
+        
+ <script>
+if (("undefined" == typeof document.referrer || -1 === document.referrer.indexOf("http://m.meizu.com")) && navigator.userAgent.match(/android|webos|ip(hone|ad|od)|opera (mini|mobi|tablet)|iemobile|windows.+phone|mobile|fennec|kindle (Fire)|Silk|maemo|blackberry|playbook|bb10\\; (touch|kbd)|Symbian(OS)|Ubuntu Touch/i)) {
+    var pathname = window.location.pathname,
+    reg = /^\/?([a-z\-]*)\/?(?:\/index\.html)?$/,
+    langArr = ["", "en", "in", "it"];
+    if (reg.test(pathname)) {
+        var lang = reg.exec(pathname)[1];
+        langArr.indexOf(lang) > -1 && (window.location.href = "http://m.meizu.com/" + lang)
+    }
+}
+var require, define; !
+function(e) {
+    function n(e, n) {
+        function t() {
+            clearTimeout(o)
+        }
+        if (! (e in s)) {
+            s[e] = !0;
+            var i = document.createElement("script");
+            if (n) {
+                var o = setTimeout(n, require.timeout);
+                i.onerror = function() {
+                    clearTimeout(o),
+                    n()
+                },
+                "onload" in i ? i.onload = t: i.onreadystatechange = function() { ("loaded" == this.readyState || "complete" == this.readyState) && t()
+                }
+            }
+            return i.type = "text/javascript",
+            i.src = e,
+            r.appendChild(i),
+            i
+        }
+    }
+    function t(e, t, r) {
+        var o = i[e] || (i[e] = []);
+        o.push(t);
+        var a, s = c[e] || c[e + ".js"] || {},
+        u = s.pkg;
+        a = u ? d[u].url: s.url || e,
+        n(a, r &&
+        function() {
+            r(e)
+        })
+    }
+    if (!require) {
+        var r = document.getElementsByTagName("head")[0],
+        i = {},
+        o = {},
+        a = {},
+        s = {},
+        c = {},
+        d = {};
+        define = function(e, n) {
+            e = e.replace(/\.js$/i, ""),
+            o[e] = n;
+            var t = i[e];
+            if (t) {
+                for (var r = 0,
+                a = t.length; a > r; r++) t[r]();
+                delete i[e]
+            }
+        },
+        require = function(e) {
+            if (e && e.splice) return require.async.apply(this, arguments);
+            e = require.alias(e);
+            var n = a[e];
+            if (n) return n.exports;
+            var t = o[e];
+            if (!t) throw "[ModJS] Cannot find module `" + e + "`";
+            n = a[e] = {
+                exports: {}
+            };
+            var r = "function" == typeof t ? t.apply(n, [require, n.exports, n]) : t;
+            return r && (n.exports = r),
+            n.exports
+        },
+        require.async = function(n, r, i) {
+            function a(e) {
+                for (var n = 0,
+                r = e.length; r > n; n++) {
+                    var l = require.alias(e[n]);
+                    if (l in o) {
+                        var f = c[l] || c[l + ".js"];
+                        f && "deps" in f && a(f.deps)
+                    } else if (! (l in d)) {
+                        d[l] = !0,
+                        u++,
+                        t(l, s, i);
+                        var f = c[l] || c[l + ".js"];
+                        f && "deps" in f && a(f.deps)
+                    }
+                }
+            }
+            function s() {
+                if (0 == u--) {
+                    for (var t = [], i = 0, o = n.length; o > i; i++) t[i] = require(n[i]);
+                    r && r.apply(e, t)
+                }
+            }
+            "string" == typeof n && (n = [n]);
+            var d = {},
+            u = 0;
+            a(n),
+            s()
+        },
+        require.resourceMap = function(e) {
+            var n, t;
+            t = e.res;
+            for (n in t) t.hasOwnProperty(n) && (c[n] = t[n]);
+            t = e.pkg;
+            for (n in t) t.hasOwnProperty(n) && (d[n] = t[n])
+        },
+        require.loadJs = function(e) {
+            n(e)
+        },
+        require.loadCss = function(e) {
+            if (e.content) {
+                var n = document.createElement("style");
+                n.type = "text/css",
+                n.styleSheet ? n.styleSheet.cssText = e.content: n.innerHTML = e.content,
+                r.appendChild(n)
+            } else if (e.url) {
+                var t = document.createElement("link");
+                t.href = e.url,
+                t.rel = "stylesheet",
+                t.type = "text/css",
+                r.appendChild(t)
+            }
+        },
+        require.alias = function(e) {
+            return e.replace(/\.js$/i, "")
+        },
+        require.timeout = 5e3
+    }
+} (this);
+var F = function() {
+    function e(e, t) {
+        var r = arguments.length;
+        if (r > 1) n[e] = t;
+        else if (1 == r) {
+            if ("object" != typeof e) return n[e];
+            for (var i in e) e.hasOwnProperty(i) && (n[i] = e[i])
+        }
+    }
+    var n = {};
+    return {
+        context: e
+    }
+} (); !
+function(e, n, t) {
+    function r(e, n) {
+        return typeof e === n
+    }
+    function i() {
+        var e, n, t, i, o, a, s;
+        for (var c in y) if (y.hasOwnProperty(c)) {
+            if (e = [], n = y[c], n.name && (e.push(n.name.toLowerCase()), n.options && n.options.aliases && n.options.aliases.length)) for (t = 0; t < n.options.aliases.length; t++) e.push(n.options.aliases[t].toLowerCase());
+            for (i = r(n.fn, "function") ? n.fn() : n.fn, o = 0; o < e.length; o++) a = e[o],
+            s = a.split("."),
+            1 === s.length ? x[s[0]] = i: (!x[s[0]] || x[s[0]] instanceof Boolean || (x[s[0]] = new Boolean(x[s[0]])), x[s[0]][s[1]] = i),
+            w.push((i ? "": "no-") + s.join("-"))
+        }
+    }
+    function o(e) {
+        var n = T.className,
+        t = x._config.classPrefix || "";
+        if (S && (n = n.baseVal), x._config.enableJSClass) {
+            var r = new RegExp("(^|\\s)" + t + "no-js(\\s|$)");
+            n = n.replace(r, "$1" + t + "js$2")
+        }
+        x._config.enableClasses && (n += " " + t + e.join(" " + t), S ? T.className.baseVal = n: T.className = n)
+    }
+    function a() {
+        return "function" != typeof n.createElement ? n.createElement(arguments[0]) : S ? n.createElementNS.call(n, "http://www.w3.org/2000/svg", arguments[0]) : n.createElement.apply(n, arguments)
+    }
+    function s(e, n) {
+        if ("object" == typeof e) for (var t in e) _(e, t) && s(t, e[t]);
+        else {
+            e = e.toLowerCase();
+            var r = e.split("."),
+            i = x[r[0]];
+            if (2 == r.length && (i = i[r[1]]), "undefined" != typeof i) return x;
+            n = "function" == typeof n ? n() : n,
+            1 == r.length ? x[r[0]] = n: (!x[r[0]] || x[r[0]] instanceof Boolean || (x[r[0]] = new Boolean(x[r[0]])), x[r[0]][r[1]] = n),
+            o([(n && 0 != n ? "": "no-") + r.join("-")]),
+            x._trigger(e, n)
+        }
+        return x
+    }
+    function c(e) {
+        return e.replace(/([a-z])-([a-z])/g,
+        function(e, n, t) {
+            return n + t.toUpperCase()
+        }).replace(/^-/, "")
+    }
+    function d(e, n) {
+        return function() {
+            return e.apply(n, arguments)
+        }
+    }
+    function u(e, n, t) {
+        var i;
+        for (var o in e) if (e[o] in n) return t === !1 ? e[o] : (i = n[e[o]], r(i, "function") ? d(i, t || n) : i);
+        return ! 1
+    }
+    function l() {
+        var e = n.body;
+        return e || (e = a(S ? "svg": "body"), e.fake = !0),
+        e
+    }
+    function f(e, t, r, i) {
+        var o, s, c, d, u = "modernizr",
+        f = a("div"),
+        p = l();
+        if (parseInt(r, 10)) for (; r--;) c = a("div"),
+        c.id = i ? i[r] : u + (r + 1),
+        f.appendChild(c);
+        return o = a("style"),
+        o.type = "text/css",
+        o.id = "s" + u,
+        (p.fake ? p: f).appendChild(o),
+        p.appendChild(f),
+        o.styleSheet ? o.styleSheet.cssText = e: o.appendChild(n.createTextNode(e)),
+        f.id = u,
+        p.fake && (p.style.background = "", p.style.overflow = "hidden", d = T.style.overflow, T.style.overflow = "hidden", T.appendChild(p)),
+        s = t(f, e),
+        p.fake ? (p.parentNode.removeChild(p), T.style.overflow = d, T.offsetHeight) : f.parentNode.removeChild(f),
+        !!s
+    }
+    function p(e) {
+        return e.replace(/([A-Z])/g,
+        function(e, n) {
+            return "-" + n.toLowerCase()
+        }).replace(/^ms-/, "-ms-")
+    }
+    function m(n, r) {
+        var i = n.length;
+        if ("CSS" in e && "supports" in e.CSS) {
+            for (; i--;) if (e.CSS.supports(p(n[i]), r)) return ! 0;
+            return ! 1
+        }
+        if ("CSSSupportsRule" in e) {
+            for (var o = []; i--;) o.push("(" + p(n[i]) + ":" + r + ")");
+            return o = o.join(" or "),
+            f("@supports (" + o + ") { #modernizr { position: absolute; } }",
+            function(e) {
+                return "absolute" == getComputedStyle(e, null).position
+            })
+        }
+        return t
+    }
+    function g(e, n) {
+        return !! ~ ("" + e).indexOf(n)
+    }
+    function v(e, n, i, o) {
+        function s() {
+            u && (delete O.style, delete O.modElem)
+        }
+        if (o = r(o, "undefined") ? !1 : o, !r(i, "undefined")) {
+            var d = m(e, i);
+            if (!r(d, "undefined")) return d
+        }
+        for (var u, l, f, p, v, h = ["modernizr", "tspan"]; ! O.style;) u = !0,
+        O.modElem = a(h.shift()),
+        O.style = O.modElem.style;
+        for (f = e.length, l = 0; f > l; l++) if (p = e[l], v = O.style[p], g(p, "-") && (p = c(p)), O.style[p] !== t) {
+            if (o || r(i, "undefined")) return s(),
+            "pfx" == n ? p: !0;
+            try {
+                O.style[p] = i
+            } catch(A) {}
+            if (O.style[p] != v) return s(),
+            "pfx" == n ? p: !0
+        }
+        return s(),
+        !1
+    }
+    function h(e, n, t, i, o) {
+        var a = e.charAt(0).toUpperCase() + e.slice(1),
+        s = (e + " " + z.join(a + " ") + a).split(" ");
+        return r(n, "string") || r(n, "undefined") ? v(s, n, i, o) : (s = (e + " " + E.join(a + " ") + a).split(" "), u(s, n, t))
+    }
+    function A(e, n, r) {
+        return h(e, t, t, n, r)
+    }
+    var w = [],
+    y = [],
+    b = {
+        _version: "3.2.0",
+        _config: {
+            classPrefix: "",
+            enableClasses: !0,
+            enableJSClass: !0,
+            usePrefixes: !0
+        },
+        _q: [],
+        on: function(e, n) {
+            var t = this;
+            setTimeout(function() {
+                n(t[e])
+            },
+            0)
+        },
+        addTest: function(e, n, t) {
+            y.push({
+                name: e,
+                fn: n,
+                options: t
+            })
+        },
+        addAsyncTest: function(e) {
+            y.push({
+                name: null,
+                fn: e
+            })
+        }
+    },
+    x = function() {};
+    x.prototype = b,
+    x = new x,
+    x.addTest("svg", !!n.createElementNS && !!n.createElementNS("http://www.w3.org/2000/svg", "svg").createSVGRect),
+    x.addTest("webaudio",
+    function() {
+        var n = "webkitAudioContext" in e,
+        t = "AudioContext" in e;
+        return x._config.usePrefixes ? n || t: t
+    }),
+    x.addTest("localstorage",
+    function() {
+        var e = "modernizr";
+        try {
+            return localStorage.setItem(e, e),
+            localStorage.removeItem(e),
+            !0
+        } catch(n) {
+            return ! 1
+        }
+    });
+    var T = n.documentElement,
+    S = "svg" === T.nodeName.toLowerCase();
+    x.addTest("audio",
+    function() {
+        var e = a("audio"),
+        n = !1;
+        try { (n = !!e.canPlayType) && (n = new Boolean(n), n.ogg = e.canPlayType('audio/ogg; codecs="vorbis"').replace(/^no$/, ""), n.mp3 = e.canPlayType("audio/mpeg;").replace(/^no$/, ""), n.opus = e.canPlayType('audio/ogg; codecs="opus"').replace(/^no$/, ""), n.wav = e.canPlayType('audio/wav; codecs="1"').replace(/^no$/, ""), n.m4a = (e.canPlayType("audio/x-m4a;") || e.canPlayType("audio/aac;")).replace(/^no$/, ""))
+        } catch(t) {}
+        return n
+    }),
+    x.addTest("canvas",
+    function() {
+        var e = a("canvas");
+        return ! (!e.getContext || !e.getContext("2d"))
+    }),
+    x.addTest("video",
+    function() {
+        var e = a("video"),
+        n = !1;
+        try { (n = !!e.canPlayType) && (n = new Boolean(n), n.ogg = e.canPlayType('video/ogg; codecs="theora"').replace(/^no$/, ""), n.h264 = e.canPlayType('video/mp4; codecs="avc1.42E01E"').replace(/^no$/, ""), n.webm = e.canPlayType('video/webm; codecs="vp8, vorbis"').replace(/^no$/, ""), n.vp9 = e.canPlayType('video/webm; codecs="vp9"').replace(/^no$/, ""), n.hls = e.canPlayType('application/x-mpegURL; codecs="avc1.42E01E"').replace(/^no$/, ""))
+        } catch(t) {}
+        return n
+    }),
+    x.addTest("vml",
+    function() {
+        var e, n = a("div"),
+        t = !1;
+        return S || (n.innerHTML = '<v:shape id="vml_flag1" adj="1" />', e = n.firstChild, e.style.behavior = "url(#default#VML)", t = e ? "object" == typeof e.adj: !0),
+        t
+    }),
+    x.addTest("audioloop", "loop" in a("audio")),
+    x.addTest("rgba",
+    function() {
+        var e = a("a").style;
+        return e.cssText = "background-color:rgba(150,255,150,.5)",
+        ("" + e.backgroundColor).indexOf("rgba") > -1
+    });
+    var C = b._config.usePrefixes ? " -webkit- -moz- -o- -ms- ".split(" ") : [];
+    b._prefixes = C,
+    x.addTest("cssgradients",
+    function() {
+        for (var e, n = "background-image:",
+        t = "gradient(linear,left top,right bottom,from(#9f9),to(white));",
+        r = "",
+        i = 0,
+        o = C.length - 1; o > i; i++) e = 0 === i ? "to ": "",
+        r += n + C[i] + "linear-gradient(" + e + "left top, #9f9, white);";
+        x._config.usePrefixes && (r += n + "-webkit-" + t);
+        var s = a("a"),
+        c = s.style;
+        return c.cssText = r,
+        ("" + c.backgroundImage).indexOf("gradient") > -1
+    });
+    var k = "CSS" in e && "supports" in e.CSS,
+    P = "supportsCSS" in e;
+    x.addTest("supports", k || P);
+    var _; !
+    function() {
+        var e = {}.hasOwnProperty;
+        _ = r(e, "undefined") || r(e.call, "undefined") ?
+        function(e, n) {
+            return n in e && r(e.constructor.prototype[n], "undefined")
+        }: function(n, t) {
+            return e.call(n, t)
+        }
+    } (),
+    b._l = {},
+    b.on = function(e, n) {
+        this._l[e] || (this._l[e] = []),
+        this._l[e].push(n),
+        x.hasOwnProperty(e) && setTimeout(function() {
+            x._trigger(e, x[e])
+        },
+        0)
+    },
+    b._trigger = function(e, n) {
+        if (this._l[e]) {
+            var t = this._l[e];
+            setTimeout(function() {
+                var e, r;
+                for (e = 0; e < t.length; e++)(r = t[e])(n)
+            },
+            0),
+            delete this._l[e]
+        }
+    },
+    x._q.push(function() {
+        b.addTest = s
+    }),
+    x.addAsyncTest(function() {
+        if (!x.canvas) return ! 1;
+        var e = new Image,
+        n = a("canvas"),
+        t = n.getContext("2d");
+        e.onload = function() {
+            s("apng",
+            function() {
+                return "undefined" == typeof n.getContext ? !1 : (t.drawImage(e, 0, 0), 0 === t.getImageData(0, 0, 1, 1).data[3])
+            })
+        },
+        e.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACGFjVEwAAAABAAAAAcMq2TYAAAANSURBVAiZY2BgYPgPAAEEAQB9ssjfAAAAGmZjVEwAAAAAAAAAAQAAAAEAAAAAAAAAAAD6A+gBAbNU+2sAAAARZmRBVAAAAAEImWNgYGBgAAAABQAB6MzFdgAAAABJRU5ErkJggg=="
+    });
+    var q = "Moz O ms Webkit",
+    E = b._config.usePrefixes ? q.toLowerCase().split(" ") : [];
+    b._domPrefixes = E;
+    var z = b._config.usePrefixes ? q.split(" ") : [];
+    b._cssomPrefixes = z;
+    var j = function() {
+        var n = e.matchMedia || e.msMatchMedia;
+        return n ?
+        function(e) {
+            var t = n(e);
+            return t && t.matches || !1
+        }: function(n) {
+            var t = !1;
+            return f("@media " + n + " { #modernizr { position: absolute; } }",
+            function(n) {
+                t = "absolute" == (e.getComputedStyle ? e.getComputedStyle(n, null) : n.currentStyle).position
+            }),
+            t
+        }
+    } ();
+    b.mq = j,
+    x.addTest("mediaqueries", j("only all"));
+    var M = b.testStyles = f,
+    B = {
+        elem: a("modernizr")
+    };
+    x._q.push(function() {
+        delete B.elem
+    });
+    var O = {
+        style: B.elem.style
+    };
+    x._q.unshift(function() {
+        delete O.style
+    }),
+    b.testAllProps = h,
+    b.testAllProps = A,
+    x.addTest("cssanimations", A("animationName", "a", !0)),
+    x.addTest("backgroundsize", A("backgroundSize", "100%", !0)),
+    x.addTest("boxsizing", A("boxSizing", "border-box", !0) && (n.documentMode === t || n.documentMode > 7)),
+    x.addTest("bgsizecover", A("backgroundSize", "cover")),
+    x.addTest("flexbox", A("flexBasis", "1px", !0)),
+    x.addTest("borderradius", A("borderRadius", "0px", !0)),
+    x.addTest("cssmask", A("maskRepeat", "repeat-x", !0)),
+    x.addTest("csstransforms",
+    function() {
+        return - 1 === navigator.userAgent.indexOf("Android 2.") && A("transform", "scale(1)", !0)
+    }),
+    x.addTest("preserve3d", A("transformStyle", "preserve-3d")),
+    x.addTest("csstransforms3d",
+    function() {
+        var e = !!A("perspective", "1px", !0),
+        n = x._config.usePrefixes;
+        if (e && (!n || "webkitPerspective" in T.style)) {
+            var t, r = "#modernizr{width:0;height:0}";
+            x.supports ? t = "@supports (perspective: 1px)": (t = "@media (transform-3d)", n && (t += ",(-webkit-transform-3d)")),
+            t += "{#modernizr{width:7px;height:18px;margin:0;padding:0;border:0}}",
+            M(r + t,
+            function(n) {
+                e = 7 === n.offsetWidth && 18 === n.offsetHeight
+            })
+        }
+        return e
+    }),
+    x.addTest("csstransitions", A("transition", "all", !0)),
+    i(),
+    o(w),
+    delete b.addTest,
+    delete b.addAsyncTest;
+    for (var F = 0; F < x._q.length; F++) x._q[F]();
+    e.Modernizr = x
+} (window, document),
+window.isIE = function() {
+    return window.ActiveXObject || "ActiveXObject" in window || /MSIE ([^;]+)/.test(navigator.userAgent) ? !0 : !1
+},
+window.isMac = function() {
+    return - 1 !== navigator.platform.indexOf("Mac")
+},
+window.isMobile = function() {
+    return !! navigator.userAgent.match(/android|webos|ip(hone|ad|od)|opera (mini|mobi|tablet)|iemobile|windows.+(phone|touch)|mobile|fennec|kindle (Fire)|Silk|maemo|blackberry|playbook|bb10\; (touch|kbd)|Symbian(OS)|Ubuntu Touch/i)
+},
+window.isRetina = function() {
+    var e = "(-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (min-resolution: 1.5dppx)";
+    return window.devicePixelRatio > 1 ? !0 : window.matchMedia && window.matchMedia(e).matches ? !0 : !1
+},
+window.Cookie = {
+    set: function(e, n, t, r) {
+        var i = e + "=" + escape(n);
+        if (t > 0) {
+            var o = new Date,
+            a = 3600 * t * 1e3;
+            o.setTime(o.getTime() + a),
+            i += "; expires=" + o.toGMTString() + ";path=/" + (void 0 == r ? "": ";domain=" + r)
+        }
+        document.cookie = i
+    },
+    get: function(e) {
+        for (var n = document.cookie.split("; "), t = 0; t < n.length; t++) {
+            var r = n[t].split("=");
+            if (r[0] == e) return unescape(r[1])
+        }
+    },
+    remove: function(e) {
+        var n = new Date;
+        n.setTime(n.getTime() - 1e4),
+        document.cookie = e + "=a; expires=" + n.toGMTString()
+    }
+},
+function() {
+    for (var e = 0,
+    n = ["webkit", "moz"], t = 0; t < n.length && !window.requestAnimationFrame; ++t) window.requestAnimationFrame = window[n[t] + "RequestAnimationFrame"],
+    window.cancelAnimationFrame = window[n[t] + "CancelAnimationFrame"] || window[n[t] + "CancelRequestAnimationFrame"];
+    window.requestAnimationFrame || (window.requestAnimationFrame = function(n) {
+        var t = (new Date).getTime(),
+        r = Math.max(0, 16.7 - (t - e)),
+        i = window.setTimeout(function() {
+            n(t + r)
+        },
+        r);
+        return e = t + r,
+        i
+    }),
+    window.cancelAnimationFrame || (window.cancelAnimationFrame = function(e) {
+        clearTimeout(e)
+    })
+} ();
+	</script>
+    <!--[if lt IE 9]>
+        <script src="http://www3.res.meizu.com/static/cn/lib/html5shiv_831d9bc.js"></script>
+    <![endif]-->
+
+        
+    <link rel="stylesheet" type="text/css" href="css/common_de739f8.css"/>
+    <link rel="stylesheet" type="text/css" href="css/pro6plus_6dfe314.css"/>
+    <link rel="stylesheet" type="text/css" href="css/effects_30b3994.css"/>
+    <link rel="stylesheet" type="text/css" href="css/player_d710b82.css"/>
+    <link rel="stylesheet" type="text/css" href="css/summary_446ccdf.css"/>
+</head>
+<body class="pro6plus-page">
+        
+
+
+<div id="meizu-header-container">
+    <div class="meizu-header">
+        <div class="meizu-header-wrap-1240">
+            <div class="meizu-header-logo">
+                <a href="/index.html" class="meizu-header-logo-img"></a>
+            </div>
+            <div id="mzCustName" style="display:none"></div>
+
+            <div class="meizu-header-user" id="meizu-header-user">
+                <div class="meizu-header-user-img">
+                    <img id="meizu-header-user-img" src="images/log-default-avatar_a44f0e7.png" alt="log">
+                    <span class="meizu-arrow-background"></span>
+                    <span class="meizu-arrow-frontground"></span>
+                </div>
+                <div class="meizu-header-user-box" id="meizu-header-user-box"></div>
+                <!-- 登录前 -->
+                <div class="meizu-header-user-trigger" id="_unlogin" style="display: none;">
+                    <ul class="meizu-header-user-dropdown">
+                        <li>
+                            <a href="https://login.flyme.cn/login/login.html?lang=&service=www&appuri=http%3A%2F%2Fwww.meizu.com%2Faccounts%2Flogin&useruri=http%3A%2F%2Fwww.meizu.com%2F" id="meizu-header-user-login" class="button button-primary center">立即登录</a>
+                        </li>
+                        <li class="meizu-header-signup-help">没有账号?<a href="https://i.flyme.cn/register?lang=&service=www&appuri=http%3A%2F%2Fwww.meizu.com%2Faccounts%2Flogin&useruri=http%3A%2F%2Fwww.meizu.com%2F" id="meizu-header-user-register">立即注册</a></li>
+                        <li class="meizu-header-user-sep"></li>
+                        <li>
+                            <a href="http://store.meizu.com/cart">我的购物车</a>
+                        </li>
+                        <li>
+                            <a href="http://store.meizu.com/myorder/">我的订单</a>
+                        </li>
+                        <li><a href="http://store.meizu.com/mformy/index">M码通道</a></li>
+                    </ul>
+                </div>
+                <!-- 登录后 -->
+                <div class="meizu-header-user-trigger" id="_islogin" style="display: none;">
+                    <ul class="meizu-header-user-dropdown"> 
+                        <li style="margin-top: 10px;">
+                            <a href="https://member.meizu.com/uc/webjsp/member/detail">个人中心</a>
+                        </li>
+                        <li>
+                            <a href="http://store.meizu.com/cart">我的购物车</a>
+                        </li>
+                        <li>
+                            <a href="http://store.meizu.com/myorder/">我的订单</a>
+                        </li>
+                        <li><a href="http://store.meizu.com/mformy/index">M码通道</a></li>
+                        <li><a href="http://www.meizu.com/subscribe.html">邮件订阅</a></li>
+                        <li>
+                            <a href="#" id="meizu-header-user-logout" class="button button-primary center">退出登录</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>            
+            <ul class="meizu-header-link" id="meizu-header-link">
+                <li><a href="http://store.meizu.com/">魅族商城</a></li>
+                                    <li id="meizu-header-link-product-mx" data-subnav="mx" class="meizu-header-link-product">
+                        <a href="javascript:void();" class="meizu-header-link-product-a" onclick="return false;">魅族手机</a>
+                    </li>
+                                    <li id="meizu-header-link-product-meilan" data-subnav="meilan" class="meizu-header-link-product">
+                        <a href="javascript:void();" class="meizu-header-link-product-a" onclick="return false;">魅蓝手机</a>
+                    </li>
+                                    <li id="meizu-header-link-product-audio" data-subnav="audio" class="meizu-header-link-product">
+                        <a href="javascript:void();" class="meizu-header-link-product-a" onclick="return false;">魅族声学</a>
+                    </li>
+                                    <li id="meizu-header-link-product-accessory" data-subnav="accessory" class="meizu-header-link-product">
+                        <a href="javascript:void();" class="meizu-header-link-product-a" onclick="return false;">智能&nbsp;&middot;&nbsp;配件</a>
+                    </li>
+                                <li><a href="http://care.meizu.com">服务</a></li>
+                <li><a href="http://retail.meizu.com/index.html">专卖店</a></li>
+                <li><a href="http://www.flyme.cn" target="_blank">Flyme</a></li>
+                <li><a href="http://bbs.meizu.cn" target="_blank">社区</a></li>
+            </ul>
+        </div>
+    </div>
+        <div data-link="mx" id="meizu-header-sub-mx" class="meizu-header-sub">
+        <div class="meizu-header-sub-wrap">
+            <ul>
+                                <li>
+                    <a class="meizu-header-sub-pro6plus" 
+                        href="http://www.meizu.com/products/pro6plus/summary.html">
+                        <i></i>
+                        PRO 6 Plus
+                        <span></span>
+                    </a>
+                </li>
+                                <li>
+                    <a class="meizu-header-sub-pro6s" 
+                        href="http://www.meizu.com/products/pro6s/summary.html">
+                        <i></i>
+                        PRO 6s
+                        <span></span>
+                    </a>
+                </li>
+                                <li>
+                    <a class="meizu-header-sub-mx6" 
+                        href="http://www.meizu.com/products/mx6/summary.html">
+                        <i></i>
+                        MX6
+                        <span></span>
+                    </a>
+                </li>
+                                <li>
+                    <a class="meizu-header-sub-pro6" 
+                        href="http://www.meizu.com/products/pro6/summary.html">
+                        <i></i>
+                        PRO 6
+                        <span></span>
+                    </a>
+                </li>
+                                <li>
+                    <a class="meizu-header-sub-pro5" 
+                        href="http://www.meizu.com/products/pro5/summary.html">
+                        <i></i>
+                        PRO 5
+                        <span></span>
+                    </a>
+                </li>
+                                <li>
+                    <a class="meizu-header-sub-mx5" 
+                        href="http://www.meizu.com/products/mx5/summary.html">
+                        <i></i>
+                        MX5
+                        <span></span>
+                    </a>
+                </li>
+                            </ul>
+        </div>
+    </div>
+        <div data-link="meilan" id="meizu-header-sub-meilan" class="meizu-header-sub">
+        <div class="meizu-header-sub-wrap">
+            <ul>
+                                <li>
+                    <a class="meizu-header-sub-m5note" 
+                        href="http://www.meizu.com/products/meilannote5/summary.html">
+                        <i></i>
+                        魅蓝 Note5
+                        <span></span>
+                    </a>
+                </li>
+                                <li>
+                    <a class="meizu-header-sub-m3x" 
+                        href="http://www.meizu.com/products/meilanx/summary.html">
+                        <i></i>
+                        魅蓝 X
+                        <span></span>
+                    </a>
+                </li>
+                                <li>
+                    <a class="meizu-header-sub-m5" 
+                        href="http://www.meizu.com/products/meilan5/summary.html">
+                        <i></i>
+                        魅蓝 5
+                        <span></span>
+                    </a>
+                </li>
+                                <li>
+                    <a class="meizu-header-sub-m3max" 
+                        href="http://www.meizu.com/products/meilanmax/summary.html">
+                        <i></i>
+                        魅蓝 Max
+                        <span></span>
+                    </a>
+                </li>
+                                <li>
+                    <a class="meizu-header-sub-u20" 
+                        href="http://www.meizu.com/products/meilanu20/summary.html">
+                        <i></i>
+                        魅蓝 U20
+                        <span></span>
+                    </a>
+                </li>
+                                <li>
+                    <a class="meizu-header-sub-u10" 
+                        href="http://www.meizu.com/products/meilanu10/summary.html">
+                        <i></i>
+                        魅蓝 U10
+                        <span></span>
+                    </a>
+                </li>
+                                <li>
+                    <a class="meizu-header-sub-m3e" 
+                        href="http://www.meizu.com/products/meilane/summary.html">
+                        <i></i>
+                        魅蓝 E
+                        <span></span>
+                    </a>
+                </li>
+                            </ul>
+        </div>
+    </div>
+        <div data-link="audio" id="meizu-header-sub-audio" class="meizu-header-sub">
+        <div class="meizu-header-sub-wrap">
+            <ul>
+                                <li>
+                    <a class="meizu-header-sub-ep2x" 
+                        href="http://www.meizu.com/accessory/ep2x.html">
+                        <i></i>
+                        EP2X
+                        <span></span>
+                    </a>
+                </li>
+                                <li>
+                    <a class="meizu-header-sub-ep51" 
+                        href="http://www.meizu.com/accessory/ep51.html">
+                        <i></i>
+                        EP51
+                        <span></span>
+                    </a>
+                </li>
+                                <li>
+                    <a class="meizu-header-sub-hd50" 
+                        href="http://www.meizu.com/accessory/hd50/summary.html">
+                        <i></i>
+                        HD50
+                        <span></span>
+                    </a>
+                </li>
+                            </ul>
+        </div>
+    </div>
+        <div data-link="accessory" id="meizu-header-sub-accessory" class="meizu-header-sub">
+        <div class="meizu-header-sub-wrap">
+            <ul>
+                                <li>
+                    <a class="meizu-header-sub-band" 
+                        href="http://www.meizu.com/accessory/band.html">
+                        <i></i>
+                        魅族手环
+                        <span></span>
+                    </a>
+                </li>
+                                <li>
+                    <a class="meizu-header-sub-mix" 
+                        href="http://www.meizu.com/accessory/mix.html">
+                        <i></i>
+                        智能手表 MIX
+                        <span></span>
+                    </a>
+                </li>
+                                <li>
+                    <a class="meizu-header-sub-musiccard" 
+                        href="http://www.meizu.com/accessory/musiccard.html">
+                        <i></i>
+                        音乐智能保护套
+                        <span></span>
+                    </a>
+                </li>
+                                <li>
+                    <a class="meizu-header-sub-tvbox" 
+                        href="http://www.meizu.com/accessory/tvbox.html">
+                        <i></i>
+                        魅族盒子
+                        <span></span>
+                    </a>
+                </li>
+                                <li>
+                    <a class="meizu-header-sub-backpack" 
+                        href="http://www.meizu.com/accessory/backpack.html">
+                        <i></i>
+                        魅族双肩包
+                        <span></span>
+                    </a>
+                </li>
+                                <li>
+                    <a class="meizu-header-sub-loopjacket" 
+                        href="http://www.meizu.com/accessory/loopjacket.html">
+                        <i></i>
+                        环窗智能保护套
+                        <span></span>
+                    </a>
+                </li>
+                                <li>
+                    <a class="meizu-header-sub-router_s" 
+                        href="http://www.meizu.com/smart/router_s/summary.html">
+                        <i></i>
+                        路由器极速版
+                        <span></span>
+                    </a>
+                </li>
+                            </ul>
+        </div>
+    </div>
+        
+</div>
+
+
+
+<script>
+var $id = function(e) {
+    return document.getElementById(e)
+},
+$addEvent = function() {
+    return document.addEventListener ?
+    function(e, a, s) {
+        if (e.length) for (var t = 0; t < e.length; t++) $addEvent(e[t], a, s);
+        else e.addEventListener(a, s, !1)
+    }: function(e, a, s) {
+        if (e.length) for (var t = 0; t < e.length; t++) $addEvent(e[t], a, s);
+        else e.attachEvent("on" + a,
+        function() {
+            return s.call(e, window.event)
+        })
+    }
+} (),
+$addClass = function(e, a) {
+    return $hasClass(e, a) ? void 0 : e.className = "" == e.className ? a: e.className + " " + a
+},
+$removeClass = function(e, a) {
+    var s = new RegExp("(\\s|^)?" + a + "(\\s|$)", "i");
+    e.className = e.className.replace(s, " ").replace(/^\s+|\s+$/, "")
+},
+$hasClass = function(e, a) {
+    var s = new RegExp("(\\s|^)?" + a + "(\\s|$)", "i");
+    return s.test(e.className)
+},
+$eTarget = function(e) {
+    return document.all ? window.event.srcElement: e.target
+},
+meizuHeader = {
+    navObj: $id("meizu-header-container"),
+    rmToggle: null,
+    isSubShow: !1,
+    bindUserBox: function() {
+        var e = $id("meizu-header-user"),
+        a = $id("meizu-header-user-box"),
+        s = e.getElementsByTagName("ul"),
+        t = s.length;
+        $addEvent(e, "mouseover",
+        function() {
+            a.style.display = "block";
+            for (var e = 0; t > e; e++) s[e].style.display = "block"
+        }),
+        $addEvent(e, "mouseleave",
+        function() {
+            a.style.display = "none";
+            for (var e = 0; t > e; e++) s[e].style.display = "none"
+        })
+    },
+    bindProductLink: function() {
+        for (var e = this,
+        a = e.navObj,
+        s = a.childNodes,
+        t = [], n = 0; n < s.length; n++)"meizu-header-sub" == s[n].className && t.push(s[n]);
+        $addEvent(a, "mouseover",
+        function(s) {
+            if ("A" == $eTarget(s).tagName && "meizu-header-link-product-a" == $eTarget(s).className || "LI" == $eTarget(s).tagName && "meizu-header-link-product" == $eTarget(s).className) {
+                var n = $eTarget(s).parentNode,
+                r = n.getAttribute("data-subnav");
+                if (r) {
+                    for (var i = 0; i < t.length; i++) {
+                        $removeClass(t[i], "meizu-header-sub-show");
+                        var o = t[i].getElementsByTagName("div")[0].getElementsByTagName("ul")[0];
+                        $removeClass(o, "meizu-header-sub-ul-on")
+                    }
+                    $addClass($id("meizu-header-sub-" + r), "meizu-header-sub-show"),
+                    e.isSubShow || (e.isSubShow = !0, $addClass($id("meizu-header-sub-" + r), "meizu-header-sub-animation"))
+                }
+                $addClass(a, "toggle")
+            } else if ("A" == $eTarget(s).tagName && "" == $eTarget(s).className) {
+                for (i = 0; i < t.length; i++) $removeClass(t[i], "meizu-header-sub-show"),
+                $removeClass(t[i], "meizu-header-sub-animation");
+                $removeClass(a, "toggle"),
+                e.isSubShow = !1
+            }
+            this.rmToggle && (clearTimeout(this.rmToggle), this.rmToggle = null)
+        }),
+        $addEvent(a, "mouseout",
+        function() {
+            this.rmToggle = setTimeout(function() {
+                for (var s = 0; s < t.length; s++) $removeClass(t[s], "meizu-header-sub-show"),
+                $removeClass(t[s], "meizu-header-sub-animation");
+                $removeClass(a, "toggle"),
+                e.isSubShow = !1
+            },
+            200)
+        })
+    },
+    bindProductHover: function() {
+        var e = this.navObj,
+        a = "meizu-header-sub-ul-on";
+        $addEvent(e, "mouseover",
+        function(e) {
+            if ("A" == $eTarget(e).tagName && $eTarget(e).className.indexOf("meizu-header-sub-") > -1) {
+                var s = $eTarget(e).parentNode,
+                t = s.className;
+                if ("" == t) {
+
+                    var n = s.parentNode;
+                    n.className = a
+                }
+            } else "UL" == $eTarget(e).tagName && "meizu-header-sub-ul-on" == $eTarget(e).className && $removeClass($eTarget(e), "meizu-header-sub-ul-on")
+        })
+    },
+    init: function() {
+        this.bindUserBox(),
+        this.bindProductLink(),
+        this.bindProductHover()
+    }
+};
+meizuHeader.init(); 
+</script>
+
+<script>
+var _lang = document.getElementsByTagName("html")[0].getAttribute("lang"),
+_local_url = window.location.href;
+_local_url = _local_url.replace("http:/ / meizu ", "http: //www.meizu");
+var _register = "https://i.flyme.cn/register?lang=" + encodeURIComponent(_lang) + "&service=www&appuri=http%3A%2F%2Fwww.meizu.com%2Faccounts%2Flogin&useruri=" + encodeURIComponent(_local_url),
+_login = "https://login.flyme.cn/login/login.html?lang=" + encodeURIComponent(_lang) + "&service=www&appuri=http%3A%2F%2Fwww.meizu.com%2Faccounts%2Flogin&useruri=" + encodeURIComponent(_local_url),
+_logout = "http://www.meizu.com/accounts/logout?useruri=" + encodeURIComponent(_local_url),
+$id = function(e) {
+    return document.getElementById(e)
+};
+window.Cookie = {
+    set: function(e, i, o, t) {
+        var n = e + "=" + escape(i);
+        if (o > 0) {
+            var r = new Date,
+            a = 3600 * o * 1e3;
+            r.setTime(r.getTime() + a),
+            n += "; expires=" + r.toGMTString() + ";path=/" + (void 0 == t ? "": ";domain=" + t)
+        }
+        document.cookie = n
+    },
+    get: function(e) {
+        for (var i = document.cookie.split("; "), o = 0; o < i.length; o++) {
+            var t = i[o].split("=");
+            if (t[0] == e) return unescape(t[1])
+        }
+    }
+};
+var _isLogin = window.Cookie.get("_islogin");
+if (window.setAvatar = function(e) {
+    var i = e.reply;
+    i.error || (window.Cookie.set("user_avatar", i.icon, 24, "meizu.com"), $id("meizu-header-user-img").src = i.icon)
+},
+"true" === _isLogin) {
+    $id("_unlogin").style.display = "none",
+    $id("_islogin").style.display = "inline-block";
+    var avatar = window.Cookie.get("user_avatar");
+    if (avatar) $id("meizu-header-user-img").src = avatar;
+    else {
+        var script = document.createElement("script"),
+        src = "https://member.meizu.com/service/accounts/fetchOrder.jsonp?callback=setAvatar&v=" + Math.random();
+        script.src = src,
+        document.body.appendChild(script)
+    }
+    $id("meizu-header-user-logout").href = _logout
+} else $id("_islogin").style.display = "none",
+$id("_unlogin").style.display = "block",
+$id("meizu-header-user-login").href = _login,
+$id("meizu-header-user-register").href = _register; 
+	
+</script>
+
+
+
+
+
+<!-- subnav -->
+<div class="widget-subnav">
+    <div class="subnav-wrap">
+        <div class="subnav-head clearfix">
+            <div class="subnav-logo">
+                                <div class="subnav-logo-img"></div>
+                            </div>
+                        <div class="subnav-buy">
+                <a href="http://url.meizu.com/pro6plus" class="button button-primary" target="_blank">立即购买</a>
+            </div>
+                        <a class="subnav-disclosure">
+                <span class="disclosure-text">探索 PRO 6 Plus</span>
+                <span class="disclosure-icon squares"></span>
+                <span class="disclosure-icon close"></span>
+            </a>
+        </div>
+        <div class="subnav-menu clearfix">
+            <ul class="subnav-link">
+                                                        <li class="subnav-item-summary subnav-item-current">
+                        <a href="javascript:;"><i></i>概述</a>
+                                        </li>
+                                                        <li class="subnav-item-performance2">
+                        <a class="slide-item" href="performance.html"><i></i>体验</a>
+                                        </li>
+                                                        <li class="subnav-item-display">
+                        <a class="slide-item" href="display.html"><i></i>屏幕</a>
+                                        </li>
+                                                        <li class="subnav-item-camera">
+                        <a class="slide-item" href="camera.html"><i></i>相机</a>
+                                        </li>
+                                                        <li class="subnav-item-spec">
+                        <a class="slide-item" href="spec.html"><i></i>参数</a>
+                                        </li>
+                            </ul>
+            <ul class="subnav-link subnav-link-other">
+                                <li class="subnav-item-compare">
+                    <a href="http://lifekit.meizu.com/" target="_blank"><i></i>LifeKit</a>
+                </li>
+                            </ul>
+        </div>
+    </div>
+</div><!-- end subnav  -->
+<!-- container start -->
+<div class="container" id="container">
+    <div class="slider-container">
+        <!-- slogan -->
+        <div class="slider slogan">
+            <div class="slider-bg vtl-full-wrapper">
+                <div class="vtl-full-con vtl-full-con1 ">
+                    <div class="vtl-full">
+                        <div class="vtl-center">
+                            <img class="slogan-phone" src="images/slogan-phone_83c4291.png">
+                        </div>
+                        <img class="vtl-full-bg slogan-bg" src="images/slogan-np_87141dc.jpg">
+                    </div>
+                </div>
+            </div>
+            <div class="slogan-mask"></div>
+            <div class="center-wrapper">
+                <div class="desc dark slogan-desc">
+                    <div class="slogan-logo-wrap">
+
+                        <img class="slogan-logo-mask" src="images/slogan-logo-mask_5a4bbc7.png">
+                        <img class="slogan-logo" src="images/slogan-logo_fdd55ef.png">
+                        <svg version="1.1" class="slogan-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                             viewBox="0 0 668.8 98.7" xml:space="preserve">
+                            <path class="st2 p1" d="M12 0 L12 98.5"/>
+                            <path class="st2 p2" d="M0.1,13.5c0,0,37.7-9.8,53.5-2.5s20.5,30.5,0,40.5c-16.1,4.9-53.5,0-53.5,0"/>
+                            <path class="st2 r1" d="M128.1 0 L128.1 98.5"/>
+                            <path class="st2 r2" d="M118.1,13.1c0,0,36.5-7.9,55,0s12,30.4,0,34.4s-37,5.5-55,1.8"/>
+                            <path class="st2 r3" d="M151.4 41.5 L187.3 98.5"/>
+                            <path class="st2 o1" d="M273,9.5c0,0-29.4-5.6-29.4,37.9S273,86,273,86s33.1,5.5,29.6-37.2s-20-39.7-40-40.5"/>
+                            <path class="st2 b1" d="M417.4,9.5c0,0-22.4-2.5-41.9,7.5s-16.6,65.2,0,69.2s32.9-4.2,32.9-4.2s12.4-13.6,0-34.5
+                                c0,0-30.9-20.9-56.4,17.3"/>
+                            <path class="st2 P1" d="M457.6 0 L457.6 98.5"/>
+                            <path class="st2 P2" d="M447.6,13.1c0,0,33-10.2,52,0.4c9.9,5.8,11.8,25,0,35c-10,4.6-38,4.4-52,0"/>
+                            <path class="st2 l1" d="M530 0 L530 98.5"/>
+                            <path id="XMLID_2_" class="st2 u1" d="M556.1,22.5V72c0,0-1.1,10.3,12.5,14.2c12.6,3.6,25.3-0.3,32-3.4c4.7-2.2,8.3-4.6,10.6-6.3"/>
+                            <path id="XMLID_16_" class="st2 u2" d="M600.5 22.5 L600.5 90.5"/>
+                            <path class="st2 s1" d="M668.6,31c0,0-20.5-9.5-35-0.5s-8,19.9,0,23.2s14.4,1.8,23,8.8c8.6,7,6.5,16.2,0,20.4s-30.6,4.9-41,0"/>
+                        </svg>
+                    </div>
+                    <h1 class="f42">越强大  越冷静</h1>
+                </div>
+            </div>
+        </div>
+        <!-- slogan over -->      
+
+        <!-- screen -->
+        <div class="slider screen">
+            <div class="slider-bg vtl-full-wrapper">
+                <div class="vtl-full-con vtl-full-con1 ">
+                    <div class="vtl-full">
+                        <img class="vtl-full-bg screen-bg-init" src="images/screen-pic_856dcdc.jpg">
+                    </div>
+                </div>
+            </div>
+            <div class="slider-bg vtl-full-wrapper">
+                <div class="vtl-full-con">
+                    <div class="vtl-full">
+                        <img class="vtl-full-bg screen-bg-final" src="images/screen_23570a5.jpg">
+                    </div>
+                </div>
+            </div>
+            <div class="center-wrapper">
+                <div class="desc screen-desc">
+                    <h1 class="f42">一眼便让你沉浸</h1>
+                    <p class="f16">我们擅长于制造惊喜。这块屏幕不只是参数党的狂欢，WQHD 分辨率的彻底升级将在超高亮度、惊艳色彩、强对比度各方面捕获你的芳心。AOD 息屏显示技术，时间日期电量通知置于之上，PRO 6 Plus 将为你带来无限遐想。</p>
+                    <a href="display.html" class="learn-more learn-more-dark">
+                        <img src="images/learn-more-black_b3bf3cd.png">
+                    </a>
+                </div>
+                <ul class="items screen-items">
+                                        <li class="item">
+                        <h2 class="item-detail item-detail-1 f35">
+                            5.7
+                        </h2>
+                        <p class="item-detail item-detail-1 f14">英寸</p>
+                                                <div class="item-detail item-detail-2 divide-line"></div>
+                                            </li>
+                                        <li class="item">
+                        <h2 class="item-detail item-detail-1 f35">
+                            518
+                        </h2>
+                        <p class="item-detail item-detail-1 f14">PPI</p>
+                                                <div class="item-detail item-detail-2 divide-line"></div>
+                                            </li>
+                                        <li class="item">
+                        <h2 class="item-detail item-detail-1 f35">
+                            103%
+                        </h2>
+                        <p class="item-detail item-detail-1 f14">NTSC 色域</p>
+                                                <div class="item-detail item-detail-2 divide-line"></div>
+                                            </li>
+                                        <li class="item">
+                        <h2 class="item-detail item-detail-1 f35">
+                            600cd/m²
+                        </h2>
+                        <p class="item-detail item-detail-1 f14">峰值亮度</p>
+                                            </li>
+                                        <li class="item">
+                        <h2 class="item-detail item-detail-1 f35">
+                            10000:1
+                        </h2>
+                        <p class="item-detail item-detail-1 f14">强对比度</p>
+                                            </li>
+                                        <li class="item">
+                        <h2 class="item-detail item-detail-1 f35">
+                            2560*1440
+                        </h2>
+                        <p class="item-detail item-detail-1 f14">高分辨率</p>
+                                            </li>
+                                    </ul>
+            </div>
+        </div>
+        <!-- screen over -->  
+
+        <!-- feel -->
+        <div class="slider feel">
+            <div class="slider-bg vtl-full-wrapper">
+                <div class="vtl-full-con">
+                    <div class="vtl-full">
+                        <img class="vtl-full-bg" src="images/feel_f0c4383.jpg">
+                    </div>
+                </div>
+            </div>
+            <div class="center-wrapper">
+                <div class="desc feel-desc">
+                    <h1 class="f42">让人上瘾的独特手感</h1>
+                    <p class="f16">刚柔并济，这是我们打动你的方式。精准的硬朗直角下，依旧掩盖不住 PRO 6 Plus 超凡脱俗的微弧设计。重新设计的机身曲线，30 道工序与 150 小时的精雕细琢，造就了 PRO 6 Plus 独一无二的细节之美。CD 纹路摄像头、环形闪光灯、极简设计天线，PRO 6 Plus 不会让任何一个出色的细节从你手中溜走。</p>
+                </div>
+            </div>
+        </div>
+        <!-- feel over -->  
+
+        <!-- cpu -->
+        <div class="slider cpu">
+            <div class="slider-bg vtl-full-wrapper">
+                <div class="vtl-full-con">
+                    <div class="vtl-full">
+                        <img class="vtl-full-bg" src="images/cpu_0c956e4.jpg">
+                    </div>
+                </div>
+            </div>
+            <div class="center-wrapper">
+                <div class="desc dark cpu-desc">
+                    <h1 class="f42">高山仰止，Exynos 8 登场</h1>
+                    <p class="f16">峰值频率高达 2.6GHz 的「猫鼬」核心，高效的 SCI 三星互联架构，超越想象的 12 核 GPU，被第二代 14nm FinFET 工艺整合在一颗璀璨夺目的旗舰芯片中。这是魅族手机有史以来的最强大脑；面对各种大型游戏和苛刻应用，也是手到擒来。</p>
+                    <a href="performance.html" class="learn-more">
+                        <img src="images/learn-more-white_61577f1.png">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- cpu over -->
+
+
+        <!-- camera -->
+        <div class="slider camera">
+            <div class="slider-bg vtl-full-wrapper">
+                <div class="vtl-full-con">
+                    <div class="vtl-full">
+                        <div class="vtl-center">
+                            
+                        </div>
+                        <img class="vtl-full-bg" src="images/camera_a218b21.jpg">
+                    </div>
+                </div>
+            </div>
+            <div class="center-wrapper">
+                <div class="desc camera-desc">
+                    <h1 class="f42">快，准，稳<br>轻松达成高赞照片</h1>
+                    <p class="f16">有别以往，全新 CD 纹工艺将让相机与手机一样备受瞩目。四轴光学防抖搭配 ƒ/2.0 大光圈及 6P 镜头，即使身处夜景 PRO 6 Plus 也美不胜收。新一代高性能 ISP 图像处理器还大幅提升了色彩、锐度及降噪表现，拍下照片或是视频，都经得起细看。</p>
+                    <ul class="items camera-items">
+                                                <li class="item">
+                            <h2 class="item-detail item-detail-1 f35">
+                                1200 万
+                            </h2>
+                            <p class="item-detail item-detail-1 f14">有效像素</p>
+                                                        <div class="item-detail item-detail-2 divide-line"></div>
+                                                    </li>
+                                                <li class="item">
+                            <h2 class="item-detail item-detail-1 f35">
+                                IMX386 CMOS
+                            </h2>
+                            <p class="item-detail item-detail-1 f14">索尼定制</p>
+                                                        <div class="item-detail item-detail-2 divide-line"></div>
+                                                    </li>
+                                                <li class="item">
+                            <h2 class="item-detail item-detail-1 f35">
+                                1.25μm
+                            </h2>
+                            <p class="item-detail item-detail-1 f14">单像素面积</p>
+                                                    </li>
+                                                <li class="item">
+                            <h2 class="item-detail item-detail-1 f35">
+                                10-LED
+                            </h2>
+                            <p class="item-detail item-detail-1 f14">环形闪光灯</p>
+                                                    </li>
+                                            </ul>
+                    <a href="camera.html" class="learn-more learn-more-dark">
+                        <img src="images/learn-more-black_b3bf3cd.png">
+                    </a>
+                </div>
+                <img src="images/camera-phone_6517ad6.png" alt="" class="camera-phone">
+
+            </div>
+        </div>
+        <!-- camera over -->
+
+
+        <!-- hifi -->
+        <div class="slider hifi">
+            <div class="slider-bg vtl-full-wrapper">
+                <div class="vtl-full-con">
+                    <div class="vtl-full">
+                        <img class="vtl-full-bg" src="images/hifi_0b67838.jpg">
+                    </div>
+                </div>
+            </div>
+            <div class="center-wrapper">
+                <div class="desc dark hifi-desc">
+                    <h1 class="f42">全新一代 Hi-Fi 思路<br>静如处子，动如脱兔</h1>
+                    <p class="f16">在 ES9018K2M 的经典声音下，我们还采用定制化 AD45275 的低功耗运放。XFCB 工艺使得 PRO 6 Plus 在超低功耗下也能有出色的音频表现。依靠 180MHz 增益带宽和 225V/us 压摆率的出色硬件指标加持，PRO 6 Plus 带来了速度与密度俱佳的声音质感，更让 PRO 6 Plus 成为了老烧们眼中爱不释手的玩物。</p>
+                </div>
+            </div>
+        </div>
+        <!-- hifi over -->
+
+
+        <!-- m3dpress -->
+        <div class="slider m3dpress">
+            <div class="center-wrapper">
+                <div class="desc m3dpress-desc">
+                    <h1 class="f42">3D Press，传承与变革</h1>
+                    <p class="f16">优秀的传统必须坚持，所以我们保留了为大家乐道的 3D Press——通过按压呼出对应预览结果及手机热键功能。精良的品质需要推敲，所以我们革新并加成了线性重力校准——不惜用双倍时间成本打磨至臻。方寸之间，尽显大观。</p>
+                </div>
+
+                <img src="images/3dpress_7b96f74.jpg" alt="" class="m3dpress-phone">
+            </div>
+        </div>
+        <!-- m3dpress over -->
+
+        <!-- mtouch -->
+        <div class="slider mtouch">
+            <div class="slider-bg vtl-full-wrapper">
+                <div class="vtl-full-con">
+                    <div class="vtl-full">
+                        <div class="vtl-center mtouch-btns">
+                            <img src="images/mtouch-1_b07bf1f.png" alt="" class="mtouch-btn-1">
+                            <img src="images/mtouch-2_4dc3b73.png" alt="" class="mtouch-btn-2">
+                            <img src="images/mtouch-3_2b88fc7.png" alt="" class="mtouch-btn-3">
+                            <img src="images/mtouch-4_6d51cc3.png" alt="" class="mtouch-btn-4">
+                            <img src="images/mtouch-5_d9c6190.png" alt="" class="mtouch-btn-5">
+                            <img src="images/mtouch-6_7d944e3.png" alt="" class="mtouch-btn-6">
+                            <img src="images/mtouch-7_944dbc1.png" alt="" class="mtouch-btn-7">
+
+                        </div>
+                        <img class="vtl-full-bg" src="images/mtouch_c32ad0f.jpg">
+                    </div>
+                </div>
+            </div>
+
+            <div class="center-wrapper">
+                <div class="mtouch-desc dark mtouch-desc1">
+                    <h1 class="f42">让指纹更安全</h1>
+                    <p class="f16">不断优化指纹支付的识别速度及识别率已然成为我们前进的惯性。同时，在保证内置芯片可靠性的基础上，我们用特殊的封装技术与工艺保留了光路。不仅能在任意方向有效识别指纹，基于 Live Finger Detection™ 的活体检测技术更能实现对真假手指的判定。</p>
+                    <div class="mtouch-graph">
+                        <img src="images/mtouch-finger_fa3273f.png">
+                    </div>
+                    <div class="mtouch-sub-desc">
+                        <p class="f25">Live Finger Detection™</p>
+                        <span class="f14">活体检测技术</span>
+                    </div>
+                </div>
+                <div class="mtouch-desc dark mtouch-desc2">
+                    <h1 class="f42">心动，触而可及</h1>
+                    <p class="f16">特调油墨的丝印盖板与 Ring key 拓展工艺，轻松达成全方位 360 度精确指纹识别。然而惊喜绝对不止于此，我们擅长引领科技，Heart Rate Detection 每秒 50 次动态心率检测，控心跳于股掌之间。安全健康，一键守护。</p>
+                    <div class="mtouch-graph">
+                        <img src="images/mtouch-heart_d9d9abe.png">
+                    </div>
+                    <div class="mtouch-sub-desc">
+                        <p class="f25">Heart Rate Detection</p>
+                        <span class="f14">50 次/秒 动态心率检测</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- mtouch over -->
+
+
+        <!-- typec -->
+        <div class="slider typec">
+            <div class="slider-bg vtl-full-wrapper">
+                <div class="vtl-full-con">
+                    <div class="vtl-full">
+                        <img class="vtl-full-bg" src="images/typec_ed9c17b.jpg">
+                    </div>
+                </div>
+            </div>
+            <div class="center-wrapper">
+                <div class="desc typec-desc">
+                    <h1 class="f42">Type-C + USB 3.1</h1>
+                    <p class="f16">PRO 6 Plus 融合 USB 标准新一代技术：Type-C、USB 3.1。从此 USB 端口不再区分正反，更支持 5Gbps 传输带宽，1G 数据，十秒传完。数据线也经过重新设计，最高支持 60W 充电；新加入高温、短路主动保护装置，更耐用、更安全。</p>
+                </div>
+            </div>
+        </div>
+        <!-- typec over -->
+
+        <!-- battery -->
+        <div class="slider battery">
+            <div class="slider-bg vtl-full-wrapper">
+                <div class="vtl-full-con">
+                    <div class="vtl-full">
+                        <img class="vtl-full-bg" src="images/battery_300dbab.jpg">
+                    </div>
+                </div>
+            </div>
+            <div class="center-wrapper">
+                <div class="desc dark battery-desc">
+                    <h1 class="f42">2 倍寿命电池，3 年无忧</h1>
+                    <p class="f16">我们深知用户对电池损耗的担忧，为此选用价格更高的 3400mAh 新型快充电池。900 次循环寿命，约为普通电池 2 倍以上；大数据仿真测试表明：日常使用，3 年无忧。对于成本的毫不吝惜，造就惊喜的电池寿命。</p>
+                </div>
+            </div>
+        </div>
+        <!-- battery over -->
+    </div>
+
+
+    <div class="pro6plus-footer-mask"></div>
+<a href="performance.html">
+	<div class="pro6plus-footer pro6plus-footer-performance">
+		<div class="pro6plus-footer-text">
+			<p>继续了解</p>
+			<h2>PRO 6 Plus &nbsp;&bull;&nbsp; 体验</h2>
+		</div>
+
+		<div class="pro6plus-footer-bg">
+		</div>
+	</div>
+</a>
+
+<!-- remark -->
+<div class="slider page-remark">
+    <div class="center-wrapper">
+        <span class="label">注：</span>
+        <ul>
+                        <li>
+                1. 本网站里所呈现的配图素材、产品型号、测试数据、功能性能、规格参数等仅供参考，魅族有可能对上述内容进行改进，所有的具体信息请参照产品实物、产品说明书。除非经特殊标注说明，本网站中所涉及的任何数据均为魅族实验室内部测试结果，在不同的客观环境下，数据会有不同程度的误差，请以实机体验为准。
+            </li>
+                        <li>
+                2.「普通电池」指代魅族此前使用的方案。
+            </li>
+                        <li>
+                3.「有史以来的最强大脑」指代2016年11月30日前魅族自有系列产品。
+            </li>
+                    </ul>
+    </div>
+</div>
+<!-- remark over -->
+        
+</div>
+<!-- end container -->
+
+
+
+
+<div id="meizu-footer" class="meizu-footer">
+    <div class="meizu-footer-link">
+        <div class="meizu-footer-wrap">
+            <div class="meizu-row">
+                                <div class="col-3-24">
+                    <ul>
+                        <li><p>魅族商城</p></li>
+                                                <li><a target="_blank" href="http://detail.meizu.com/item/mx6.html?rc=gw">MX6</a></li>
+                                                <li><a target="_blank" href="http://store.meizu.com/item/meizu_pro6.html?rc=gw">PRO 6</a></li>
+                                                <li><a target="_blank" href="http://detail.meizu.com/item/meilan_e1.html?rc=gw">魅蓝 E</a></li>
+                                                <li><a target="_blank" href="http://detail.meizu.com/item/meilan3s.html">魅蓝 3s</a></li>
+                                            </ul>
+                </div>
+                                <div class="col-3-24">
+                    <ul>
+                        <li><p>服务支持</p></li>
+                                                <li><a target="_blank" href="http://service.meizu.com/repair/delivery">寄送快修</a></li>
+                                                <li><a target="_blank" href="http://service.meizu.com/repair/superservice">上门快修</a></li>
+                                                <li><a target="_blank" href="http://service.meizu.com/repair/reserve">预约维修</a></li>
+                                                <li><a target="_blank" href="http://service.meizu.com/vipservice/reg.html">VIP注册</a></li>
+                                            </ul>
+                </div>
+                                <div class="col-3-24">
+                    <ul>
+                        <li><p>Flyme</p></li>
+                                                <li><a target="_blank" href="http://www.flyme.cn/firmware.jsp">固件下载</a></li>
+                                                <li><a target="_blank" href="http://open.flyme.cn/">开放平台</a></li>
+                                                <li><a target="_blank" href="http://app.flyme.cn/">软件商店</a></li>
+                                                <li><a target="_blank" href="http://finder.flyme.cn/">查找手机</a></li>
+                                            </ul>
+                </div>
+                                <div class="col-3-24">
+                    <ul>
+                        <li><p>关于我们</p></li>
+                                                <li><a target="_blank" href="http://www.meizu.com/about.html">关于魅族</a></li>
+                                                <li><a target="_blank" href="http://hr.meizu.com/">加入我们</a></li>
+                                                <li><a target="_blank" href="http://www.meizu.com/contact.html">联系我们</a></li>
+                                                <li><a target="_blank" href="/feedback.html">意见反馈</a></li>
+                                            </ul>
+                </div>
+                
+                <div class="col-5-24 ii-online">
+                    <ul class="call">
+                        <li><p class="hot24">24小时全国服务热线</p></li>
+                        <li>
+                            <div>
+                                <div>
+                                    <div class="meizu-footer-phone">
+                                        400-788-3333
+                                    </div>
+                                </div>
+                                <div>
+                                    <button class="button button-primary linehot" onclick="window.open('http://live-i.meizu.com/live800/chatClient/chatbox.jsp?companyID=8957&configID=4&enterurl=&pagereferrer=&info=&k=1','魅族在线客服','height=775,width=1200,fullscreen=3,top=100,left=100,status=yes,toolbar=no,menubar=no,resizable=no,scrollbars=no,location=no,titlebar=no,fullscreen=no');">
+                                        <img class="call-icon" src="images/icon-phone_d23e91d.png">
+                                        <span>24小时在线客服</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <hr class="footer-hr">
+            <div class="meizu-footer-co">
+                <div class="meizu-row">
+                    <div class="meizu-footer-info">
+                        <div class="meizu-footer-info-left">
+                            <a target="_blank" href="http://www.miitbeian.gov.cn/" hidefocus="true">粤ICP备13003602号-2</a>
+                            <a target="_blank" href="images/icp2_b2dcb54.jpg" hidefocus="true">粤B2-20130198</a>
+                            <a target="_blank" href="images/com_licence_b00fe42.jpg" hidefocus="true">营业执照</a>
+                            <a target="_blank" href="http://www.meizu.com/legal.html" hidefocus="true">法律声明</a>
+                            <span class="footer-info-record" target="_blank" href="">
+                                <i></i>
+                                粤公网安备 44049102496009 号
+                            </span>
+                            <a class="footer-info-license" target="_blank" rel="nofollow" href="http://210.76.65.188/" hidefocus="true">
+                                <i></i>
+                            </a>
+                            <a class="footer-info-wel" target="_blank" rel="nofollow" href="http://210.76.65.188/webrecord/innernet/Welcome.jsp?bano=4404013010531" hidefocus="true">
+                                <i></i>
+                            </a>
+                            <a class="footer-info-trust" target="_blank" rel="nofollow" href="https://credit.szfw.org/CX20151204012550820380.html" hidefocus="true">
+                                <i></i>
+                            </a>
+
+                            <!-- 语言选择 -->
+                            <span class="ii-hr"></span>
+                            <span id="meizu-footer-language" class="meizu-footer-language">
+
+                                <a class="button-language" href="javascript:void(0);">
+                                    Select Region
+                                </a>
+                            </span>
+                            <br>
+                            珠海市魅族通讯设备有限公司 &nbsp; &nbsp; 地址：广东省珠海市唐家湾科技创新海岸魅族科技楼 电话：0756-6130440
+                            <br>
+                            ©2016 Meizu Telecom Equipment Co., Ltd. All rights reserved. 
+                        </div>
+
+                        <div id="ii-subscribe">
+                            关注我们
+                            <a class="ii-ml-md" href="http://weibo.com/meizumobile" target="_blank">
+                                <i class="ii-subscribe-img ii-subscribe-weibo"></i>
+                            </a>
+                            <span class="ii-hr"></span>
+                            <a href="javascript:;" id="ii-wxa" target="_blank">
+                                <img id="ii-wxa-img" src-"images/wx-code_a645982.png" alt="">
+                                <i class="ii-subscribe-img ii-subscribe-weixin"></i>
+                            </a>
+                            <span class="ii-hr"></span>
+                            <a href="http://user.qzone.qq.com/2762957059" target="_blank">
+                                <i class="ii-subscribe-img ii-subscribe-qzone"></i>
+                            </a>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="meizu-footer-toTop">
+        <span class="top-bg"></span>
+    </div>
+
+</div>
+
+<div id="widget-lang-choose" class="widget-lang-choose">
+    <div class="modal-lang-box">
+        <div class="modal-lang-title">
+            Please select your country or region
+            <div id="modal-lang-close" class="modal-lang-close"></div>
+        </div>
+        <div class="modal-lang-body" id="modal-lang-body">
+            <ul>
+                                <li><a href="javascript:void(0);" data-countryhref="http://www.meizu.com/index.html"><i class="lang-logo lang-logo-cn"></i><span>简体中文</span></a></li>
+                                <li><a href="javascript:void(0);" data-countryhref="http://www.meizu.com/hk"><i class="lang-logo lang-logo-hk"></i><span>繁體中文</span></a></li>
+                                <li><a href="javascript:void(0);" data-countryhref="http://www.meizu.com/tw"><i class="lang-logo lang-logo-tw"></i><span>台灣繁體</span></a></li>
+                                <li><a href="javascript:void(0);" data-countryhref="http://www.meizu.com/en"><i class="lang-logo lang-logo-en"></i><span>English</span></a></li>
+                                <li><a href="javascript:void(0);" data-countryhref="http://www.meizu.com/ru"><i class="lang-logo lang-logo-ru"></i><span>Русский</span></a></li>
+                                <li><a href="javascript:void(0);" data-countryhref="http://www.meizu.com/il"><i class="lang-logo lang-logo-il"></i><span>עברית</span></a></li>
+                                <li><a href="javascript:void(0);" data-countryhref="http://www.meizu.com/in"><i class="lang-logo lang-logo-in"></i><span>India</span></a></li>
+                                <li><a href="javascript:void(0);" data-countryhref="http://www.meizu.com/id"><i class="lang-logo lang-logo-id"></i><span>Indonesia</span></a></li>
+                                <li><a href="javascript:void(0);" data-countryhref="http://www.meizu.com/mm"><i class="lang-logo lang-logo-mm"></i><span>Myanmar</span></a></li>
+                                <li><a href="javascript:void(0);" data-countryhref="http://www.meizu.com/es"><i class="lang-logo lang-logo-es"></i><span>España</span></a></li>
+                                <li><a href="javascript:void(0);" data-countryhref="http://www.meizu.com/vn"><i class="lang-logo lang-logo-vn"></i><span>Việt Nam</span></a></li>
+                                <li><a href="javascript:void(0);" data-countryhref="http://www.meizu.com/bd"><i class="lang-logo lang-logo-bd"></i><span>বাংলাদেশ</span></a></li>
+                                <li><a href="javascript:void(0);" data-countryhref="http://www.meizu.com/th"><i class="lang-logo lang-logo-th"></i><span>ประเทศไทย</span></a></li>
+                                <li><a href="javascript:void(0);" data-countryhref="http://www.meizu.com/kh"><i class="lang-logo lang-logo-kh"></i><span>រទេសកម្ពុជា</span></a></li>
+                                <li><a href="javascript:void(0);" data-countryhref="http://www.meizu.com/ua"><i class="lang-logo lang-logo-ua"></i><span>Україна</span></a></li>
+                                <li><a href="javascript:void(0);" data-countryhref="http://www.meizu.com/eg"><i class="lang-logo lang-logo-eg"></i><span>مَصر </span></a></li>
+                                <li><a href="javascript:void(0);" data-countryhref="http://www.meizu.com/it"><i class="lang-logo lang-logo-it"></i><span>Italia</span></a></li>
+                            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+var $id = function(e) {
+    return document.getElementById(e)
+},
+$addEvent = function() {
+    return document.addEventListener ?
+    function(e, n, t) {
+        if (e.length) for (var o = 0; o < e.length; o++) $addEvent(e[o], n, t);
+        else e.addEventListener(n, t, !1)
+    }: function(e, n, t) {
+        if (e.length) for (var o = 0; o < e.length; o++) $addEvent(e[o], n, t);
+        else e.attachEvent("on" + n,
+        function() {
+            return t.call(e, window.event)
+        })
+    }
+} (),
+meizuFooter = {
+    init: function() {
+        if (document.getElementById("meizu-footer")) {
+            var e = document.getElementById("ii-wxa"),
+            n = document.getElementById("ii-wxa-img");
+            e.onmouseover = function() {
+                n.style.display = "block"
+            },
+            e.onmouseout = function() {
+                n.style.display = "none"
+            }
+        }
+    }
+};
+meizuFooter.init();
+var lang_choose = function() {
+    var e, n, t, o, i, l, a = function() {
+        n.onclick = function() {
+            var n = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
+            if (e.style.display = "block", window.navigator.userAgent.indexOf("MSIE 7.0") < 0 ? document.body.style.overflow = "hidden": i.style.overflow = "hidden", e.style.top = n + "px", e.parentNode.attributes[0].nodeValue.indexOf("swiper-slide") > -1) {
+                var t = $(".swiper-slide").height();
+                e.children[0].style.top = 9 * t + "px"
+            }
+        },
+        t.onclick = function() {
+            e.style.display = "none",
+            window.navigator.userAgent.indexOf("MSIE 7.0") < 0 ? document.body.style.overflow = "visible": i.style.overflow = "auto"
+        },
+        $addEvent(o, "click",
+        function(e) {
+            var n, t, o = e.target || e.srcElement,
+            i = o.nodeName.toLowerCase();
+            if ("span" == i || "i" == i) n = o.parentNode;
+            else {
+                if ("a" != i) return ! 1;
+                n = o
+            }
+            t = n.getAttribute("data-countryhref").replace(/\s+/g, "");
+            var l = t.split("/"),
+            a = "/" + l[l.length - 1];
+            window.Cookie && window.Cookie.set("urlprefix", a, 720),
+            setTimeout(function() {
+                window.location.href = t
+            },
+            50)
+        })
+    };
+    return {
+        init: function(d) {
+            l = d,
+            e = $id(l.layerContainer),
+            n = $id(l.langContainer),
+            t = $id(l.langClose),
+            o = $id(l.langModal),
+            i = document.getElementsByTagName(l.oHtml)[0],
+            a()
+        }
+    }
+} ();
+lang_choose.init({
+    layerContainer: "widget-lang-choose",
+    langContainer: "meizu-footer-language",
+    langClose: "modal-lang-close",
+    langModal: "modal-lang-body",
+    oHtml: "html"
+});
+</script>
+
+
+</body>
+<script type="text/javascript" src="js/common_e932903.js"></script>
+<script type="text/javascript" src="js/pro6plus_aa57aa9.js"></script>
+<script type="text/javascript" src="js/alloy_finger_b161632.js"></script>
+<script type="text/javascript" src="js/es5-shim_c2e5834.js"></script>
+<script type="text/javascript" src="js/jmousewheel_4996fc0.js"></script>
+<script type="text/javascript" src="js/mz-scroll_7cc8d72.js"></script>
+<script type="text/javascript" src="js/summary_d3a27cc.js"></script>
+<script type="text/javascript">
+!
+function() {
+    if (document.querySelector) {
+        var container = document.querySelector('.container');
+        if (container) {
+            var classnames = container.className;
+            if (classnames.indexOf('copyr') == -1) {
+                container.className = classnames + ' copyr';
+            }
+        }
+    }
+
+    var _hmt = _hmt || []; !
+    function() {
+        var e = document.createElement("script");
+        e.src = "//hm.baidu.com/hm.js?2a0c04774115b182994cfcacf4c122e9";
+        var t = document.getElementsByTagName("script")[0];
+        t.parentNode.insertBefore(e, t)
+    } (),
+    function() {
+        var e, t = document.createElement("script");
+        t.type = "text/javascript",
+        t.src = ("https:" == document.location.protocol ? "https://tongji-res.meizu.com": "http://tongji-res1.meizu.com") + "/resources/tongji/flow.js",
+        e = document.getElementsByTagName("script")[0],
+        e.parentNode.insertBefore(t, e)
+    } (),
+    function(e, t, n, c, o, a, r) {
+        e.GoogleAnalyticsObject = o,
+        e[o] = e[o] ||
+        function() { (e[o].q = e[o].q || []).push(arguments)
+        },
+        e[o].l = 1 * new Date,
+        a = t.createElement(n),
+        r = t.getElementsByTagName(n)[0],
+        a.async = 1,
+        a.src = c,
+        r.parentNode.insertBefore(a, r)
+    } (window, document, "script", "//www.google-analytics.com/analytics.js", "ga"),
+    ga("create", "UA-83367014-1", "auto"),
+    ga("require", "displayfeatures"),
+    ga("send", "pageview"),
+    function() {
+        var e = window.location.href;
+        if ("http://www.meizu.com/event/qzone.html" == e || "http://m.meizu.com/event/qzone.html" == e) {
+            var t = new Image;
+            t.src = "http://www.meizu.com/accounts/tongji?url=" + e
+        }
+    } ();;
+} ();
+	
+</script>
+</html>

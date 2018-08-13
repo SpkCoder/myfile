@@ -1,0 +1,466 @@
+﻿<!doctype html>
+<html>
+<head>
+<title>Line Chart</title>
+<script type="text/javascript" src="chart.min.js"></script>
+<meta name = "viewport" content = "initial-scale = 1, user-scalable = no">
+</head>
+<body>
+
+<div>
+  <canvas id="lineChart" width="600" height="400"></canvas>
+</div>
+
+
+<div>
+  <canvas id="barChart" width="600" height="400"></canvas>
+</div>
+
+
+<div>
+  <canvas id="radarChart" width="600" height="400"></canvas>
+</div>
+
+<div>
+  <canvas id="polarAreaChart" width="600" height="400"></canvas>
+</div>
+
+<div>
+  <canvas id="pieChart" width="600" height="400"></canvas>
+</div>
+
+<div>
+  <canvas id="doughnutChart" width="600" height="400"></canvas>
+</div>
+
+
+
+
+<script type="text/javascript">
+
+
+//曲线图（Line chart）
+var lineChartData = {
+　　　　　　　// x轴的标示
+            labels : ["January","February","March","April","May","June","July"],
+　　　　　　　// 数据，数组中的每一个object代表一条线
+            datasets : [
+                {
+　　　　　　　　　　　　// 颜色的使用类似于CSS，你也可以使用RGB、HEX或者HSL
+　　　　　　　　　　　　// rgba颜色中最后一个值代表透明度
+　　　　　　　　　　　　// 填充颜色
+                    fillColor : "rgba(220,220,220,0.5)",
+　　　　　　　　　　　　// 线的颜色
+                    strokeColor : "rgba(220,220,220,1)",
+　　　　　　　　　　　　// 点的填充颜色
+                    pointColor : "rgba(220,220,220,1)",
+　　　　　　　　　　　　// 点的边线颜色
+                    pointStrokeColor : "#fff",
+　　　　　　　　　　　　// 与x轴标示对应的数据
+                    data : [65,59,90,81,56,55,40]
+                },
+                {
+                    fillColor : "rgba(151,187,205,0)",
+                    strokeColor : "rgba(151,187,205,1)",
+                    pointColor : "rgba(151,187,205,1)",
+                    pointStrokeColor : "#fff",
+                    data : [28,48,40,19,96,27,100]
+                }
+            ]
+            
+        };
+
+var lineOptions = {
+        //Boolean - If we show the scale above the chart data    
+        // 网格线是否在数据线的上面        
+        scaleOverlay : false,
+        
+        //Boolean - If we want to override with a hard coded scale
+        // 是否用硬编码重写y轴网格线
+        scaleOverride : false,
+        
+        //** Required if scaleOverride is true **
+        //Number - The number of steps in a hard coded scale
+        // y轴刻度的个数
+        scaleSteps : null,
+        //Number - The value jump in the hard coded scale
+        // y轴每个刻度的宽度
+        scaleStepWidth : null,
+        //Number - The scale starting value
+        // y轴的起始值
+        scaleStartValue : null,
+
+        //String - Colour of the scale line    
+        // x轴y轴的颜色
+        scaleLineColor : "rgba(0,0,0,1)",
+        
+        //Number - Pixel width of the scale line
+        // x轴y轴的线宽    
+        scaleLineWidth : 1,
+
+        //Boolean - Whether to show labels on the scale    
+        // 是否显示y轴的标签
+        scaleShowLabels : true,
+        
+        //Interpolated JS string - can access value
+        // 标签显示值
+        scaleLabel : "<%=value%>",
+        
+        //String - Scale label font declaration for the scale label
+        // 标签的字体
+        scaleFontFamily : "'Arial'",
+        
+        //Number - Scale label font size in pixels    
+        // 标签字体的大小
+        scaleFontSize : 12,
+        
+        //String - Scale label font weight style
+        // 标签字体的样式
+        scaleFontStyle : "normal",
+        
+        //String - Scale label font colour    
+        // 标签字体的颜色
+        scaleFontColor : "#666",    
+        
+        ///Boolean - Whether grid lines are shown across the chart
+        // 是否显示网格线
+        scaleShowGridLines : true,
+        
+        //String - Colour of the grid lines
+        // 网格线的颜色
+        scaleGridLineColor : "rgba(0,0,0,.1)",
+        
+        //Number - Width of the grid lines
+        // 网格线的线宽
+        scaleGridLineWidth : 1,    
+        
+        //Boolean - Whether the line is curved between points
+        // 是否是曲线
+        bezierCurve : true,
+        
+        //Boolean - Whether to show a dot for each point
+        // 是否显示点
+        pointDot : true,
+        
+        //Number - Radius of each point dot in pixels
+        // 点的半径
+        pointDotRadius : 3,
+        
+        //Number - Pixel width of point dot stroke
+        // 点的线宽
+        pointDotStrokeWidth : 1,
+        
+        //Boolean - Whether to show a stroke for datasets
+        datasetStroke : true,
+        
+        //Number - Pixel width of dataset stroke
+        // 数据线的线宽
+        datasetStrokeWidth : 3,
+        
+        //Boolean - Whether to fill the dataset with a colour
+        // 数据线是否填充颜色
+        datasetFill : true,
+        
+        //Boolean - Whether to animate the chart
+        // 是否有动画效果
+        animation : true,
+
+        //Number - Number of animation steps
+        // 动画的步数
+        animationSteps : 60,
+        
+        //String - Animation easing effect
+        // 动画的效果
+        animationEasing : "easeOutQuart",
+
+        //Function - Fires when the animation is complete
+        // 动画完成后调用
+        onAnimationComplete : null
+    };
+
+
+  var myLine = new Chart(document.getElementById("lineChart").getContext("2d")).Line(lineChartData, lineOptions);
+
+
+
+
+
+
+
+  //柱状图（Bar chart）
+  var barChartData = {
+            labels : ["January","February","March","April","May","June","July"],
+            datasets : [
+                {
+                    fillColor : "rgba(220,220,220,0.5)",
+                    strokeColor : "rgba(220,220,220,1)",
+                    data : [65,59,90,81,56,55,40]
+                },
+                {
+                    fillColor : "rgba(151,187,205,0.5)",
+                    strokeColor : "rgba(151,187,205,1)",
+                    data : [28,48,40,19,96,27,100]
+                }
+            ]
+            
+        };
+
+
+   var barOptions = {
+                
+    //Boolean - If we show the scale above the chart data            
+    scaleOverlay : false,
+    
+    //Boolean - If we want to override with a hard coded scale
+    scaleOverride : false,
+    
+    //** Required if scaleOverride is true **
+    //Number - The number of steps in a hard coded scale
+    scaleSteps : null,
+    //Number - The value jump in the hard coded scale
+    scaleStepWidth : null,
+    //Number - The scale starting value
+    scaleStartValue : null,
+
+    //String - Colour of the scale line    
+    scaleLineColor : "rgba(0,0,0,.1)",
+    
+    //Number - Pixel width of the scale line    
+    scaleLineWidth : 1,
+
+    //Boolean - Whether to show labels on the scale    
+    scaleShowLabels : true,
+    
+    //Interpolated JS string - can access value
+    scaleLabel : "<%=value%>",
+    
+    //String - Scale label font declaration for the scale label
+    scaleFontFamily : "'Arial'",
+    
+    //Number - Scale label font size in pixels    
+    scaleFontSize : 12,
+    
+    //String - Scale label font weight style    
+    scaleFontStyle : "normal",
+    
+    //String - Scale label font colour    
+    scaleFontColor : "#666",    
+    
+    ///Boolean - Whether grid lines are shown across the chart
+    scaleShowGridLines : true,
+    
+    //String - Colour of the grid lines
+    scaleGridLineColor : "rgba(0,0,0,.05)",
+    
+    //Number - Width of the grid lines
+    scaleGridLineWidth : 1,    
+
+    //Boolean - If there is a stroke on each bar    
+    barShowStroke : true,
+    
+    //Number - Pixel width of the bar stroke    
+    barStrokeWidth : 2,
+    
+    //Number - Spacing between each of the X value sets
+    // 柱状块与x值所形成的线（如：x=20这条线）之间的距离
+    barValueSpacing : 5,
+    
+    //Number - Spacing between data sets within X values
+    // 在同一x值内的柱状块之间的间距
+    barDatasetSpacing : 1,
+    
+    //Boolean - Whether to animate the chart
+    animation : true,
+
+    //Number - Number of animation steps
+    animationSteps : 60,
+    
+    //String - Animation easing effect
+    animationEasing : "easeOutQuart",
+
+    //Function - Fires when the animation is complete
+    onAnimationComplete : null
+    
+};
+
+var myBar = new Chart(document.getElementById("barChart").getContext("2d")).Bar(barChartData,barOptions);
+
+
+
+
+
+
+
+
+  //雷达图或蛛网图（Radar chart）
+  var radarChartData = {
+            labels : ["Eating","Drinking","Sleeping","Designing","Coding","Partying","Running"],
+            datasets : [
+                {
+                    fillColor : "rgba(220,220,220,0.5)",
+                    strokeColor : "rgba(220,220,220,1)",
+                    pointColor : "rgba(220,220,220,1)",
+                    pointStrokeColor : "#fff",
+                    data : [65,59,90,81,56,55,40]
+                },
+                {
+                    fillColor : "rgba(151,187,205,0.5)",
+                    strokeColor : "rgba(151,187,205,1)",
+                    pointColor : "rgba(151,187,205,1)",
+                    pointStrokeColor : "#fff",
+                    data : [28,48,40,19,96,27,100]
+                }
+            ]
+            
+        };
+
+
+  var myRadar = new Chart(document.getElementById("radarChart").getContext("2d")).Radar(radarChartData,{scaleShowLabels : false, pointLabelFontSize : 10});
+
+
+
+
+
+
+
+ //极地区域图（Polar area chart）
+ var polarAreaChartData = [
+            {
+                value : Math.random(),
+                color: "#D97041"
+            },
+            {
+                value : Math.random(),
+                color: "#C7604C"
+            },
+            {
+                value : Math.random(),
+                color: "#21323D"
+            },
+            {
+                value : Math.random(),
+                color: "#9D9B7F"
+            },
+            {
+                value : Math.random(),
+                color: "#7D4F6D"
+            },
+            {
+                value : Math.random(),
+                color: "#584A5E"
+            }
+        ];
+
+  
+
+
+  var myPolarArea = new Chart(document.getElementById("polarAreaChart").getContext("2d")).PolarArea(polarAreaChartData);
+
+
+
+
+
+
+
+ //饼图（Pie chart）
+ var pieData = [
+                {
+                    value: 30,
+                    color:"#F38630"
+                },
+                {
+                    value : 50,
+                    color : "#E0E4CC"
+                },
+                {
+                    value : 100,
+                    color : "#69D2E7"
+                }
+            
+            ];
+
+
+  var pieOptions = {
+	    //Boolean - Whether we should show a stroke on each segment
+	    // 块和块之间是否有间距
+	    segmentShowStroke : true,
+	    
+	    //String - The colour of each segment stroke
+	　　// 块和块之间间距的颜色
+	    segmentStrokeColor : "#fff",
+	    
+	    //Number - The width of each segment stroke
+	　　// 块和块之间间距的宽度
+	    segmentStrokeWidth : 2,
+	    
+	    //Boolean - Whether we should animate the chart    
+	    animation : true,
+	    
+	    //Number - Amount of animation steps
+	    animationSteps : 100,
+	    
+	    //String - Animation easing effect
+	    animationEasing : "easeOutBounce",
+	    
+	    //Boolean - Whether we animate the rotation of the Pie
+	　　// 是否有从0度到360度的动画
+	    animateRotate : true,
+
+	    //Boolean - Whether we animate scaling the Pie from the centre
+	　　// 是否有从中心到边缘的动画
+	    animateScale : false,
+	    
+	    //Function - Will fire on animation completion.
+	    onAnimationComplete : null
+	  }
+
+
+    var myPie = new Chart(document.getElementById("pieChart").getContext("2d")).Pie(pieData,pieOptions);
+
+
+
+
+
+
+
+    //环形图（Doughnut chart）
+    var doughnutData = [
+                {
+                    value: 30,
+                    color:"#F7464A"
+                },
+                {
+                    value : 50,
+                    color : "#46BFBD"
+                },
+                {
+                    value : 100,
+                    color : "#FDB45C"
+                },
+                {
+                    value : 40,
+                    color : "#949FB1"
+                },
+                {
+                    value : 120,
+                    color : "#4D5360"
+                }
+            
+            ];
+
+    var myDoughnut = new Chart(document.getElementById("doughnutChart").getContext("2d")).Doughnut(doughnutData);
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+</body>
+</html>

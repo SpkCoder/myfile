@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=3.0; user-scalable=yes">
+<title>touchSwipe</title>
+<script type="text/javascript" src="jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="jquery.touchSwipe.min.js"></script>
+
+</head>
+<body>
+<div id="test" style="height:200px; background:#C63;font-size: 14px; line-height: 30px; color:#fff">swipe 的dome</div>
+<div id="test2" style="height:200px; background:#C63; margin-top:20px; font-size: 14px; line-height: 30px;  color:#fff">swipeStatus的dome</div>
+
+
+
+<script type="text/javascript">
+$(function () {
+
+    $("#test").swipe( {
+		swipe:function(event, direction, distance, duration, fingerCount) {
+		$("#test").text("你用"+fingerCount+"个手指以"+duration+"秒的速度向" + direction + "滑动了" +distance+ "像素 " );
+		console.log("你用"+fingerCount+"个手指以"+duration+"秒的速度向" + direction + "滑动了" +distance+ "像素 " );
+		},
+	});
+	//swipeStatus的dome
+	$("#test2").swipe( {
+		swipeStatus:function(event, phase, direction, distance, duration,fingerCount) {
+		$("#test").text("你用"+fingerCount+"个手指以"+duration+"秒的速度向" + direction + "滑动了" +distance+ "像素 " +"你在"+phase+"中");
+		console.log("你用"+fingerCount+"个手指以"+duration+"秒的速度向" + direction + "滑动了" +distance+ "像素 " +"你在"+phase+"中");
+		},
+	});
+
+ 
+})
+</script>
+
+</body>
+</html>
+

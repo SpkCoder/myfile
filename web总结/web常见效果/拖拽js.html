@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script type="text/javascript">
+window.onload=function()
+{
+ //    var oDiv_box=document.getElementById('div_box');
+	// var oDiv=document.getElementById('div1');
+	// oDiv.onmousedown=function(event)
+	// {
+	// 	//var oEvent=ev||event;
+	// 	var x=0;
+	// 	var y=0;
+	// 	x=event.clientX-oDiv.offsetLeft;
+	// 	y=event.clientY-oDiv.offsetTop;
+	// 	document.onmousemove=function(event)
+	// 	{
+	// 		//var oEvent=ev||event;
+	// 		var out1=event.clientX-x;
+	// 		var out2=event.clientY-y;
+
+	// 		//var oWidth=document.documentElement.clientWidth-oDiv.offsetWidth;
+	// 		//var oHeight=document.documentElement.clientHeight-oDiv.offsetHeight;
+	// 		var oWidth=oDiv_box.offsetWidth-oDiv.offsetWidth;
+	// 		var oHeight=oDiv_box.offsetHeight-oDiv.offsetHeight;
+
+	// 		if(out1<0)
+	// 		{
+	// 		  out1=0;   //限制左边
+	// 		}
+	// 		else if (out1>oWidth)
+	// 		{
+	// 			out1=oWidth;   //限制右边
+	// 		}
+
+	//         if(out2<0)
+	// 		{
+	// 		  out2=0;
+	// 		}
+	// 		else if (out2>oHeight)
+	// 		{
+	// 			out2=oHeight;
+	// 		}
+
+	// 		oDiv.style.left=out1+'px';
+	// 		oDiv.style.top=out2+'px';
+	// 	};
+		
+	// 	document.onmouseup=function()
+	// 	{
+	// 		document.onmousemove=null;
+	// 		document.onmouseup=null;	
+	// 	};
+	// 	return false;//解决firefox低版本的bug问题
+	// };
+	
+
+
+
+   
+      //阻止浏览器的默认行为 
+        // function stopDefault(e) { 
+        //    //阻止默认浏览器动作(W3C) 
+        //     if (e && e.preventDefault )
+        //     {
+        //         e.preventDefault(); 
+        //        //IE中阻止函数器默认动作的方式
+        //     }  
+        //     else{
+        //         window.event.returnValue = false; 
+        //         return false; 
+        //     }  
+        // }
+
+
+
+
+   
+   function stopBubble(e){
+	  //一般用在鼠标或键盘事件上
+	  if(e && e.stopPropagation){
+	  //W3C取消冒泡事件
+	  e.stopPropagation();
+	  }else{
+	  //IE取消冒泡事件
+	  window.event.cancelBubble = true;
+	  }
+   }
+
+    var Oform1=document.getElementById("form1");
+    Oform1.addEventListener("mousedown",function(e){
+    	stopBubble(e);
+    },false);
+
+     
+    var drag1 = new drag("div1","window","limitXY");
+    drag1.dragFn();
+    var drag2 = new drag("div2","window");
+    drag2.dragFn();
+
+
+
+};
+
+
+
+
+function drag(inbox,outbox,limit)
+{
+   this.inbox=document.getElementById(inbox);
+   if(outbox=="window")
+   {
+	  this.outWidth=document.documentElement.clientWidth;
+      this.outHeight=document.documentElement.clientHeight;
+   }else
+   {
+   	  this.outbox=document.getElementById(outbox);
+   	  this.outWidth=this.outbox.offsetWidth;
+   	  this.outHeight=this.outbox.offsetHeight;
+   }
+   this.limit=limit;
+   
+}
+
+
+drag.prototype.dragFn=function()
+{
+   var that=this;
+   this.inbox.onmousedown=function(event)
+   {   
+   	   this.x=0;
+   	   this.y=0;
+   	   this.x=event.clientX-that.inbox.offsetLeft;
+	   this.y=event.clientY-that.inbox.offsetTop;
+	   var that2=this;
+	   document.onmousemove=function(event)
+	   {
+	   	    this.outX=event.clientX-that2.x;
+			this.outY=event.clientY-that2.y;
+			this.oWidth=that.outWidth-that.inbox.offsetWidth;
+			this.oHeight=that.outHeight-that.inbox.offsetHeight;
+			// console.log(oWidth+" "+oHeight);
+			if(that.limit=="limitX")
+			{
+				if(this.outX<0)
+				{
+				  this.outX=0;   //限制左边
+				}
+				else if (this.outX>this.oWidth)
+				{
+					this.outX=this.oWidth;   //限制右边
+				}
+			}else if(that.limit=="limitY")
+			{
+				if(this.outY<0)
+				{
+				  this.outY=0;     
+				}
+				else if (this.outY>this.oHeight)
+				{
+					this.outY=this.oHeight; 
+				}
+			}else if(that.limit=="limitXY")
+			{
+				if(this.outX<0)
+				{
+				  this.outX=0;  
+				}
+				else if (this.outX>this.oWidth)
+				{
+					this.outX=this.oWidth;   
+				}
+				if(this.outY<0)
+				{
+				  this.outY=0;    
+				}
+				else if (this.outY>this.oHeight)
+				{
+					this.outY=this.oHeight;  
+				}
+			}
+			
+			that.inbox.style.left=this.outX+'px';
+		    that.inbox.style.top=this.outY+'px';
+			
+	        
+	   };
+	   document.onmouseup=function(event)
+	   {
+			document.onmousemove=null;
+			document.onmouseup=null;	
+	   };
+	   
+	   return false;//解决firefox低版本的bug问题
+
+   };
+
+};
+
+
+
+
+</script>
+</head>
+
+<body>
+	<div id="div_box" style="position:relative; width:500px; height:500px; background:#999; margin: 100px auto;">
+		<div id="div1" style="position:fixed; left: 0; top:0; width:150px; height:150px; background:#060; ">
+		<form style="margin: 5px;" id="form1">
+		  <p>1</p>
+		  <input style="width: 100%" type="text" name="" value="input">
+		</form>
+		</div>
+		<div id="div2" style="position:fixed; right: 0; top:0; width:150px; height:150px; background:#060; ">
+		<form>
+		  <p>2</p>
+		  <input style="width: 100%" type="text" name="" value="input">
+		</form>
+		</div>
+	</div>
+</body>
+</html>

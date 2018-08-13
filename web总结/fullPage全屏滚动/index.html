@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>fullPage.js</title>
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<link href="css/fullPage.css" rel="stylesheet" ype="text/css">
+<link href="css/animate.css" rel="stylesheet" type="text/css">
+
+<style>
+html,body{overflow: hidden; width:100%; height: 100%;}
+.section{position:relative; width:100%; height: 100%; text-align:center;}
+.section h2{font-size:40px;}
+.section1{background-color: rgb(27, 188, 155)}
+.section2{background-color: rgb(75, 191, 195)}
+.section3{background-color: rgb(123, 170, 190)}
+.section4{background-color: rgb(255, 153, 0)}
+
+</style>
+</head>
+
+<body>
+
+<div id="fullPage" style="height:100%; position: relative; " >
+
+	<div class="section section1 active" >
+		<h2 data-animate="shake" style="margin-top:300px;">Slide 1</h2>
+	</div>
+    
+	<div class="section section2 " >
+       <h2 data-animate="flash" style="margin-top:300px;">Slide 2</h2>	
+    </div>
+    
+	<div class="section section3 " >
+		<h2 data-animate="swing" style="margin-top:300px;">Slide 3</h2>
+	</div>
+    
+	<div class="section section4 " >
+		<h2 data-animate="bounce" style="margin-top:300px;">Slide 4</h2>
+	</div>
+    
+    
+</div>
+
+
+<!-----导航菜单---->
+<ul id="menu">
+	<li data-menuanchor="page1" class="active"><a href="#page1">第一屏</a></li>
+	<li data-menuanchor="page2"><a href="#page2">第二屏</a></li>
+	<li data-menuanchor="page3"><a href="#page3">第三屏</a></li>
+	<li data-menuanchor="page4"><a href="#page4">第四屏</a></li>
+</ul>
+
+
+
+
+
+<script src="js/jquery-1.11.0.min.js"></script>
+<script src="js/common.js"></script>
+<script src="js/jquery.fullPage.min.js"></script>
+</body>
+</html>

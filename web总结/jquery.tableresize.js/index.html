@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<script type="text/javascript" src="jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="jquery.tableresize.js"></script>
+<style type="text/css">
+.{margin: 0; padding: 0; color: #333; font-size: 14px;}
+.user_title {
+    height: 30px;
+    line-height: 30px;
+    color: #fff;
+    text-indent: 10px;
+    background: #6299b9;
+}
+table {
+    border-top: 1px solid #6299b9;
+    border-left: 1px solid #6299b9;
+}
+table thead tr {
+    background: #F4F4F4;
+}
+table tbody tr:nth-child(2n) {
+    background: #F4F4F4;
+}
+table td {
+    border-bottom: 1px solid #6299b9;
+    border-right: 1px solid #6299b9;
+    padding: 0px 10px;
+}
+table tr .radioSpan input{display: none;}
+table tr .radioSpan input + label{
+display: inline-block;
+width: 12px;
+height: 12px;
+background:#bbb;
+border-radius: 100%;
+cursor: pointer;
+}
+table tr .radioSpan input:checked + label{
+background:#6299b9;
+}
+table tr .checkboxSpan input{display: none;}
+table tr .checkboxSpan input + label{
+display: inline-block;
+width: 12px;
+height: 12px;
+background:#bbb;
+border-radius: 3px;
+cursor: pointer;
+}
+table tr .checkboxSpan input:checked + label{
+background:#6299b9;
+}
+table thead tr i{position: relative; font-style: normal; display: inline-block; border-left: 6px solid transparent;border-right: 6px solid transparent; border-top: 6px solid #333; border-bottom: none; float: right; right: 10px; top: 10px;}
+table thead tr i.top{border-left: 6px solid transparent;border-right: 6px solid transparent; border-bottom: 6px solid #333; border-top: none;}
+
+    
+
+
+</style>  
+
+
+</head>
+<body>
+   <div class="box">
+      <div class="user_title" style="width:1000px">表格1</div>
+      <table class="table1" cellspacing="0" border="0" width="1000px">
+        <thead>
+           <tr>
+             <td width="15">
+               <span class="checkboxSpan" style="display:none;">
+                   <input type="checkbox" name="checkboxAll" id="checkboxAll" class="checkboxAll" />
+                   <label for="checkboxAll"></label>
+               </span>
+              <span class="radioSpan" style="display: none;">
+                   <input id="noCheckAll" type="radio" name="radio" class="noCheckAll"/>
+                   <label for="noCheckAll"></label>
+              </span>
+            </td>
+            <td width="100" data_name="id">ID</td>
+            <td width="200" data_name="name">名字</td>
+            <td width="200" data_name="age">年纪</td>
+            <td width="200" data_name="address">地址</td>
+            <td width="auto" data_name="phone">电话</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+                 <span class="checkboxSpan" style="display:none;">
+                    <input id="checkbox1" type="checkbox" name="checkbox" pk_id="1001" pk_name="object_id" />
+                    <label for="checkbox1"></label>
+                 </span>
+                 <span class="radioSpan" style="display:none;">
+                     <input id="radio1" type="radio" name="radio" pk_id="1001" pk_name="object_id" />
+                     <label for="radio1"></label>
+                 </span>
+            </td>
+            <td>22</td>
+            <td>Name:44</td>
+            <td>Age:23</td>
+            <td>Address:47</td>
+            <td>Phone:15</td>
+          </tr>
+          <tr>
+            <td>
+                 <span class="checkboxSpan" style="display:none;">
+                    <input id="checkbox2" type="checkbox" name="checkbox" pk_id="1002" pk_name="object_id" />
+                    <label for="checkbox2"></label>
+                 </span>
+                 <span class="radioSpan" style="display:none;">
+                     <input id="radio2" type="radio" name="radio" pk_id="1002" pk_name="object_id" />
+                     <label for="radio2"></label>
+                 </span>
+            </td>
+            <td>22</td>
+            <td>Name:44</td>
+            <td>Age:23</td>
+            <td>Address:47</td>
+            <td>Phone:15</td>
+          </tr>
+          <tr>
+            <td>
+                 <span class="checkboxSpan" style="display:none;">
+                    <input id="checkbox3" type="checkbox" name="checkbox" pk_id="1003" pk_name="object_id" />
+                    <label for="checkbox3"></label>
+                 </span>
+                 <span class="radioSpan" style="display:none;">
+                     <input id="radio3" type="radio" name="radio" pk_id="1003" pk_name="object_id" />
+                     <label for="radio3"></label>
+                 </span>
+            </td>
+            <td>22</td>
+            <td>Name:44</td>
+            <td>Age:23</td>
+            <td>Address:47</td>
+            <td>Phone:15</td>
+          </tr>
+      </tbody>
+      </table>
+   </div>
+
+   <br><br>
+
+
+
+    <div class="box">
+      <div class="user_title" style="width:1000px">表格2</div>
+      <table class="table2" cellspacing="0" border="0" width="1000px">
+        <thead>
+           <tr>
+             <td width="15">
+               <span class="checkboxSpan" style="display:none;">
+                   <input type="checkbox" name="checkboxAll" id="checkboxAll_2" class="checkboxAll"/>
+                   <label for="checkboxAll_2"></label>
+               </span>
+              <span class="radioSpan" style="display: none;">
+                   <input id="noCheckAll_2" type="radio" name="radio" class="noCheckAll"/>
+                   <label for="noCheckAll_2"></label>
+              </span>
+            </td>
+            <td width="100">ID</td>
+            <td width="200">名字</td>
+            <td width="200">年纪</td>
+            <td width="200">地址</td>
+            <td width="auto">电话</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+                 <span class="checkboxSpan" style="display:none;">
+                    <input id="checkbox1_2" type="checkbox" name="checkbox" pk_id="1001" pk_name="object_id" />
+                    <label for="checkbox1_2"></label>
+                 </span>
+                 <span class="radioSpan" style="display:none;">
+                     <input id="radio1_2" type="radio" name="radio" pk_id="1001" pk_name="object_id" />
+                     <label for="radio1_2"></label>
+                 </span>
+            </td>
+            <td>22</td>
+            <td>Name:44</td>
+            <td>Age:23</td>
+            <td>Address:47</td>
+            <td>Phone:15</td>
+          </tr>
+          <tr>
+            <td>
+                 <span class="checkboxSpan" style="display:none;">
+                    <input id="checkbox2_2" type="checkbox" name="checkbox" pk_id="1002" pk_name="object_id" />
+                    <label for="checkbox2_2"></label>
+                 </span>
+                 <span class="radioSpan" style="display:none;">
+                     <input id="radio2_2" type="radio" name="radio" pk_id="1002" pk_name="object_id" />
+                     <label for="radio2_2"></label>
+                 </span>
+            </td>
+            <td>22</td>
+            <td>Name:44</td>
+            <td>Age:23</td>
+            <td>Address:47</td>
+            <td>Phone:15</td>
+          </tr>
+          <tr>
+            <td>
+                 <span class="checkboxSpan" style="display:none;">
+                    <input id="checkbox3_2" type="checkbox" name="checkbox" pk_id="1003" pk_name="object_id" />
+                    <label for="checkbox3_2"></label>
+                 </span>
+                 <span class="radioSpan" style="display:none;">
+                     <input id="radio3_2" type="radio" name="radio" pk_id="1003" pk_name="object_id" />
+                     <label for="radio3_2"></label>
+                 </span>
+            </td>
+            <td>22</td>
+            <td>Name:44</td>
+            <td>Age:23</td>
+            <td>Address:47</td>
+            <td>Phone:15</td>
+          </tr>
+      </tbody>
+      </table>
+   </div>
+
+
+
+   <!--  <div class="pagination" style="width:{{tableWidth}}">
+        <select ng-change="ComSearch_load_pernum(ComSearch_p_pernum)" ng-model="ComSearch_p_pernum" ng-options="x for x in options">
+        </select>
+        <a ng-class="{true:'disabled'}[ComSearch_p_current==1]" class="pagination-first" href="javascript:;" ng-click="ComSearch_p_index()"></a>
+        <a ng-class="{true:'disabled'}[ComSearch_p_current==1]" class="pagination-pre" href="javascript:;" ng-click="ComSearch_p_pre()"></a>
+        <span>第</span><input  type="text" ng-model="ComSearch_p_current"  ng-change="ComSearch_load_page(ComSearch_p_current)"><span>页 共 {{ComSearch_p_all_page}} 页</span>
+        <a ng-class="{true:'disabled'}[ComSearch_p_current==ComSearch_p_all_page]" class="pagination-next" href="javascript:;" ng-click="ComSearch_p_next()"></a>
+        <a ng-class="{true:'disabled'}[ComSearch_p_current==ComSearch_p_all_page]" class="pagination-last" href="javascript:;" ng-click="ComSearch_p_last()"></a>
+        <a class="pagination-search" href="javascript:;" ng-click="ComSearch_load_page(ComSearch_p_current)"></a>
+       <span>共 {{ComSearch_count}} 条记录</span>
+    </div> -->
+
+
+
+
+<script type="text/javascript">
+    $(function () {
+        var ComDataList=
+        [
+            {object_id:"1001",
+             object_name:"设备一"
+            },
+            {object_id:"1002",
+             object_name:"设备二"
+            },
+            {object_id:"1003",
+             object_name:"设备三"
+            }
+         ];
+        var ComCheckedId="";
+        var ComCheckedData="";
+        var ComCheckedArr=[];
+        var ComCheckedDataArr=[];
+
+
+        //table1
+        $(".table1").resizeFn();
+        $(".table1").checkFn("radio",ComDataList,function(ComCheckedId,ComCheckedData){
+             ComCheckedId=ComCheckedId;
+             ComCheckedData=ComCheckedData;
+             console.log(ComCheckedId);
+             console.log(ComCheckedData);
+        });
+        $(".table1").searchFn(function(item_cn,item_en){
+             console.log(item_cn+" "+item_en);
+             ComCheckedId="";
+             ComCheckedData="";
+             console.log("清空单选id"+ComCheckedId);
+             console.log("清空单选值"+ComCheckedData);
+
+        });
+
+
+         //table2
+        $(".table2").resizeFn();
+        $(".table2").checkFn("checkbox",ComDataList,function(ComCheckedArr,ComCheckedDataArr){
+             ComCheckedArr=ComCheckedArr;
+             ComCheckedDataArr=ComCheckedDataArr;
+             console.log(ComCheckedArr);
+             console.log(ComCheckedDataArr);
+        });
+        $(".table2").searchFn();
+    });
+</script>
+</body>
+</html>

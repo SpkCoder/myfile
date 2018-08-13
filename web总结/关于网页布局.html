@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<style>
+*{margin: 0; padding: 0; vertical-align: middle; }
+/* 清除浮动*/
+.clearfix:after{content:'';display:block;height:0;clear:both;visibility:hidden;}
+
+.contact { position: relative;  width:100%; height:auto;overflow:hidden; background: #ddd; border:2px solid #f00;}
+.container {position: relative;  width: 1000px; height:auto; margin: 0px auto; }
+.block1 .d1 {float: left; width: 300px; height: auto; background: #f00;  margin: 20px; }
+.block1 .d1 .d3 { width: 100px; height: 300px; background: #0f0; margin: 20px auto 20px; }
+.block1 .d4 { clear:both; width: 900px; height: 200px; background: #00f; margin: 30px auto 30px; }
+</style>
+</head>
+<body>
+<section class="contact clearfix">
+  <div class="container">
+    <div class="block1">
+      <div class="d1">
+        <div class="d3"></div>
+      </div>
+      <div class="d1">123456<br>123456<br>123456<br>123456<br></div>
+      <div class="d1">123456<br>
+        123456<br>
+      </div>
+      <div class="d4">123456</div>
+    </div>
+  </div>
+</section>
+
+<section class="contact clearfix">
+  <div class="container">
+    <div class="block1">
+      <div class="d1">
+        <div class="d3"></div>
+      </div>
+      <div class="d1">123456<br>123456<br>123456<br>123456<br></div>
+      <div class="d1">123456<br>
+        123456<br>
+      </div>
+      <div class="d4">123456</div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

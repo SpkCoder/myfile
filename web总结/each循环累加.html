@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<head>
+<script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js">
+</script>
+<script>
+$(document).ready(function(){
+
+
+  $("button").click(function(){
+   
+	var num=0;
+    $("#ul1 li").each(function(index,element){
+	  //alert(index);
+	  num+=parseInt($(this).find("span").text());
+     
+    });
+	
+	//alert(num)  
+	$("#p1").text(num);
+  });
+  
+  
+  
+});
+</script>
+</head>
+<body>
+
+<button>点击</button>
+
+<ul id="ul1">
+	<li><span>10</span></li>
+    <li><span>20</span></li>
+    <li><span>30</span></li>
+</ul>
+	<p id="p1">0</p>
+</body>
+</html>

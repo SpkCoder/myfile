@@ -1,0 +1,44 @@
+jquery事件与函数的使用介绍
+
+
+1.绑定事件
+
+方法1：
+
+使用这个方法可以在页面加载时为元素增加事件
+复制代码 代码如下:
+
+$("#myElement").click(function(){
+alert($(this).text());
+})
+
+方法2：
+
+和1一样，还可以在页面加载之后为元素增加事件，如创建新的DOM元素
+复制代码 代码如下:
+
+$("#myElement").bing('click',function(){
+alert($(this).text());
+})
+
+2.函数声明和命名函数表达式
+
+函数声明：
+复制代码 代码如下:
+
+function myFun1(){
+$("div").hide();
+}
+
+调用：myFun1()；
+
+函数表达式：
+复制代码 代码如下:
+
+var myFun2 = function(){
+$("div").hide();
+}
+
+调用：#("#myElement").click(myFun2)；
+
+区别：调用时间的区别，函数声明可以在任意地方使用，命名函数表达式只有在声明之后可以使用

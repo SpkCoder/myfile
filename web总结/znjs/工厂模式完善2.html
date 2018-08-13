@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+</style>
+
+
+<script type="text/javascript">
+
+
+
+
+function createPertion(name,qq)      //构造函数  用来构建对象
+{
+    //系统自动做的
+	//var this = new Object();
+	
+	//加工
+	this.name= name;
+	this.qq= qq;
+	
+	//系统自动做的
+	//return this;
+};
+
+createPertion.prototype.showName = function()    //prototype原型
+{
+   alert("我的名字"+this.name);
+};
+
+createPertion.prototype.showqq = function()
+{
+    alert("我的qq"+this.qq);
+};
+
+
+
+
+var obj = new createPertion("tom","123");
+
+obj.showName();
+obj.showqq();
+
+
+var obj2 = new createPertion("tom2","123456");   
+
+obj2.showName();
+obj2.showqq();
+
+
+
+function a()
+{
+  alert(obj.showName==obj2.showName);    //obj.showName等于obj2.showName
+};
+
+a();
+
+
+
+
+</script>
+</head>
+
+
+
+<body>
+</body>
+</html>

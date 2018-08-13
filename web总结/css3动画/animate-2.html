@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<link rel="stylesheet" type="text/css" href="animate.css" />
+<script type="text/javascript" src="jquery-1.11.0.min.js"></script>
+<script type="text/jscript">
+
+window.onload = function()
+{
+	
+	if($(window).scrollTop() == 0)
+	{
+	   $(window).scrollTop(1);
+	};
+	
+	
+};
+
+
+
+$(window).bind("scroll",function()
+{
+  
+	$("[data-animate]").each(function(index, element) 
+	{
+		  var t = $(this).offset().top;
+		  var a=$(this).attr("data-animate");
+		  if (t >= $(window).scrollTop() && t < ($(window).scrollTop()+$(window).height()))
+		  {
+			  
+		  $(this).addClass(a);
+		  
+		  };
+	
+	});
+
+});
+
+</script>
+<style>
+ h2{ text-align:center;  font-size:60px;}
+ h4{ text-align:center;  font-size:40px;}
+</style>
+</head>
+
+<body>
+<h2 data-animate="shake">shake</h2><br>
+<h2 data-animate="flash">flash</h2><br>
+<h2 data-animate="swing">swing</h2><br>
+<h2 data-animate="bounce">bounce</h2><br>
+<h2 data-animate="tada">tada</h2><br>
+<h2 data-animate="wobble">wobble</h2><br>
+<h2 data-animate="pulse">pulse</h2><br>
+<h2 data-animate="flip">flip</h2><br>
+<h2 data-animate="flipInX">flipInX</h2><br>
+<h2 data-animate="flipOutX">flipOutX</h2><br>
+<h2 data-animate="flipInY">flipInY</h2><br>
+<h2 data-animate="flipOutY">flipOutY</h2><br>
+<h2 data-animate="fadeIn">fadeIn</h2><br>
+<h2 data-animate="fadeInUp">fadeInUp</h2><br>
+<h4 data-animate="fadeInUp2">fadeInUp2</h4><br>
+<h2 data-animate="fadeInDown">fadeInDown</h2><br>
+<h2 data-animate="fadeInRight">fadeInRight</h2><br>
+<h2 data-animate="fadeInUpBig">fadeInUpBig</h2><br>
+<h2 data-animate="fadeInDownBig">fadeInDownBig</h2><br>
+<h2 data-animate="fadeInLeftBig">fadeInLeftBig</h2><br>
+<h2 data-animate="fadeInRightBig">fadeInRightBig</h2><br>
+<h2 data-animate="fadeOut">fadeOut</h2><br>
+<h2 data-animate="fadeOutUp">fadeOutUp</h2><br>
+<h2 data-animate="fadeOutDown">fadeOutDown</h2><br>
+<h2 data-animate="fadeOutLeft">adeOutLeft</h2><br>
+<h2 data-animate="fadeOutRight">fadeOutRight</h2><br>
+<h2 data-animate="fadeOutUpBig">fadeOutUpBig</h2><br>
+<h2 data-animate="fadeOutDownBig">fadeOutDownBig</h2><br>
+<h2 data-animate="fadeOutLeftBig">fadeOutLeftBig</h2><br>
+<h2 data-animate="fadeOutRightBig">fadeOutLeftBig</h2><br>
+<h2 data-animate="slideInDown">slideInDown</h2><br>
+<h2 data-animate="slideInLeft">slideInLeft</h2><br>
+<h2 data-animate="slideInRight">slideInRight</h2><br>
+<h2 data-animate="slideOutUp">slideOutUp</h2><br>
+<h2 data-animate="slideOutLeft">lideOutLeft</h2><br>
+<h2 data-animate="slideOutRight">slideOutRight</h2><br>
+<h2 data-animate="bounceIn">bounceIn</h2><br>
+<h2 data-animate="bounceInDown">bounceInDown</h2><br>
+<h2 data-animate="bounceInUp">bounceInUp</h2><br>
+<h2 data-animate="bounceInLeft">bounceInLeft</h2><br>
+<h2 data-animate="bounceInRight">bounceInRight</h2><br>
+<h2 data-animate="bounceOut">bounceOut</h2><br>
+<h2 data-animate="bounceOutDown">bounceOutDown</h2><br>
+<h2 data-animate="bounceOutUp">bounceOutUp</h2><br>
+<h2 data-animate="bounceOutLeft">bounceOutLeft</h2><br>
+<h2 data-animate="bounceOutRight">bounceOutRight</h2><br>
+<h2 data-animate="rotateIn">rotateIn</h2><br>
+<h2 data-animate="rotateInDownLeft">rotateInDownLeft</h2><br>
+<h2 data-animate="rotateInDownRight">rotateInDownRight</h2><br>
+<h2 data-animate="rotateInUpLeft">rotateInUpLeft</h2><br>
+<h2 data-animate="rotateInUpRight">rotateInUpRight</h2><br>
+<h2 data-animate="rotateOut">rotateOut</h2><br>
+<h2 data-animate="rotateOutDownLeft">rotateOutDownLeft</h2><br>
+<h2 data-animate="rotateOutDownRight">rotateOutDownRight</h2><br>
+<h2 data-animate="rotateOutUpLeft">rotateOutUpLeft</h2><br>
+<h2 data-animate="rotateOutUpRight">rotateOutUpRight</h2><br>
+<h2 data-animate="lightSpeedIn">lightSpeedIn</h2><br>
+<h2 data-animate="lightSpeedOut">lightSpeedOut</h2><br>
+<h2 data-animate="hinge">hinge</h2><br>
+<h2 data-animate="rollIn">rollIn</h2><br>
+<h2 data-animate="rollOut">rollOut</h2><br>
+
+
+
+
+
+
+
+
+</body>
+
+</html>

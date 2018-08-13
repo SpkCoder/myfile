@@ -1,0 +1,173 @@
+﻿Help查看命令提示
+help  
+db.help();  
+db.yourColl.help();  
+db.youColl.find().help();  
+rs.help(); 
+
+
+切换/创建数据库
+use yourDB; 
+
+
+查询所有数据库
+show dbs; 
+
+
+删除当前使用数据库
+db.dropDatabase();  
+
+
+从指定主机上克隆数据库
+db.cloneDatabase(“127.0.0.1”);  
+
+
+
+从指定的机器上复制指定数据库数据到某个数据库
+db.copyDatabase("mydb", "temp", "127.0.0.1"); 
+
+
+
+
+修复当前数据库
+db.repairDatabase();  
+
+
+
+创建一个聚集集合
+db.createCollection(“Name”);  
+
+
+重命名集合
+db.collectionName.renameCollection( "collectionName2" )
+
+
+删除一个聚集集合
+db.collectionName.drop();  
+
+
+
+查询所有数据
+db.collectionName.find(); 
+
+
+只查询name和age字段
+db.user.find({}, {name: 1, age: 1});
+
+
+查询age是否存在
+db.users.find({age: {$exists: true}});
+
+
+查询查询条件
+db.collectionName.find({name:"kaily"}})        查询name="kaily"的
+db.collectionName.find({age:{$gt:33}})         查询age>33的 
+db.collectionName.find({age:{$gte:33}})        查询age>=33的 
+db.collectionName.find({age:{$lt:33}})         查询age<33的 
+db.collectionName.find({age:{$lte:33}})        查询age<=33的
+db.collectionName.find({age:{$gt:23,$lt:43}})  查询23<age<43的
+db.collectionName.find({age:{$ne:33}})         查询age!=33的
+
+db.collectionName.find({age:{$in:[13,53]}})    查询age=13或age=53的
+db.collectionName.find({age:{$nin:[13,53]}})    查询age!=13或age!=53的
+
+db.collectionName.find({$or:[{age:33,name:"kaily"},{age:33,name:"jack"}]})   查询age=33&name:"kaily"或age=33&name:"jack"的
+
+db.collectionName.find({ age: { $not: { $gte: 33 } } })    查询age<33或age字段不存在的
+
+db.collectionName.find({name: /kai/});  查询name中包含 kai的数据
+db.collectionName.find({name: /^kai/});  查询name中以 kai开头的数据
+
+
+
+排序
+db.collectionName.find().sort({age:1})  从小到大
+db.collectionName.find().sort({age:-1})  从大到小
+
+
+分页
+db.collectionName.find().sort({age:1}).limit(3).skip(3)  limit(3)查3条  skip(3)跳过3条
+
+
+获取数量
+db.collectionName.find().count()
+
+
+创建索引
+db.collectionName.createIndex({name: 1});  
+
+
+查询当前集合所有索引
+db.collectionName.getIndexes(); 
+
+
+
+删除索引
+db.collectionName.dropIndex("name");
+
+
+
+删除一个age=33的数据
+db.collectionName.deleteOne({age: 33}); 
+
+删除所有age=33的数据
+db.collectionName.deleteMany({age: 33}); 
+
+删除所有age=13或age=53的数据
+db.collectionName.deleteMany({age:{$in:[13,53]}}); 
+
+
+
+修改name="jack"的数据的age为45
+db.collectionName.update({name:"jack"},{$set:{age:45}})  
+
+
+
+插入列
+db.collectionName.updateMany({},{$set:{index:""}})  
+
+
+
+删除列
+db.collectionName.updateMany({},{$unset:{index:""}}) 
+
+
+
+将集合转成数组
+db.collectionName.find().toArray()
+
+
+
+//添加用户、设置密码、是否只读
+db.addUser("admin", "123456", false);  
+
+
+数据库认证、安全模式
+db.auth("userName", "123456"); 
+
+
+账号密码登录
+mongodb://admin:123456@localhost:27017/dbName
+
+
+显示当前所有用户
+show users;  
+
+
+删除用户
+db.removeUser("userName");  
+
+
+
+
+查看数据空间大小
+db.collectionName.dataSize();
+
+
+备份
+mongodump -h 127.0.0.1:27017 -d ecastDB -o D:\mongodb\data\dump
+
+恢复
+mongorestore -h 127.0.0.1:27017 -d ecastDB D:\mongodb\data\dump
+
+

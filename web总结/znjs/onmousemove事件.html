@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+</style>
+
+<script>
+
+window.onload = function()
+{
+
+  
+   document.onmousemove = function(event)
+	{   
+	
+       var oDiv = document.getElementById("div1");
+       var sTop = document.documentElement.scrollTop||document.body.scrollTop;
+	   oDiv.style.left=event.clientX+"px";
+	   oDiv.style.top=event.clientY+sTop+"px";
+	   
+	};
+	
+	
+	
+};
+</script>
+</head>
+
+<body style="height: 1500px;">
+<div id="div1" style="position: absolute; top: 0px; left: 0px; width: 100px; height: 100px; background: #f00; display: block;"></div>
+</body>
+</html>

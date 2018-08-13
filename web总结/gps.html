@@ -1,0 +1,203 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<meta name="renderer" content="webkit"> 
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes">
+<meta http-equiv ="pragma" content = "no-cache"/>
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate" />
+<meta http-equiv="expires" content="0" />
+<title>中远海运重工</title>
+<link rel="shortcut icon" href="favicon.ico">
+<script src="../js/common/jquery-1.11.0.min.js"></script>
+<script src="http://www.ab126.com/d/js/js3/ab1262.js"></script>
+<script src="http://www.ab126.com/d/js/js3/ab126.js"></script>
+
+</head>
+<body>
+
+<h4>经纬度在线转换换算工具</h4>
+ <form method="post" name="form1">
+        <p>
+                    <label>输入度分秒纬度</label>
+                    <input onblur="gpsN1()"  maxlength="4" name="dlat" type="text" />&nbsp;
+                    <input onblur="gpsN2()"  maxlength="2" name="mlat" type="text" />&nbsp;
+                    <input onblur="gpsN3()"  maxlength="6" name="slat" type="text" />
+        </p>
+        <p>
+                    <label>输入度分秒经度</label>
+                    <input onblur="gpsW1()"  maxlength="4" name="dlon" type="text" />&nbsp;
+                    <input onblur="gpsW2()"  maxlength="2" name="mlon" type="text" />&nbsp;
+                    <input onblur="gpsW3()"  maxlength="6" name="slon" type="text" />
+        </p>
+        <p>
+           <input onclick="gpsBTn1()"  value="转换为经纬度" type="button" />
+        </p>
+
+        <p>
+           <input id="alat" name="alat" type="text" />
+               
+        </p>
+        <p>
+            <input id="alon" name="alon" type="text" />
+        </p>
+
+</form> 
+
+
+
+
+<br><br>
+
+
+
+<form method="post" name="form2"> 
+    <p>
+              <label>输入十进制纬度:</label>
+               <input onblur="gpsN123()" id="DegreesLat"  maxlength="10"  name="decimalLat" type="text" />
+    </p>
+    <p>
+              <label>输入十进制经度:</label>
+              <input onblur="gpsW123()" id="DegreesLon"  maxlength="11"  name="lonDecimal" type="text" />
+    </p>
+    <p>
+             <input onclick="gpsBTn2()"  value="经纬度转换为度分秒" type="button" />
+    </p>
+    <p>
+            <input id="deglat"  name="deglat" type="text" />
+    </p>
+    <p>
+            <input id="deglon"  name="deglon" type="text" />
+    </p>
+
+</form> 
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+  
+       function gpsN1()
+       {
+           if(form1.dlat.value < 0) 
+            {
+                latsign = -1;
+            }
+            absdlat = Math.abs(Math.round(form1.dlat.value * 1000000.));
+                           
+            if(absdlat > (90 * 1000000)) 
+            { 
+                alert(' 纬度必须在-90至90范围. '); 
+                form1.dlat.value = '';  
+            }
+       }
+      function gpsN2()
+       {
+           form1.mlat.value = Math.abs(Math.round(form1.mlat.value * 1000000.)/1000000);  //integer
+           absmlat = Math.abs(Math.round(form1.mlat.value * 1000000.));  //integer
+                           
+           if(absmlat >= (60 * 1000000)) 
+            {  
+                alert(' 纬度“分”必须在0到59范围. ');   
+                form1.mlat.value=''; 
+                form1.slat.value=''; 
+            }
+       }
+       function gpsN3()
+       {
+           form1.slat.value = Math.abs(Math.round(form1.slat.value * 1000000.)/1000000);
+           absslat = Math.abs(Math.round(form1.slat.value * 1000000.));         // Note: kept as big integer 
+           if(absslat > (59.99999999 * 1000000)) 
+            {  
+                alert(' 纬度秒必须大于0 \n 或小于60. ');   
+                form1.slat.value=''; 
+            }
+       }
+       function gpsW1()
+       {
+           if(form1.dlon.value < 0)  { lonsign = -1; }
+           absdlon = Math.abs( Math.round(form1.dlon.value * 1000000.));
+                            
+            if(absdlon > (180 * 1000000)) 
+            {  
+                alert(' 经度必须在-180到180范围. '); 
+                form1.dlon.value=''; 
+                form1.mlon.value='';
+            }
+       }
+       function gpsW2()
+       {
+           form1.mlon.value = Math.abs(Math.round(form1.mlon.value * 1000000.)/1000000);  //integer
+           absmlon = Math.abs(Math.round(form1.mlon.value * 1000000));  //integer
+            //Error checks
+           if(absmlon >= (60 * 1000000))   
+            {  
+                alert(' 经度分必须在0到59范围. ');   
+                form1.mlon.value=''; 
+                form1.slon.value='';
+            }
+       }
+       function gpsW3()
+       {
+           form1.slon.value = Math.abs(Math.round(form1.slon.value * 1000000.)/1000000);
+           absslon = Math.abs(Math.round(form1.slon.value * 1000000.));         // Note: kept as big integer 
+           if(absslon > (59.99999999 * 1000000)) 
+            {  
+                alert(' 经度秒必须大于0 \n 或小于60. ');   
+                form1.slon.value=''; 
+            }
+       }
+       function gpsBTn1()
+       {
+           form1.alat.value = Math.round(absdlat + (absmlat/60.) + (absslat/3600.) ) * latsign/1000000;
+           form1.alon.value = Math.round(absdlon + (absmlon/60) + (absslon/3600) ) * lonsign/1000000;
+           latsign=1;
+           lonsign=1;
+       }
+
+
+
+       function gpsN123()
+       {
+           if(form2.decimalLat.value < 0)  { signlat = -1; }
+            latAbs = Math.abs( Math.round(form2.decimalLat.value * 1000000.));
+            if(latAbs > (90 * 1000000)) 
+            { 
+                alert(' 纬度必须在-90到90范围 '); 
+                form2.decimalLat.value = '';  
+                latAbs=0; 
+            }
+       }
+
+       function gpsW123()
+       {
+           if(form2.lonDecimal.value < 0)  { signlon = -1; }
+            lonAbs = Math.abs(Math.round(form2.lonDecimal.value * 1000000.));
+            if(lonAbs > (180 * 1000000)) 
+            {  
+                alert(' 经度必须在-180到180范围. '); 
+                form2.lonDecimal.value=''; 
+                lonAbs=0; 
+            }
+       }
+
+      function gpsBTn2()
+       {
+              form2.deglat.value = ((Math.floor(latAbs / 1000000) * signlat) + '\°' + Math.floor(  ((latAbs/1000000) - Math.floor(latAbs/1000000)) * 60)  + '\' ' +  ( Math.floor(((((latAbs/1000000) - Math.floor(latAbs/1000000)) * 60) - Math.floor(((latAbs/1000000) - Math.floor(latAbs/1000000)) * 60)) * 100000) *60/100000 ) + '\"'  );
+              form2.deglon.value = ((Math.floor(lonAbs / 1000000) * signlon) + '\°' + Math.floor(  ((lonAbs/1000000) - Math.floor(lonAbs/1000000)) * 60)  + '\' ' +  ( Math.floor(((((lonAbs/1000000) - Math.floor(lonAbs/1000000)) * 60) - Math.floor(((lonAbs/1000000) - Math.floor(lonAbs/1000000)) * 60)) * 100000) *60/100000 ) + '\"'  );
+             signlat=1;
+             signlon=1;
+       }
+  
+</script>
+
+</body>
+</html>

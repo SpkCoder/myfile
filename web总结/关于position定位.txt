@@ -1,0 +1,54 @@
+CSS中关于position定位属性：
+ 
+
+position: relative | absolute | static | fixed | Inherit 
+
+
+static （默认值）没有定位，元素出现在正常的流中（忽略 top, bottom, left, right 或者 z-index 声明）。 
+
+
+
+
+relative(相对定位) 对象不可层叠、不脱离文档流，使用left、right、top、bottom属性相对于其自身在文本流中的位置定位。
+
+相对定位完成的过程是首先按static(float)方式生成一个元素(并且元素像层一样浮动了起来)，然后相对于以前的位置移动，移动的方向和幅度由left、right、top、bottom属性确定
+
+
+偏移前占据的位置保留不动。
+
+和自己不再同一层的对象可以通过z-index（有position的前提下）进行层次分级。注意：定位优先级小于margin
+
+
+ 
+absolute(绝对定位) 脱离文档流，使用left、right、top、bottom属性相对于其最接近的一个具有定位属性（position）的父包含块进行绝对定位。如果不存在这样的包含块，则相对于body元素，即相对于浏览器窗口。
+
+
+偏移前占据的位置不再保留。
+
+可以通过z-index（有position的前提下）进行层次分级。 
+注意：定位优先级大于margin
+
+
+
+
+fixed(固定定位)这里所固定的参照对像是可视窗口而并非是body或是父级元素。相对可视窗口通过 top,bottom,left,right 定位。可通过z-index进行层次分级。
+注意：定位优先级小于margin 
+
+
+
+Inherit(继承)，规定应该从父元素继承 position 属性的值。
+
+
+
+
+CSS中关于float浮动：
+
+
+
+float（浮动）定义元素在哪个方向浮动。任何元素都可以浮动，浮动元素会生成一个块级框，而不论它本身是何种元素。
+无需指定一个明确的宽度。
+注意：对象用了float属性后避免再用position属性，
+
+
+
+margin-top为负值时,向上移动，偏移前占据的位置不再保留。

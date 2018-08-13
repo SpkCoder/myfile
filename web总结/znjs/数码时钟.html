@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+
+<script>
+window.onload = function()
+{  
+    function toStr(n)   //将数字转换为字符串并补0
+	{
+		if(n<10)
+		{
+			return "0"+n;
+		}
+		else
+		{
+			return ""+n;
+		}
+	};
+
+
+    function fn()
+	{
+		var oDiv = document.getElementById("timebox");
+		var aImg = oDiv.getElementsByTagName("img");
+		
+		//var str ="142206";
+		var oDate = new Date();
+		str = toStr(oDate.getHours()) + toStr(oDate.getMinutes()) + toStr(oDate.getSeconds()); //需将数字转换为字符串
+		//alert(str);
+		for(var i=0; i<aImg.length; i++)
+		{
+			aImg[i].src ="images/" + str.charAt(i) + ".png";    //.charAt(i)  获取字符串的第i个的值；
+		}
+	};
+	
+	fn();
+	setInterval(fn,1000);
+	
+};
+ 
+ 
+</script>
+</head>
+
+<body style="background:#000; font-size:40px; color:#fff;">
+<div id="timebox">
+<img alt="" src="images/0.png">
+<img alt="" src="images/0.png">
+:
+<img alt="" src="images/0.png">
+<img alt="" src="images/0.png">
+:
+
+<img alt="" src="images/0.png">
+<img alt="" src="images/0.png">
+</div>
+</body>
+</html>

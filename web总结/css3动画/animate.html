@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<link rel="stylesheet" type="text/css" href="animate.css" />
+<script type="text/javascript" src="jquery-1.11.0.min.js"></script>
+<style type="text/css">
+#demo{ width:100px; height:100px; background:#000; margin:30px auto;}
+button{ margin-right:10px;}
+.btns{margin-bottom:5px; text-align:center;}
+
+</style>
+</head>
+
+<body>
+<div id="demo" class="animated">&nbsp;</div>
+<p class="btns">
+  <button>shake</button>
+  <button>flash</button>
+  <button>swing</button>
+  <button>bounce</button>
+  <button>tada</button>
+  <button>wobble</button>
+  <button>pulse</button>
+</p>
+<p class="btns">
+  <button>flip</button>
+  <button>flipInX</button>
+  <button>flipOutX</button>
+  <button>flipInY</button>
+  <button>flipOutY</button>
+</p>
+<p class="btns">
+  <button>fadeIn</button>
+  <button>fadeInUp</button>
+  <button>fadeInDown</button>
+  <button>fadeInLeft</button>
+  <button>fadeInRight</button>
+  <button>fadeInUpBig</button>
+  <button>fadeInDownBig</button>
+  <button>fadeInLeftBig</button>
+  <button>fadeInRightBig</button>
+</p>
+<p class="btns">
+  <button>fadeOut</button>
+  <button>fadeOutUp</button>
+  <button>fadeOutDown</button>
+  <button>fadeOutLeft</button>
+  <button>fadeOutRight</button>
+  <button>fadeOutUpBig</button>
+  <button>fadeOutDownBig</button>
+  <button>fadeOutLeftBig</button>
+  <button>fadeOutRightBig</button>
+</p>
+<p class="btns">
+  <button>slideInDown</button>
+  <button>slideInLeft</button>
+  <button>slideInRight</button>
+  <button>slideOutUp</button>
+  <button>slideOutLeft</button>
+  <button>slideOutRight</button>
+</p>
+<p class="btns">
+  <button>bounceIn</button>
+  <button>bounceInDown</button>
+  <button>bounceInUp</button>
+  <button>bounceInLeft</button>
+  <button>bounceInRight</button>
+</p>
+<p class="btns">
+  <button>bounceOut</button>
+  <button>bounceOutDown</button>
+  <button>bounceOutUp</button>
+  <button>bounceOutLeft</button>
+  <button>bounceOutRight</button>
+</p>
+<p class="btns">
+  <button>rotateIn</button>
+  <button>rotateInDownLeft</button>
+  <button>rotateInDownRight</button>
+  <button>rotateInUpLeft</button>
+  <button>rotateInUpRight</button>
+</p>
+<p class="btns">
+  <button>rotateOut</button>
+  <button>rotateOutDownLeft</button>
+  <button>rotateOutDownRight</button>
+  <button>rotateOutUpLeft</button>
+  <button>rotateOutUpRight</button>
+</p>
+<p class="btns">
+  <button>lightSpeedIn</button>
+  <button>lightSpeedOut</button>
+  <button>hinge</button>
+  <button>rollIn</button>
+  <button>rollOut</button>
+</p>
+
+  <script type="text/javascript">// <![CDATA[
+$('button').click(function(){
+		var className = $(this).text();
+		$('#demo').addClass(className);
+		setTimeout(function(){
+			$('#demo').removeClass(className);						
+		},1000);
+	})
+// ]]></script>
+</body>
+</html>

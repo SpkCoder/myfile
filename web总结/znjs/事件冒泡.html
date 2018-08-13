@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+</style>
+
+<script>
+
+window.onload = function()
+{
+
+   //事件冒泡就是指子元素的事件会一直向父元素传递
+  
+   var oBtn = document.getElementById("btn1");
+   var oDiv = document.getElementById("div1");
+   oBtn.onclick = function(event)
+	{    
+	   oDiv.style.display= "block";
+	   event.cancelBubble= "true";      //cancelBubble取消事件冒泡
+	};
+	
+   document.onclick = function()
+	{    
+	   oDiv.style.display= "none";
+	};
+	
+	
+};
+</script>
+</head>
+
+<body>
+<p><button id="btn1">点击</button></p>
+<div id="div1" style="width: 200px; height: 200px; background: #999; display: none;"></div>
+</body>
+</html>

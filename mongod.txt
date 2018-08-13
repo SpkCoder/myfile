@@ -1,0 +1,9 @@
+mongod --dbpath D:\mongodb\data2
+mongod --storageEngine mmapv1 --dbpath D:\mongodb\data
+
+
+
+mongodump -h 127.0.0.1:27017 -d mydb -o D:\mongodb\data\dump
+
+mongorestore -h 127.0.0.1:27017 -d mydb D:\mongodb\data\dump\mydb
+

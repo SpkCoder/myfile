@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+
+<script type="text/javascript">
+
+var arr = [3,"a",0,98,-20];
+
+if (!Array.prototype.indexOf) 
+{
+	Array.prototype.indexOf = function(value) 
+	{
+		var len = this.length;
+		for (var index=0; index < len; index++) 
+		{
+		  if (this[index] === value) return index;
+		}
+		return - 1;
+	};
+}
+
+alert(arr.indexOf("a"));
+
+
+</script>
+
+</body>
+</html>

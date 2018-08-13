@@ -1,0 +1,37 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head> 
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+        <title>演示：jQuery.nicescroll美化滚动条</title>
+        <meta name="keywords" content="美化滚动条,jquery.nicescroll" />
+        <meta name="description" content="jQuery滚动条插件兼容ie6+、手机、ipad。" />
+        <style type="text/css">
+            #content{width:220px;height:300px;margin:10px auto;padding-right:12px;overflow:hidden; background: #6299B9;}
+            #content p{color:#999;font-size:12px;margin:30px 0;text-align:left;text-indent:2em;}
+        </style>
+
+    </head>
+    <body>
+       
+    <div id="content">
+        1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>
+        
+       
+    </div>
+
+<script src="http://www.jq22.com/jquery/1.9.1/jquery.min.js"></script>
+        <script type="text/javascript" src="http://www.jq22.com/demo/jQueryNicescroll20160214/js/jquery.nicescroll.js"></script>
+        <script type="text/javascript">
+            $('#content').niceScroll({
+                cursorcolor: "#000",//光标颜色
+                cursoropacitymax: 0.3, //光标透明度
+                touchbehavior: false, //使光标拖动滚动像在台式电脑触摸设备
+                cursorwidth: "5px", //像素光标的宽度
+                cursorborder: "0", // 	游标边框css定义
+                cursorborderradius: "5px",//以像素为光标圆角
+                autohidemode: true //是否隐藏滚动条
+            });
+        </script>
+    </body>
+</html>

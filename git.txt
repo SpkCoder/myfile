@@ -1,0 +1,181 @@
+初始化
+echo "# MyInformation" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin git@github.com:SpkCoder/MyInformation.git
+git push -u origin master
+
+
+配置用户名
+git config --global user.name "xx"
+git config --global user.email xx@qq.com
+
+
+配置文本编辑器
+git config --global core.editor emacs   
+
+
+查看配置
+git config --list
+
+
+创建文件
+echo "＃nodeApp" >> README.md 
+
+
+初始化
+git init
+
+
+拷贝
+git clone git://github.com/schacon/grit.git
+
+
+
+添加指定文件到缓存
+git add hello.php
+
+
+
+添加所有文件到缓存
+git add .
+
+
+
+取消已缓存的文件
+git reset HEAD -- hello.php 
+
+
+
+查看文件状态
+git status -s
+
+
+查看文件改动的详细信息
+尚未缓存的改动：git diff
+查看已缓存的改动： git diff --cached
+查看已缓存的与未缓存的所有改动：git diff HEAD
+显示摘要而非整个 diff：git diff --stat
+
+
+
+将缓存区内容添加到仓库中
+git commit
+
+
+提交时加上备注
+git commit -m '修改'
+
+
+添加/备注/并提交
+git commit -am '修改 hello.php 文件'
+
+
+
+回退到当前版本
+git reset --hard HEAD    
+
+
+回退到上个版本
+git reset --hard HEAD^
+
+
+回退到指定版本
+git reset --hard 139dcfaa558e3276b30b6b2e5cbbb9c00bbdca96
+
+
+删除文件
+git rm hello.php 
+
+
+
+强制删除文件
+git rm -f hello.php 
+
+
+
+移动或重命名一个文件、目录、软连接
+git mv README  README.md
+
+
+
+查看分支
+git branch
+
+
+
+创建分支
+git branch (branchname)
+
+
+
+切换分支命令
+git checkout (branchname)
+
+
+
+删除分支命令
+git branch -d (branchname)
+
+
+
+分支合并
+git merge newbranch
+
+
+
+合并冲突
+cat test.txt
+
+
+
+查看提交历史
+git log
+git log --oneline
+
+
+
+查看当前的远程库
+git remote
+
+
+添加远程仓库
+git remote add origin2 git@github.com:tianqixin/runoob-git-test.git
+
+
+
+删除远程仓库
+git remote rm origin2
+
+
+
+提取远程仓库
+git fetch origin master
+
+
+
+合并到当前分支
+git merge origin/master
+
+
+
+提取并合到当前分支
+git pull origin master
+
+
+
+推送到远程仓库
+git push origin master
+
+
+强制覆盖远程仓库
+git push -f  origin master
+
+
+
+
+
+
+
+

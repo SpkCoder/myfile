@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+
+
+	 input
+	{
+		display: none;
+	}
+	 label
+	{   display: inline-block;
+		cursor: pointer;
+		position: relative;
+		width: 30px;
+		height: 30px;
+		margin: 10px;
+		background: #8ABA56;
+		border-radius: 100%;
+	}
+	 label.check
+	{
+		border-radius: 5px;
+	}
+	input:checked + label
+	{
+		background: #f00;
+	}
+</style>
+</head>
+
+<body>
+<form>
+<div>
+        <input checked="checked" id="radio_1" name="radio" type="radio">
+        <label class="radio" for="radio_1"></label>
+           
+        
+        <input id="radio_2" name="radio" type="radio">
+        <label class="radio" for="radio_2"></label>
+           
+        
+        <input id="radio_3" name="radio" type="radio">
+        <label class="radio" for="radio_3"></label>
+          
+        
+</div>
+ 
+<div>
+        <input checked="checked" id="check_1" name="check" type="checkbox">
+        <label class="check" for="check_1"> </label>
+       
+        <input id="check_2" name="check" type="checkbox">
+        <label class="check" for="check_2"></label>
+          
+        <input id="check_3" name="check" type="checkbox">
+        <label class="check" for="check_3"></label>
+           
+ </div>
+</form>
+</body>
+</html>

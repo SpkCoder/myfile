@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<!-- saved from url=(0029)esm.html -->
+<html lang="zh-cmn-Hans"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width">
+  <title>ecmascript modules | Node.js API 文档</title>
+  <link rel="stylesheet" href="./esm_files/api.css">
+  <link rel="icon" sizes="32x32" type="image/png" href="http://nodejs.cn/static/favicon.png">
+</head>
+<body class="alt apidoc" id="api-section-esm">
+  <div id="content" class="clearfix">
+    <div id="column2" class="interior">
+      <div id="intro" class="interior">
+        <a href="http://nodejs.cn/">
+          Node.js 中文网
+        </a>
+        <div>
+          <input placeholder="API 快速搜索" id="search_input">
+        </div>
+      </div>
+      <ul>
+<li><a class="nav-assert" href="assert.html">assert - 断言</a></li>
+<li><a class="nav-buffer" href="buffer.html">Buffer - 缓冲器</a></li>
+<li><a class="nav-child_process" href="child_process.html">child_process - 子进程</a></li>
+<li><a class="nav-cluster" href="cluster.html">cluster - 集群</a></li>
+<li><a class="nav-console" href="console.html">console - 控制台</a></li>
+<li><a class="nav-crypto" href="crypto.html">crypto - 加密</a></li>
+<li><a class="nav-dgram" href="dgram.html">dgram - 数据报</a></li>
+<li><a class="nav-dns" href="dns.html">dns - 域名服务器</a></li>
+<li><a class="nav-errors" href="errors.html">Error - 异常</a></li>
+<li><a class="nav-events" href="events.html">events - 事件</a></li>
+<li><a class="nav-fs" href="fs.html">fs - 文件系统</a></li>
+<li><a class="nav-globals" href="globals.html">global - 全局变量</a></li>
+<li><a class="nav-http" href="http.html">http - HTTP</a></li>
+<li><a class="nav-https" href="https.html">https - HTTPS</a></li>
+<li><a class="nav-modules" href="modules.html">module - 模块</a></li>
+<li><a class="nav-net" href="net.html">net - 网络</a></li>
+<li><a class="nav-os" href="os.html">os - 操作系统</a></li>
+<li><a class="nav-path" href="path.html">path - 路径</a></li>
+<li><a class="nav-process" href="process.html">process - 进程</a></li>
+<li><a class="nav-querystring" href="querystring.html">querystring - 查询字符串</a></li>
+<li><a class="nav-readline" href="readline.html">readline - 逐行读取</a></li>
+<li><a class="nav-repl" href="repl.html">repl - 交互式解释器</a></li>
+<li><a class="nav-stream" href="stream.html">stream - 流</a></li>
+<li><a class="nav-string_decoder" href="string_decoder.html">string_decoder - 字符串解码器</a></li>
+<li><a class="nav-timers" href="timers.html">timer - 定时器</a></li>
+<li><a class="nav-tls" href="tls.html">tls - 安全传输层</a></li>
+<li><a class="nav-tty" href="tty.html">tty - 终端</a></li>
+<li><a class="nav-url" href="url.html">url - 网址</a></li>
+<li><a class="nav-util" href="util.html">util - 实用工具</a></li>
+<li><a class="nav-v8" href="v8.html">v8 - V8引擎</a></li>
+<li><a class="nav-vm" href="vm.html">vm - 虚拟机</a></li>
+<li><a class="nav-zlib" href="zlib.html">zlib - 压缩</a></li>
+</ul>
+<div class="line"></div>
+
+<ul>
+<li><a class="nav--api-documentation-documentation_stability_index" href="documentation.html#documentation_stability_index">试验的API</a></li>
+<li><a class="nav-async_hooks" href="async_hooks.html">async_hooks</a></li>
+<li><a class="nav-http2" href="http2.html">http2</a></li>
+<li><a class="nav-inspector" href="inspector.html">inspector</a></li>
+<li><a class="nav-n-api" href="n-api.html">napi</a></li>
+<li><a class="nav-perf_hooks" href="perf_hooks.html">perf_hooks</a></li>
+</ul>
+<div class="line"></div>
+
+<ul>
+<li><a class="nav-deprecations" href="deprecations.html">废弃的API</a></li>
+<li><a class="nav-domain" href="domain.html">domain</a></li>
+<li><a class="nav-punycode" href="punycode.html">punycode</a></li>
+</ul>
+<div class="line"></div>
+
+<ul>
+<li><a class="nav-documentation" href="documentation.html">关于本文档</a></li>
+<li><a class="nav-synopsis" href="synopsis.html">用法与例子</a></li>
+<li><a class="nav-addons" href="addons.html">C++插件</a></li>
+<li><a class="nav-cli" href="cli.html">命令行选项</a></li>
+<li><a class="nav-debugger" href="debugger.html">debugger调试器</a></li>
+<li><a class="nav-intl" href="intl.html">国际化</a></li>
+<li><a class="nav-tracing" href="tracing.html">事件跟踪</a></li>
+<li><a class="nav-esm active" href="esm.html">ECMAScript 模块</a></li>
+</ul>
+
+    </div>
+
+    <div id="column1" data-id="esm" class="interior">
+      <header>
+        <h1>Node.js v8.9.3 文档</h1>
+        <div id="gtoc">
+          <p>
+            <a href="" name="toc">返回文档首页</a>
+            <!--<a href="/api/all.html">单页面显示</a> |-->
+            <!--<a href="/api/esm.json">JSON格式</a> |-->
+            <!--<a href="/api/en/esm.html">查看英文版</a>-->
+          </p>
+        </div>
+        <hr>
+      </header>
+
+      <div id="toc">
+        <h2>目录</h2>
+        <ul>
+<li><span class="stability_1"><a href="esm.html#esm_ecmascript_modules">ECMAScript模块</a></span><ul>
+<li><span class="stability_undefined"><a href="esm.html#esm_enabling">启用</a></span></li>
+<li><span class="stability_undefined"><a href="esm.html#esm_features">特性</a></span><ul>
+<li><span class="stability_undefined"><a href="esm.html#esm_supported">Supported</a></span></li>
+<li><span class="stability_undefined"><a href="esm.html#esm_unsupported">Unsupported</a></span></li>
+</ul>
+</li>
+<li><span class="stability_undefined"><a href="esm.html#esm_notable_differences_between_import_and_require"> <code>import</code> 与 <code>require</code> 之间的显著差异</a></span><ul>
+<li><span class="stability_undefined"><a href="esm.html#esm_no_node_path">No NODE_PATH</a></span></li>
+<li><span class="stability_undefined"><a href="esm.html#esm_no_require_extensions">No <code>require.extensions</code></a></span></li>
+<li><span class="stability_undefined"><a href="esm.html#esm_no_require_cache">No <code>require.cache</code></a></span></li>
+<li><span class="stability_undefined"><a href="esm.html#esm_url_based_paths">URL based paths</a></span></li>
+</ul>
+</li>
+<li><span class="stability_undefined"><a href="esm.html#esm_interop_with_existing_modules">与现有模块的交互</a></span></li>
+<li><span class="stability_undefined"><a href="esm.html#esm_loader_hooks">Loader hooks</a></span><ul>
+<li><span class="stability_undefined"><a href="esm.html#esm_resolve_hook">Resolve hook</a></span></li>
+<li><span class="stability_undefined"><a href="esm.html#esm_dynamic_instantiate_hook">Dynamic instantiate hook</a></span></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      </div>
+
+      <div id="apicontent">
+        <h1>ECMAScript模块<span><a class="mark" href="esm.html#esm_ecmascript_modules" id="esm_ecmascript_modules">#</a></span></h1><p style="font-size:12px;margin-top:-1em"><a href="en/esm.html#esm_ecmascript_modules">查看英文版</a> / <a rel="nofollow" target="_blank" href="https://github.com/nodejscn/node-api-en/edit/master/esm/ecmascript_modules.md">查看英文md文件</a> / <a rel="nofollow" target="_blank" href="https://github.com/nodejscn/node-api-cn/edit/master/esm/ecmascript_modules.md">编辑中文md文件</a></p>
+<!--introduced_in=v9.x.x-->
+<div class="api_stability api_stability_1"><a href="documentation.html#documentation_stability_index">稳定性: 1</a> - 试验的</div><!--name=esm-->
+<p>Node.js包含了对基于 <a href="https://github.com/nodejs/node-eps/blob/master/002-es-modules.md">Node.js EP for ES Modules</a> 的ES模块的支持。</p>
+<p>不是所有EP的功能都是完整的并且将随着VM的支持和实现而就绪的。有问题的地方正在被修改完善。</p>
+<h2>启用<span><a class="mark" href="esm.html#esm_enabling" id="esm_enabling">#</a></span></h2><p style="font-size:12px;margin-top:-1em"><a href="en/esm.html#esm_enabling">查看英文版</a> / <a rel="nofollow" target="_blank" href="https://github.com/nodejscn/node-api-en/edit/master/esm/enabling.md">查看英文md文件</a> / <a rel="nofollow" target="_blank" href="https://github.com/nodejscn/node-api-cn/edit/master/esm/enabling.md">编辑中文md文件</a></p>
+<!-- type=misc -->
+<p><code>--experimental-modules</code> 标志可用于启用加载ES模块的功能。</p>
+<p>一旦被设置启用，以 <code>.mjs</code> 为后缀的文件将能够作为ES模块加载。</p>
+<pre class="sh_sourceCode"><code class="lang-sh">node <span class="sh_symbol">--</span>experimental<span class="sh_symbol">-</span>modules my<span class="sh_symbol">-</span>app<span class="sh_symbol">.</span>mjs
+</code></pre>
+<h2>特性<span><a class="mark" href="esm.html#esm_features" id="esm_features">#</a></span></h2>
+<!-- type=misc -->
+<h3>Supported<span><a class="mark" href="esm.html#esm_supported" id="esm_supported">#</a></span></h3><p style="font-size:12px;margin-top:-1em"><a href="en/esm.html#esm_supported">查看英文版</a> / <a rel="nofollow" target="_blank" href="https://github.com/nodejscn/node-api-en/edit/master/esm/supported.md">查看英文md文件</a> / <a rel="nofollow" target="_blank" href="https://github.com/nodejscn/node-api-cn/edit/master/esm/supported.md">编辑中文md文件</a></p>
+<p>只有在程序主入口添加CLI参数可以成为ES模块的入口点。在未来 <code>import()</code> 可以在程序运行时创建ES模块入口点。</p>
+<h3>Unsupported<span><a class="mark" href="esm.html#esm_unsupported" id="esm_unsupported">#</a></span></h3><p style="font-size:12px;margin-top:-1em"><a href="en/esm.html#esm_unsupported">查看英文版</a> / <a rel="nofollow" target="_blank" href="https://github.com/nodejscn/node-api-en/edit/master/esm/unsupported.md">查看英文md文件</a> / <a rel="nofollow" target="_blank" href="https://github.com/nodejscn/node-api-cn/edit/master/esm/unsupported.md">编辑中文md文件</a></p>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>require('./foo.mjs')</code></td>
+<td>ES模块具有不同的加载方式，使用 <code>import()</code>语言标准</td>
+</tr>
+<tr>
+<td><code>import()</code></td>
+<td>等待在Node.js中使用更加新的V8版本</td>
+</tr>
+<tr>
+<td><code>import.meta</code></td>
+<td>等待V8实现</td>
+</tr>
+</tbody>
+</table>
+<h2> <code>import</code> 与 <code>require</code> 之间的显著差异<span><a class="mark" href="esm.html#esm_notable_differences_between_import_and_require" id="esm_notable_differences_between_import_and_require">#</a></span></h2>
+<h3>No NODE_PATH<span><a class="mark" href="esm.html#esm_no_node_path" id="esm_no_node_path">#</a></span></h3><p style="font-size:12px;margin-top:-1em"><a href="en/esm.html#esm_no_node_path">查看英文版</a> / <a rel="nofollow" target="_blank" href="https://github.com/nodejscn/node-api-en/edit/master/esm/no_node_path.md">查看英文md文件</a> / <a rel="nofollow" target="_blank" href="https://github.com/nodejscn/node-api-cn/edit/master/esm/no_node_path.md">编辑中文md文件</a></p>
+<p>根据 <code>NODE_PATH</code> 查询模块不是解析 <code>import</code> 的环节之一。如果想要怎么做，那么请使用符号链接。</p>
+<h3>No <code>require.extensions</code><span><a class="mark" href="esm.html#esm_no_require_extensions" id="esm_no_require_extensions">#</a></span></h3><p style="font-size:12px;margin-top:-1em"><a href="en/esm.html#esm_no_require_extensions">查看英文版</a> / <a rel="nofollow" target="_blank" href="https://github.com/nodejscn/node-api-en/edit/master/esm/no_require_extensions.md">查看英文md文件</a> / <a rel="nofollow" target="_blank" href="https://github.com/nodejscn/node-api-cn/edit/master/esm/no_require_extensions.md">编辑中文md文件</a></p>
+<p><code>require.extensions</code> 没有被 <code>import</code> 使用。但是值得期望的是，加载器钩子可能在未来提供这个工作流流程。</p>
+<h3>No <code>require.cache</code><span><a class="mark" href="esm.html#esm_no_require_cache" id="esm_no_require_cache">#</a></span></h3><p style="font-size:12px;margin-top:-1em"><a href="en/esm.html#esm_no_require_cache">查看英文版</a> / <a rel="nofollow" target="_blank" href="https://github.com/nodejscn/node-api-en/edit/master/esm/no_require_cache.md">查看英文md文件</a> / <a rel="nofollow" target="_blank" href="https://github.com/nodejscn/node-api-cn/edit/master/esm/no_require_cache.md">编辑中文md文件</a></p>
+<p><code>require.cache</code> 没有被 <code>import</code> 使用。它有一个独立的缓存。</p>
+<h3>URL based paths<span><a class="mark" href="esm.html#esm_url_based_paths" id="esm_url_based_paths">#</a></span></h3><p style="font-size:12px;margin-top:-1em"><a href="en/esm.html#esm_url_based_paths">查看英文版</a> / <a rel="nofollow" target="_blank" href="https://github.com/nodejscn/node-api-en/edit/master/esm/url_based_paths.md">查看英文md文件</a> / <a rel="nofollow" target="_blank" href="https://github.com/nodejscn/node-api-cn/edit/master/esm/url_based_paths.md">编辑中文md文件</a></p>
+<p>ESM基于<a href="https://url.spec.whatwg.org/"><code>URL</code></a>语义来解析和缓存。这意味着那些包含特殊字符的文件名，如 <code>#</code> 和 <code>?</code> 需要进行转义。</p>
+<p>如果使用 <code>import</code> 来解析一个拥有不同查询或片段的模块，该模块将被加载多次。</p>
+<pre class="sh_sourceCode"><code class="lang-js">import <span class="sh_string">'./foo?query=1'</span><span class="sh_symbol">;</span> <span class="sh_comment">// loads ./foo with query of "?query=1"</span>
+import <span class="sh_string">'./foo?query=2'</span><span class="sh_symbol">;</span> <span class="sh_comment">// loads ./foo with query of "?query=2"</span>
+</code></pre>
+<p>直到现在，模块只能使用 <code>file:</code> 协议来加载。</p>
+<h2>与现有模块的交互<span><a class="mark" href="esm.html#esm_interop_with_existing_modules" id="esm_interop_with_existing_modules">#</a></span></h2><p style="font-size:12px;margin-top:-1em"><a href="en/esm.html#esm_interop_with_existing_modules">查看英文版</a> / <a rel="nofollow" target="_blank" href="https://github.com/nodejscn/node-api-en/edit/master/esm/interop_with_existing_modules.md">查看英文md文件</a> / <a rel="nofollow" target="_blank" href="https://github.com/nodejscn/node-api-cn/edit/master/esm/interop_with_existing_modules.md">编辑中文md文件</a></p>
+<p>所有CommonJS，JSON和C++模块都可以通过 <code>import</code> 来加载。</p>
+<p>以这种方式加载的模块只加载一次，即使 <code>import</code> 语句中同一个模块的查询或片段字符串不同。</p>
+<p>当通过 <code>import</code> 加载时，这些模块将提供一个 <code>default</code> 导出相当于完成计算后的 <code>module.exports</code> 。</p>
+<pre class="sh_sourceCode"><code class="lang-js">import fs from <span class="sh_string">'fs'</span><span class="sh_symbol">;</span>
+fs<span class="sh_symbol">.</span><span class="sh_function">readFile</span><span class="sh_symbol">(</span><span class="sh_string">'./foo.txt'</span><span class="sh_symbol">,</span> <span class="sh_symbol">(</span>err<span class="sh_symbol">,</span> body<span class="sh_symbol">)</span> <span class="sh_symbol">=&gt;</span> <span class="sh_cbracket">{</span>
+  <span class="sh_keyword">if</span> <span class="sh_symbol">(</span>err<span class="sh_symbol">)</span> <span class="sh_cbracket">{</span>
+    console<span class="sh_symbol">.</span><span class="sh_function">error</span><span class="sh_symbol">(</span>err<span class="sh_symbol">);</span>
+  <span class="sh_cbracket">}</span> <span class="sh_keyword">else</span> <span class="sh_cbracket">{</span>
+    console<span class="sh_symbol">.</span><span class="sh_function">log</span><span class="sh_symbol">(</span>body<span class="sh_symbol">);</span>
+  <span class="sh_cbracket">}</span>
+<span class="sh_cbracket">}</span><span class="sh_symbol">);</span>
+</code></pre>
+<h2>Loader hooks<span><a class="mark" href="esm.html#esm_loader_hooks" id="esm_loader_hooks">#</a></span></h2><p style="font-size:12px;margin-top:-1em"><a href="en/esm.html#esm_loader_hooks">查看英文版</a> / <a rel="nofollow" target="_blank" href="https://github.com/nodejscn/node-api-en/edit/master/esm/loader_hooks.md">查看英文md文件</a> / <a rel="nofollow" target="_blank" href="https://github.com/nodejscn/node-api-cn/edit/master/esm/loader_hooks.md">编辑中文md文件</a></p>
+<!-- type=misc -->
+<p>To customize the default module resolution, loader hooks can optionally be
+provided via a <code>--loader ./loader-name.mjs</code> argument to Node.</p>
+<p>When hooks are used they only apply to ES module loading and not to any
+CommonJS modules loaded.</p>
+<h3>Resolve hook<span><a class="mark" href="esm.html#esm_resolve_hook" id="esm_resolve_hook">#</a></span></h3><p style="font-size:12px;margin-top:-1em"><a href="en/esm.html#esm_resolve_hook">查看英文版</a> / <a rel="nofollow" target="_blank" href="https://github.com/nodejscn/node-api-en/edit/master/esm/resolve_hook.md">查看英文md文件</a> / <a rel="nofollow" target="_blank" href="https://github.com/nodejscn/node-api-cn/edit/master/esm/resolve_hook.md">编辑中文md文件</a></p>
+<p>The resolve hook returns the resolved file URL and module format for a
+given module specifier and parent file URL:</p>
+<pre class="sh_sourceCode"><code class="lang-js">import url from <span class="sh_string">'url'</span><span class="sh_symbol">;</span>
+
+<span class="sh_keyword">export</span> async <span class="sh_keyword">function</span> <span class="sh_function">resolve</span><span class="sh_symbol">(</span>specifier<span class="sh_symbol">,</span> parentModuleURL<span class="sh_symbol">,</span> defaultResolver<span class="sh_symbol">)</span> <span class="sh_cbracket">{</span>
+  <span class="sh_keyword">return</span> <span class="sh_cbracket">{</span>
+    url<span class="sh_symbol">:</span> <span class="sh_keyword">new</span> <span class="sh_function">URL</span><span class="sh_symbol">(</span>specifier<span class="sh_symbol">,</span> parentModuleURL<span class="sh_symbol">).</span>href<span class="sh_symbol">,</span>
+    format<span class="sh_symbol">:</span> <span class="sh_string">'esm'</span>
+  <span class="sh_cbracket">}</span><span class="sh_symbol">;</span>
+<span class="sh_cbracket">}</span>
+</code></pre>
+<p>The default NodeJS ES module resolution function is provided as a third
+argument to the resolver for easy compatibility workflows.</p>
+<p>In addition to returning the resolved file URL value, the resolve hook also
+returns a <code>format</code> property specifying the module format of the resolved
+module. This can be one of <code>"esm"</code>, <code>"cjs"</code>, <code>"json"</code>, <code>"builtin"</code> or
+<code>"addon"</code>.</p>
+<p>For example a dummy loader to load JavaScript restricted to browser resolution
+rules with only JS file extension and Node builtin modules support could
+be written:</p>
+<pre class="sh_sourceCode"><code class="lang-js">import url from <span class="sh_string">'url'</span><span class="sh_symbol">;</span>
+import path from <span class="sh_string">'path'</span><span class="sh_symbol">;</span>
+import process from <span class="sh_string">'process'</span><span class="sh_symbol">;</span>
+
+<span class="sh_keyword">const</span> builtins <span class="sh_symbol">=</span> <span class="sh_keyword">new</span> <span class="sh_function">Set</span><span class="sh_symbol">(</span>
+  <span class="sh_predef_func">Object</span><span class="sh_symbol">.</span><span class="sh_function">keys</span><span class="sh_symbol">(</span>process<span class="sh_symbol">.</span><span class="sh_function">binding</span><span class="sh_symbol">(</span><span class="sh_string">'natives'</span><span class="sh_symbol">)).</span><span class="sh_function">filter</span><span class="sh_symbol">((</span>str<span class="sh_symbol">)</span> <span class="sh_symbol">=&gt;</span>
+    <span class="sh_regexp">/^(?!(?:internal|node|v8)\/)/</span><span class="sh_symbol">.</span><span class="sh_function">test</span><span class="sh_symbol">(</span>str<span class="sh_symbol">))</span>
+<span class="sh_symbol">);</span>
+<span class="sh_keyword">const</span> JS_EXTENSIONS <span class="sh_symbol">=</span> <span class="sh_keyword">new</span> <span class="sh_function">Set</span><span class="sh_symbol">([</span><span class="sh_string">'.js'</span><span class="sh_symbol">,</span> <span class="sh_string">'.mjs'</span><span class="sh_symbol">]);</span>
+
+<span class="sh_keyword">export</span> <span class="sh_keyword">function</span> <span class="sh_function">resolve</span><span class="sh_symbol">(</span>specifier<span class="sh_symbol">,</span> parentModuleURL<span class="sh_comment">/*, defaultResolve */</span><span class="sh_symbol">)</span> <span class="sh_cbracket">{</span>
+  <span class="sh_keyword">if</span> <span class="sh_symbol">(</span>builtins<span class="sh_symbol">.</span><span class="sh_function">has</span><span class="sh_symbol">(</span>specifier<span class="sh_symbol">))</span> <span class="sh_cbracket">{</span>
+    <span class="sh_keyword">return</span> <span class="sh_cbracket">{</span>
+      url<span class="sh_symbol">:</span> specifier<span class="sh_symbol">,</span>
+      format<span class="sh_symbol">:</span> <span class="sh_string">'builtin'</span>
+    <span class="sh_cbracket">}</span><span class="sh_symbol">;</span>
+  <span class="sh_cbracket">}</span>
+  <span class="sh_keyword">if</span> <span class="sh_symbol">(</span><span class="sh_regexp">/^\.{0,2}[/</span><span class="sh_symbol">]/.</span><span class="sh_function">test</span><span class="sh_symbol">(</span>specifier<span class="sh_symbol">)</span> <span class="sh_symbol">!==</span> <span class="sh_keyword">true</span> <span class="sh_symbol">&amp;&amp;</span> <span class="sh_symbol">!</span>specifier<span class="sh_symbol">.</span><span class="sh_function">startsWith</span><span class="sh_symbol">(</span><span class="sh_string">'file:'</span><span class="sh_symbol">))</span> <span class="sh_cbracket">{</span>
+    <span class="sh_comment">// For node_modules support:</span>
+    <span class="sh_comment">// return defaultResolve(specifier, parentModuleURL);</span>
+    <span class="sh_keyword">throw</span> <span class="sh_keyword">new</span> <span class="sh_predef_func">Error</span><span class="sh_symbol">(</span>
+      `imports must begin <span class="sh_keyword">with</span> <span class="sh_string">'/'</span><span class="sh_symbol">,</span> <span class="sh_string">'./'</span><span class="sh_symbol">,</span> or <span class="sh_string">'../'</span><span class="sh_symbol">;</span> <span class="sh_string">'${specifier}'</span> does not`<span class="sh_symbol">);</span>
+  <span class="sh_cbracket">}</span>
+  <span class="sh_keyword">const</span> resolved <span class="sh_symbol">=</span> <span class="sh_keyword">new</span> url<span class="sh_symbol">.</span><span class="sh_function">URL</span><span class="sh_symbol">(</span>specifier<span class="sh_symbol">,</span> parentModuleURL<span class="sh_symbol">);</span>
+  <span class="sh_keyword">const</span> ext <span class="sh_symbol">=</span> path<span class="sh_symbol">.</span><span class="sh_function">extname</span><span class="sh_symbol">(</span>resolved<span class="sh_symbol">.</span>pathname<span class="sh_symbol">);</span>
+  <span class="sh_keyword">if</span> <span class="sh_symbol">(!</span>JS_EXTENSIONS<span class="sh_symbol">.</span><span class="sh_function">has</span><span class="sh_symbol">(</span>ext<span class="sh_symbol">))</span> <span class="sh_cbracket">{</span>
+    <span class="sh_keyword">throw</span> <span class="sh_keyword">new</span> <span class="sh_predef_func">Error</span><span class="sh_symbol">(</span>
+      `Cannot load file <span class="sh_keyword">with</span> non<span class="sh_symbol">-</span>JavaScript file extension $<span class="sh_cbracket">{</span>ext<span class="sh_cbracket">}</span><span class="sh_symbol">.</span>`<span class="sh_symbol">);</span>
+  <span class="sh_cbracket">}</span>
+  <span class="sh_keyword">return</span> <span class="sh_cbracket">{</span>
+    url<span class="sh_symbol">:</span> resolved<span class="sh_symbol">.</span>href<span class="sh_symbol">,</span>
+    format<span class="sh_symbol">:</span> <span class="sh_string">'esm'</span>
+  <span class="sh_cbracket">}</span><span class="sh_symbol">;</span>
+<span class="sh_cbracket">}</span>
+</code></pre>
+<p>With this loader, running:</p>
+<pre class="sh_sourceCode"><code class="lang-console">NODE_OPTIONS<span class="sh_symbol">=</span><span class="sh_string">'--experimental-modules --loader ./custom-loader.mjs'</span> node x<span class="sh_symbol">.</span>js
+</code></pre>
+<p>would load the module <code>x.js</code> as an ES module with relative resolution support
+(with <code>node_modules</code> loading skipped in this example).</p>
+<h3>Dynamic instantiate hook<span><a class="mark" href="esm.html#esm_dynamic_instantiate_hook" id="esm_dynamic_instantiate_hook">#</a></span></h3><p style="font-size:12px;margin-top:-1em"><a href="en/esm.html#esm_dynamic_instantiate_hook">查看英文版</a> / <a rel="nofollow" target="_blank" href="https://github.com/nodejscn/node-api-en/edit/master/esm/dynamic_instantiate_hook.md">查看英文md文件</a> / <a rel="nofollow" target="_blank" href="https://github.com/nodejscn/node-api-cn/edit/master/esm/dynamic_instantiate_hook.md">编辑中文md文件</a></p>
+<p>To create a custom dynamic module that doesn't correspond to one of the
+existing <code>format</code> interpretations, the <code>dynamicInstantiate</code> hook can be used.
+This hook is called only for modules that return <code>format: "dynamic"</code> from
+the <code>resolve</code> hook.</p>
+<pre class="sh_sourceCode"><code class="lang-js"><span class="sh_keyword">export</span> async <span class="sh_keyword">function</span> <span class="sh_function">dynamicInstantiate</span><span class="sh_symbol">(</span>url<span class="sh_symbol">)</span> <span class="sh_cbracket">{</span>
+  <span class="sh_keyword">return</span> <span class="sh_cbracket">{</span>
+    exports<span class="sh_symbol">:</span> <span class="sh_symbol">[</span><span class="sh_string">'customExportName'</span><span class="sh_symbol">],</span>
+    execute<span class="sh_symbol">:</span> <span class="sh_symbol">(</span>exports<span class="sh_symbol">)</span> <span class="sh_symbol">=&gt;</span> <span class="sh_cbracket">{</span>
+      <span class="sh_comment">// get and set functions provided for pre-allocated export names</span>
+      exports<span class="sh_symbol">.</span>customExportName<span class="sh_symbol">.</span><span class="sh_function">set</span><span class="sh_symbol">(</span><span class="sh_string">'value'</span><span class="sh_symbol">);</span>
+    <span class="sh_cbracket">}</span>
+  <span class="sh_cbracket">}</span><span class="sh_symbol">;</span>
+<span class="sh_cbracket">}</span>
+</code></pre>
+<p>With the list of module exports provided upfront, the <code>execute</code> function will
+then be called at the exact point of module evalutation order for that module
+in the import tree.</p>
+
+      </div>
+    </div>
+  </div>
+  <!-- 搜索弹窗 -->
+  <div id="modal_search_bg"></div>
+  <div id="modal_search">
+    <input placeholder="API 快速搜索" id="modal_search_input">
+    <div id="modal_search_result"></div>
+  </div>
+  <!-- js -->
+  <!--[if lt IE 10]><script src="/static/lib/placeholders.js?20170426"></script><![endif]-->
+  <script src="./esm_files/hm.js.下载"></script><script src="./esm_files/api.js.下载"></script>
+
+</body></html>
