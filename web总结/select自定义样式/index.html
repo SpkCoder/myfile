@@ -1,0 +1,56 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<!-- <link rel="stylesheet" type="text/css" href="css/base.css"> -->
+<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="js/jquery.cssforms.js"></script>
+
+</head>
+<style>
+.cssSelect {font: 400 1em 'Open Sans', sans-serif; color: #474747; }
+.cssSelect * {display: block }
+.cssSelect a {color: #666; outline-width: 0; text-decoration: none }
+.cssSelect .selectBox {cursor: pointer; border: solid 1px #c8c8c8; border-radius: 3px; background: #F5F5F5; float: left }
+.cssSelect .selectLt {cursor: pointer; float: left; text-align: left }
+.cssSelect .selectRt {cursor: pointer; background: url(images/skin_icons.png) no-repeat center; float: left }
+.cssSelect .selectLt {overflow: hidden; height: 30px; line-height: 31px; padding: 0 10px; background: none transparent scroll repeat 0% 0%; color: #666 }
+.cssSelect .selectRt {height: 30px; padding-bottom: 0; padding-top: 0; padding-left: 0; padding-right: 28px }
+.cssSelect .optionsBox {position: absolute; border: 1px solid #dbdbdb; padding: 0px; margin: 0; background: #fff; z-index: 100 }
+.cssSelect .optionBox {cursor: pointer; padding: 2px 30px 2px 18px; margin: 0; height: 25px; line-height: 25px }
+.cssSelect .optionBox span {cursor: pointer; font-size: 12px }
+.cssSelect .oHover {background: #1e90ff; color: #fff }
+.cssSelect .selected {background: #1e90ff; color: #fff } 
+
+
+</style>
+<body style="padding: 30px 400px;">
+	
+	<select name="color" id="color" class="beautify_select"  onchange="refreshColor();" required="">
+	<option value="">--Select--</option>
+	<option data-color="#707c8d" value="Active Blue#!#210">Active Blue</option>
+	<option data-color="#797c8d" value="Active Blue#!#2103">Active Blue2</option>
+	<option data-color="#79b08d" value="Active Blue#!#2102">Active Blue3</option>
+	<option data-color="#807c8d" value="Active Blue#!#2110">Active Blue4</option>
+	<option data-color="#197c8d" value="Active Blue#!#21012">Active Blue5</option>
+	<option data-color="#39b08d" value="Active Blue#!#21013">Active Blue6</option>
+	</select>
+
+
+<script type="text/javascript">
+
+		function refreshColor() {
+			console.log($("select[name=color]").val());
+		}
+
+		$(function(){	
+
+			$('.beautify_select').cssSelect();
+
+		});
+
+</script>
+</body>
+</html>
