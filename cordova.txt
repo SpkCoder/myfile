@@ -1,0 +1,23 @@
+$ npm install -g cordova
+
+$ cordova create MyApp
+
+$ cd MyApp
+
+$ cordova platform ls
+
+$ cordova platform add browser
+$ cordova platform add android 
+$ cordova platform add ios
+
+$ cordova requirements
+
+$ cordova run browser
+
+$ cordova build android
+$ cordova emulate android
+$ cordova run android
+
+
+
+
