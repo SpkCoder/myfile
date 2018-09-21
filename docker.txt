@@ -25,10 +25,10 @@ docker images
 
 
 生成容器
-docker run -p 8000:3000 -it koa-demo:0.0.1 /bin/bash
+docker run --name [containerName] -p 8000:3000 -it koa-demo:0.0.1 /bin/bash
 
 开启正在运行的容器
-docker exec -it d6a65ac0724b /bin/bash
+docker exec -it [containerID] bash
 
 
 开启容器
@@ -52,4 +52,29 @@ docker ps -a
 
 
 生成容器mongo
-docker run -p 27017:27017 -v /d/mongodb/data/db:/data/db -d mongo        /d/代表D:盘
+docker run -p 27017:27017 -v  /d/mongodb/data:/data -d mongo        
+
+
+生成容器mysql
+docker run -p 3306:3306 -v  /d/mysql/conf:/etc/mysql/conf.d -v  /d/mysql/logs:/logs -v  /d/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql
+
+
+
+导出
+docker export cbe3cb7799ed >  D:/docker/update.tar
+
+
+导入
+docker import  D:/docker/update.tar
+
+
+保存
+docker save cbe3cb7799ed -o  D:/docker/update.tar
+
+
+加载
+docker load -i D:/docker/update.tar
+
+
+docker run --name ecast-web -p 8001:8001 -v /e/mywork/ecast-web:/home/ecast-web -it 520293d9f787
+docker run --name ecast-php -p 8443:8001 -v E:\mywork\ecast-web-old:/var/www/html -d img4
