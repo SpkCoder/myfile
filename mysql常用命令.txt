@@ -81,6 +81,7 @@ alter table tablename add num INT(6) NOT NULL
 alter table tablename change num numxx VARCHAR(20) NOT NULL
 
 
+
 删除字段
 alter table tablename drop numxx
 
