@@ -90,7 +90,6 @@
 
 
 
-
 <script src="js/jquery-1.11.0.min.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -127,6 +126,40 @@ $(function(){
 					});	
 					
 });
+
+
+//悬浮楼层
+      //   function floorFn() {
+      //     var offsetTopArr = [];
+      //   var currentId = ""; 
+      //     var floorboxs = $(".floorbox");
+      // var floormenu = $(".floormenu")
+      //     floorboxs.each(function(index){
+      //        offsetTopArr.push($(this).offset().top);             
+      // });
+      //     $(".list-page-box").scroll(function(){
+      //    var scrollTop = $(".list-page-box").scrollTop();
+      //            offsetTopArr.forEach(function (item,index) {
+      //             if(scrollTop + 40 > item){
+      //               currentId = "#" + floorboxs[index].id;
+      //               if(floormenu.find(".current").attr("href") != currentId) {
+      //         floormenu.find(".current").removeClass("current");
+      //         floormenu.find("[href='" + currentId + "']").addClass("current");
+      //       };
+      //             }else {
+      //                   return false;
+      //               };
+      //            });
+      // });
+  
+      //       //使锚点平滑向上滚动
+      // $(".floormenu a").click(function () {
+      //   $(".list-page-box").animate({
+      //   scrollTop: offsetTopArr[$(this).parent("li").index()] - 35
+      //   }, 500);
+      //   return false;
+      // }); 
+      //   }
 
 
 
