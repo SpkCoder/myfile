@@ -1,0 +1,14 @@
+当前目录创建虚拟环境
+python -m venv venv
+
+在Windows上，运行:
+venv\Scripts\activate.bat   cmd
+venv\Scripts\Activate.ps1  PowerShell
+需要在powershell里面修改policy：
+Set-ExecutionPolicy RemoteSigned
+
+在Unix或MacOS上，运行:
+source venv/bin/activate
+
+推出虚拟环境
+deactivate

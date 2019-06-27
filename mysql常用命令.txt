@@ -86,6 +86,26 @@ alter table tablename change num numxx VARCHAR(20) NOT NULL
 alter table tablename drop numxx
 
 
+创建单列索引
+alter table table_name add index index_name (column_list) ;
+alter table table_name add unique (column_list) ;
+alter table table_name add primary key (column_list) ;
+
+创建组合索引
+alter table table_name add index index_name (column1,column2(10),column3);
+
+删除索引
+alter table table_name drop index index_name ;
+
+全文索引
+alter table table_name add fulltext(column1, column2)
+select * from table_name where match(column1, column2) against(‘xxx′, ‘sss′, ‘ddd′)
+
+显示索引
+show keys from table_name 
+explain  select * from students where stud_id = '1';
+
+
 查找
 select * from stu where gender='female' and age<50;
 select * from stu where sid='S_1001' and sname='lisi';
@@ -146,5 +166,14 @@ mysqldump -u username -p password -h hostname -P port databasename > newdb.sql
 
 导入数据
 mysql -u username -p password -h hostname -P port databasename < file.sql
+mysql> source E:\test.sql
 
+
+超时时间
+show global variables like 'wait_timeout';  
+set global wait_timeout=28800000;  
+
+
+select @@sql_mode;
+set  @@global.sql_mode="STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION"
 

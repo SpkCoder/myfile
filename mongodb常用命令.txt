@@ -139,11 +139,11 @@ db.collectionName.find().toArray()
 
 
 //添加用户、设置密码、是否只读
-db.addUser("admin", "123456", false);  
+db.createUser({ user: "root", pwd: "123456xx", roles: [{ role: "root", db: "admin" }] })
 
 
 数据库认证、安全模式
-db.auth("userName", "123456"); 
+db.auth("root", "123456xx"); 
 
 
 账号密码登录
