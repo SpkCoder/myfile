@@ -8,6 +8,7 @@ git push -u origin master
 
 
 查看用户名和邮箱地址
+git config --list
 git config user.name
 git config user.email
 
@@ -142,7 +143,7 @@ cat test.txt
 查看提交历史
 git log
 git log --oneline
-
+q 退出
 
 
 查看当前的远程库

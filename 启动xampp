@@ -1,0 +1,97 @@
+安装xampp
+sudo ./xampp-linux-x64-1.8.3-4-installer.run
+
+卸载xampp
+sudo rm -rf /opt/lampp
+
+启动xampp
+sudo /opt/lampp/lampp start
+
+关闭xampp
+sudo /opt/lampp/lampp stop
+
+
+重启 XAMPP
+/opt/lampp/lampp restart
+
+
+只启动 Apache
+
+/opt/lampp/lampp startapache
+
+停止 Apache
+
+/opt/lampp/lampp stopapache
+
+启动 Apache 的 SSL 支持
+
+/opt/lampp/lampp startssl
+
+停止 Apache 的 SSL 支持
+
+/opt/lampp/lampp stopssl
+
+只启动 MySQL 数据库
+
+/opt/lampp/lampp startmysql
+
+停止 MySQL 数据库
+
+/opt/lampp/lampp stopmysql
+
+启动 ProFTPD 服务器
+
+/opt/lampp/lampp startftp
+
+停止 ProFTPD 服务器
+
+/opt/lampp/lampp stopftp
+
+随系统自动启动
+
+ln -s /opt/lampp/lampp /etc/rc.d/rc3.d/S99lampp
+
+ln -s /opt/lampp/lampp /etc/rc.d/rc4.d/S99lampp
+
+ln -s /opt/lampp/lampp /etc/rc.d/rc5.d/S99lampp
+
+取消随系统自动运行
+
+ln -s /opt/lampp/lampp K01lampp
+
+卸载 XAMPP
+
+rm -rf /opt/lampp
+
+XAMPP 重要的文件和目录
+
+XAMPP 命令库。例如 /opt/lampp/bin/mysql 可执行 MySQL 监视器
+
+/opt/lampp/bin/
+
+Apache 文档根目录
+
+/opt/lampp/htdocs/
+
+Apache 配制文件
+
+/opt/lampp/etc/httpd.conf
+
+MySQL 配制文件
+
+/opt/lampp/etc/my.cnf
+
+PHP 配制文件
+
+/opt/lampp/etc/php.ini
+
+ProFTPD 配制文件。（从 0.9.5 版开始）
+
+/opt/lampp/etc/proftpd.conf
+
+phpMyAdmin 配制文件
+
+/opt/lampp/phpmyadmin/config.inc.php
+
+
+

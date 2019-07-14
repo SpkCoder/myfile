@@ -26,6 +26,9 @@ docker images
 
 生成容器
 docker run --name [containerName] -p 8000:3000 -it koa-demo:0.0.1 /bin/bash
+-t:在新容器内指定一个伪终端或终端。
+-i:允许你对容器内的标准输入 (STDIN) 进行交互。
+-d: 后台运行
 
 开启正在运行的容器
 docker exec -it [containerID] bash
@@ -47,17 +50,14 @@ docker rm [containerID]
 docker ps
 
 
+查看容器日志
+docker logs [containerID]
+
+查看容器IP
+docker inspect 容器ID | grep IPAddress
+
 查看所有的容器
 docker ps -a
-
-
-生成容器mongo
-docker run -p 27017:27017 -v  /d/mongodb/data:/data -d mongo        
-
-
-生成容器mysql
-docker run -p 3306:3306 -v  /d/mysql/conf:/etc/mysql/conf.d -v  /d/mysql/logs:/logs -v  /d/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql
-
 
 
 导出
@@ -75,6 +75,60 @@ docker save cbe3cb7799ed -o  D:/docker/update.tar
 加载
 docker load -i D:/docker/update.tar
 
+解决Windows10下无法对docker容器进行端口访问
+docker-machine ip default
+http://192.168.99.100:80
 
 docker run --name ecast-web -p 8001:8001 -v /e/mywork/ecast-web:/home/ecast-web -it 520293d9f787
 docker run --name ecast-php -p 8443:8001 -v E:\mywork\ecast-web-old:/var/www/html -d img4
+
+
+docker pull ubuntu:18.04
+docker run --name ubuntu -it ubuntu:18.04 /bin/bash
+
+
+docker pull mongo
+docker run -p 27017:27017 -v $PWD/db:/data/db -d mongo:3.2 
+
+
+docker pull mysql
+docker run -p 3306:3306 --name mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql:8.0
+
+docker启动mysql容器，开启外部访问
+docker exec -it mysql bash
+mysql -u root -p
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '123456' WITH GRANT OPTION;
+ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '123456';
+FLUSH PRIVILEGES;
+
+docker run -p 3306:3306 --name mymysql -v $PWD/conf:/etc/mysql/conf.d -v $PWD/logs:/logs -v $PWD/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.6
+-p 3306:3306：将容器的 3306 端口映射到主机的 3306 端口。
+-v -v $PWD/conf:/etc/mysql/conf.d：将主机当前目录下的 conf/my.cnf 挂载到容器的 /etc/mysql/my.cnf。
+-v $PWD/logs:/logs：将主机当前目录下的 logs 目录挂载到容器的 /logs。
+-v $PWD/data:/var/lib/mysql ：将主机当前目录下的data目录挂载到容器的 /var/lib/mysql 。
+-e MYSQL_ROOT_PASSWORD=123456：初始化 root 用户的密码
+#登录mysql
+docker exec -it mysql bash
+mysql -u root -p
+ALTER USER 'root'@'localhost' IDENTIFIED BY '123456';
+#添加远程登录用户
+CREATE USER 'root2'@'%' IDENTIFIED WITH mysql_native_password BY '123456';
+GRANT ALL PRIVILEGES ON *.* TO 'root2'@'%';
+FLUSH PRIVILEGES;
+
+
+docker pull python:3.6
+docker run -p 4040:80 --name python-app -it python-app:latest
+
+docker run  -v $PWD/myapp:/usr/src/myapp  -w /usr/src/myapp python:3.6 python helloworld.py
+-w /usr/src/myapp :指定容器的/usr/src/myapp目录为工作目录
+
+
+docker pull nginx
+docker run -d -p 8082:80 --name runoob-nginx-test-web -v ~/nginx/www:/usr/share/nginx/html -v ~/nginx/conf/nginx.conf:/etc/nginx/nginx.conf -v ~/nginx/logs:/var/log/nginx nginx
+-p 8082:80： 将容器的 80 端口映射到主机的 8082 端口。
+--name runoob-nginx-test-web：将容器命名为 runoob-nginx-test-web。
+-v ~/nginx/www:/usr/share/nginx/html：将我们自己创建的 www 目录挂载到容器的 /usr/share/nginx/html。
+-v ~/nginx/conf/nginx.conf:/etc/nginx/nginx.conf：将我们自己创建的 nginx.conf 挂载到容器的 /etc/nginx/nginx.conf。
+-v ~/nginx/logs:/var/log/nginx：将我们自己创建的 logs 挂载到容器的 /var/log/nginx。
+
