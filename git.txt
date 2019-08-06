@@ -1,3 +1,7 @@
+生成ssh key
+ssh-keygen
+cat ~/.ssh/id_rsa.pub
+
 初始化
 echo "# MyInformation" >> README.md
 git init
@@ -17,9 +21,9 @@ git config --global user.name  "yuxian"
 git config --global user.email "1533165085@qq.com"        
 
 修改局部用户名和邮箱地址
-cd ~/you project                   ????
-git config user.name  "username"  ????
-git config user.email "email" ??
+cd ~/you project       
+git config user.name  "username"
+git config user.email "email"
 
 
 配置文本编辑器

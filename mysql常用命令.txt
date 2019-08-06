@@ -79,7 +79,7 @@ alter table tablename add num INT(6) NOT NULL
 
 修改字段
 alter table tablename change num numxx VARCHAR(20) NOT NULL
-
+alter table tablename modify column num float(11) NOT NULL default 0
 
 
 删除字段
@@ -148,8 +148,9 @@ select max(sal),min(sal) from emp;-- 查询最高工资和最低工资
 select deptno,sum(sal) from emp group by deptno;-- 查询每个部门的编号和每个部门的工资和
 select deptno,count(*) from emp group by deptno;-- 查询每个部门的部门编号以及每个部门的人数
 select deptno,count(*) from emp where sal>1500 group by deptno;-- 查询每个部门的编号以及每个部门工资大于1500的人数
-
-
+ 
+多个select套嵌查询
+select t.client_ip, count(*) as num_host, sum(t.num_host) as num from (select client_ip, client_host, count(*) as num_host from dns_req_list group by client_ip, client_host) t group by t.client_ip order by num desc limit 0,100
 
 2张表关联
 table1 LEFT JOIN table2 ON table1.firstname = table2.firstname
@@ -159,6 +160,10 @@ table1 LEFT JOIN table2 ON table1.firstname = table2.firstname
 (table1 LEFT JOIN table2 ON table1.firstname = table2.firstname) LEFT JOIN table3 ON table1.firstname = table3.firstname
 
 
+select t1.client_host, t1.num, t2.num_err from (select client_host, count(*) as num from dns_req_list group by client_host) t1 left join (select client_host, count(*) as num_err from dns_err_list where req_status = "SERVFAIL" group by client_host) t2 on t1.client_host=t2.client_host order by num desc limit 0,10
+
+select t3.client_ip, t3.num_host, t3.num, t2.num_err from (select t1.client_ip, count(*) as num_host, sum(t1.num_host) as num from (select client_ip, client_host, count(*) as num_host from dns_req_list'+whereStr+' group by client_ip, client_host) t1 group by t1.client_ip) t3 left join (select client_ip, count(*) as num_err from dns_err_list where req_status = "SERVFAIL" group by client_ip) t2 on t3.client_ip=t2.client_ip order by num desc limit 0,10
+
 
 导出数据
 mysqldump -u username -p password -h hostname -P port databasename > newdb.sql
@@ -167,6 +172,11 @@ mysqldump -u username -p password -h hostname -P port databasename > newdb.sql
 导入数据
 mysql -u username -p password -h hostname -P port databasename < file.sql
 mysql> source E:\test.sql
+
+
+sqlite3 /media/xian/Work/myproject-suqueen/ott-dns-info-docker/volumes/src/db/ott-dns-info.db '.dump power_list' > power_list.sql
+
+sqlite3 /media/xian/Work/myproject-suqueen/ott-dns-info-docker/volumes/src/db/ott-dns-info.db '.read alarm_list.sql' 
 
 
 超时时间
