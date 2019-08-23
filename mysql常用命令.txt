@@ -34,7 +34,7 @@ sp_renamedb 'old_name', 'new_name'
 
 创建表
 create table tablename (
-	id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+	id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
 	name VARCHAR(20) NOT NULL,
 	age INT(11) NOT NULL,
 	email VARCHAR(20) NOT NULL
@@ -79,7 +79,7 @@ alter table tablename add num INT(6) NOT NULL
 
 修改字段
 alter table tablename change num numxx VARCHAR(20) NOT NULL
-alter table tablename modify column num float(11) NOT NULL default 0
+alter table tablename modify column num VARCHAR(50) NOT NULL default ''
 
 
 删除字段

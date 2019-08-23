@@ -126,6 +126,7 @@ docker run  -v $PWD/myapp:/usr/src/myapp  -w /usr/src/myapp python:3.6 python he
 
 docker pull nginx
 docker run -d -p 8082:80 --name runoob-nginx-test-web -v ~/nginx/www:/usr/share/nginx/html -v ~/nginx/conf/nginx.conf:/etc/nginx/nginx.conf -v ~/nginx/logs:/var/log/nginx nginx
+docker run --name nginx-test -p 8082:80 -v /media/xian/Work/docker/nginx/html:/usr/share/nginx/html -d nginx
 -p 8082:80： 将容器的 80 端口映射到主机的 8082 端口。
 --name runoob-nginx-test-web：将容器命名为 runoob-nginx-test-web。
 -v ~/nginx/www:/usr/share/nginx/html：将我们自己创建的 www 目录挂载到容器的 /usr/share/nginx/html。
