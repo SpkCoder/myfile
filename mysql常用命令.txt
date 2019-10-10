@@ -87,15 +87,15 @@ alter table tablename drop numxx
 
 
 创建单列索引
-alter table table_name add index index_name (column_list) ;
-alter table table_name add unique (column_list) ;
-alter table table_name add primary key (column_list) ;
+alter table table_name add index index_name (column_list);
+alter table table_name add unique (column_list);
+alter table table_name add primary key (column_list);
 
 创建组合索引
 alter table table_name add index index_name (column1,column2(10),column3);
 
 删除索引
-alter table table_name drop index index_name ;
+alter table table_name drop index index_name;
 
 全文索引
 alter table table_name add fulltext(column1, column2)
@@ -196,4 +196,31 @@ ALTER USER 'root'@'localhost' IDENTIFIED BY '123456';
 CREATE USER 'user2'@'%' IDENTIFIED WITH mysql_native_password BY '123456';
 GRANT ALL PRIVILEGES ON *.* TO 'user2'@'%';
 FLUSH PRIVILEGES;
+
+查看数据存放目录
+show variables like '%datadir%';
+/var/lib/mysql
+
+
+查看所有数据库容量大小
+select
+table_schema as '数据库',
+sum(table_rows) as '记录数',
+sum(truncate(data_length/1024/1024, 2)) as '数据容量(MB)',
+sum(truncate(index_length/1024/1024, 2)) as '索引容量(MB)'
+from information_schema.tables
+group by table_schema
+order by sum(data_length) desc, sum(index_length) desc;
+
+
+查看数据库各表容量大小
+select
+table_schema as '数据库',
+table_name as '表名',
+table_rows as '记录数',
+truncate(data_length/1024/1024, 2) as '数据容量(MB)',
+truncate(index_length/1024/1024, 2) as '索引容量(MB)'
+from information_schema.tables
+where table_schema='mydb'
+order by data_length desc, index_length desc;
 
