@@ -13,7 +13,7 @@ EXPOSE 3000：将容器 3000 端口暴露出来， 允许外部连接这个端口。
 
 
 创建镜像
-docker image build -t koa-demo:0.0.1 .
+docker build -t koa-demo:0.0.1 .
 
 
 删除镜像

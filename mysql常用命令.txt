@@ -32,6 +32,10 @@ use dbname
 sp_renamedb 'old_name', 'new_name'
 
 
+修改数据库字符集
+ALTER DATABASE <db_name> DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+
 创建表
 create table tablename (
 	id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
@@ -48,6 +52,10 @@ drop table tablename
 
 重命名表
 rename table 'old_name' to 'new_name'
+
+复制表
+create table new_table_name LIKE table_name;
+insert into new_table_name SELECT * FROM table_name;
 
 
 清空表
@@ -78,7 +86,7 @@ alter table tablename add num INT(6) NOT NULL
 
 
 修改字段
-alter table tablename change num numxx VARCHAR(20) NOT NULL
+alter table tablename change num numxx
 alter table tablename modify column num VARCHAR(50) NOT NULL default ''
 
 
@@ -168,6 +176,12 @@ select t3.client_ip, t3.num_host, t3.num, t2.num_err from (select t1.client_ip, 
 导出数据
 mysqldump -u username -p password -h hostname -P port databasename > newdb.sql
 
+导出单个数据表结构和数据
+mysqldump -u username -p password -h hostname -P port databasename tablename > newtable.sql
+
+导出查询的数据
+mysql -h地址 -P端口 -u用户名 -p密码 -N -e"SQL语句" 数据库名 > filename
+SELECT × FROM users WHERE name="xx" INTO OUTFILE '/home/users.csv'
 
 导入数据
 mysql -u username -p password -h hostname -P port databasename < file.sql
@@ -212,6 +226,9 @@ from information_schema.tables
 group by table_schema
 order by sum(data_length) desc, sum(index_length) desc;
 
+更新数据库各表容量大小
+analyze table tablename
+set global information_schema_stats_expiry=0
 
 查看数据库各表容量大小
 select
@@ -223,4 +240,11 @@ truncate(index_length/1024/1024, 2) as '索引容量(MB)'
 from information_schema.tables
 where table_schema='mydb'
 order by data_length desc, index_length desc;
+
+MySQL千万级别数据查询速度6000ms
+MySQL单条插入速度10ms
+MySQL1000条批量插入速度30ms
+MySQL10000条批量插入速度200ms
+MySQL100000条批量插入速度2000ms
+
 
