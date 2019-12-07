@@ -126,7 +126,7 @@ git branch (branchname)
 
 切换分支命令
 git checkout (branchname)
-
+git checkout -b dev origin/dev
 
 
 删除分支命令

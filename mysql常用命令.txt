@@ -202,14 +202,28 @@ select @@sql_mode;
 set  @@global.sql_mode="STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION"
 
 
-#登录mysql
+#启动MySQL
+systemctl start mysqld
+ 
+#启动成功后可以查看初始化密码随机生成的
+cat /var/log/mysqld.log | grep password
+ 
+#登录MySQL修改mysql用户密码
 mysql -u root -p
-#修改密码
-ALTER USER 'root'@'localhost' IDENTIFIED BY '123456';
-#添加远程登录用户
-CREATE USER 'user2'@'%' IDENTIFIED WITH mysql_native_password BY '123456';
-GRANT ALL PRIVILEGES ON *.* TO 'user2'@'%';
-FLUSH PRIVILEGES;
+mysql> ALTER USER 'root'@'%' IDENTIFIED BY 'yourpassword';
+#远程设置
+mysql> use mysql;
+mysql> update user set host='%' where user='root';
+#授权用户名的权限，赋予任何主机访问数据的权限
+mysql> GRANT ALL PRIVILEGES ON *.* TO 'root'@'%'WITH GRANT OPTION;
+mysql> FLUSH PRIVILEGES;
+
+select host,user,authentication_string from mysql.user;
+
+/etc/mysql/my.cnf
+default_authentication_plugin=mysql_native_password
+ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'ott@123456';
+
 
 查看数据存放目录
 show variables like '%datadir%';

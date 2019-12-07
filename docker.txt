@@ -13,16 +13,17 @@ EXPOSE 3000：将容器 3000 端口暴露出来， 允许外部连接这个端口。
 
 
 创建镜像
-docker build -t koa-demo:0.0.1 .
-
+docker build -t ott-dns-info-docker:latest .
+docker commit -m "" -a "" [containerID] ott-dns-info-docker:v1.0
 
 删除镜像
 docker rmi [imageID]
 
-
 查看镜像
 docker images
 
+修改镜像名称
+docker tag 457541f7f8de ott-dns-info-docker:v1.0
 
 生成容器
 docker run --name [containerName] -p 8000:3000 -it koa-demo:0.0.1 /bin/bash
@@ -48,7 +49,7 @@ docker rm [containerID]
 
 查看正在运行的容器
 docker ps
-
+docker ps --no-trunc 禁止缩略
 
 查看容器日志
 docker logs [containerID]
@@ -59,25 +60,31 @@ docker inspect 容器ID | grep IPAddress
 查看所有的容器
 docker ps -a
 
+从容器里面拷文件到宿主机
+docker cp [containerID]:/home/test.js /home
 
-导出
-docker export cbe3cb7799ed >  D:/docker/update.tar
+从宿主机拷文件到容器里面
+docker cp /home/test.js [containerID]:/home
 
+备份镜像
+docker save [imageId] > /home/myubuntu-save-1204.tar  
 
-导入
-docker import  D:/docker/update.tar
+恢复镜像
+docker load < /home/myubuntu-save-1204.tar
 
+导出容器
+docker export [containerId] > /home/myubuntu-save-1204.tar
 
-保存
-docker save cbe3cb7799ed -o  D:/docker/update.tar
+导入容器
+docker import /home/myubuntu-save-1204.tar mysql:ott
+cat test.tar | sudo docker import - mysql:ott
 
-
-加载
-docker load -i D:/docker/update.tar
 
 解决Windows10下无法对docker容器进行端口访问
 docker-machine ip default
 http://192.168.99.100:80
+ip addr show docker0
+http://172.17.0.1
 
 docker run --name ecast-web -p 8001:8001 -v /e/mywork/ecast-web:/home/ecast-web -it 520293d9f787
 docker run --name ecast-php -p 8443:8001 -v E:\mywork\ecast-web-old:/var/www/html -d img4
@@ -88,11 +95,14 @@ docker run --name ubuntu -it ubuntu:18.04 /bin/bash
 
 
 docker pull mongo
-docker run -p 27017:27017 -v $PWD/db:/data/db -d mongo:3.2 
+docker run -p 27017:27017 --name mongo -v $PWD/db:/data/db -d mongo:3.2
 
+docker pull elasticsearch:7.4.2
+docker run -p 9200:9200 --name elasticsearch -d elasticsearch:7.4.2 
 
-docker pull mysql
+docker pull mysql:8.0
 docker run -p 3306:3306 --name mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql:8.0
+docker run -p 3306:3306 --name mysql -v $PWD/mysqldb:/docker-entrypoint-initdb.d -e MYSQL_ROOT_PASSWORD=123456 -d mysql:8.0
 
 docker启动mysql容器，开启外部访问
 docker exec -it mysql bash
@@ -100,6 +110,11 @@ mysql -u root -p
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '123456' WITH GRANT OPTION;
 ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '123456';
 FLUSH PRIVILEGES;
+
+use mysql;
+update user set host = '%' where user = 'root';
+
+select host,user from user;
 
 docker run -p 3306:3306 --name mymysql -v $PWD/conf:/etc/mysql/conf.d -v $PWD/logs:/logs -v $PWD/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.6
 -p 3306:3306：将容器的 3306 端口映射到主机的 3306 端口。
