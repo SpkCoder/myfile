@@ -14,7 +14,7 @@ EXPOSE 3000：将容器 3000 端口暴露出来， 允许外部连接这个端口。
 
 创建镜像
 docker build -t ott-dns-info-docker:latest .
-docker commit -m "" -a "" [containerID] ott-dns-info-docker:v1.0
+docker commit -m "" -a "" [containerID] ott-dns-info:1.0
 
 删除镜像
 docker rmi [imageID]
@@ -76,8 +76,8 @@ docker load < /home/myubuntu-save-1204.tar
 docker export [containerId] > /home/myubuntu-save-1204.tar
 
 导入容器
-docker import /home/myubuntu-save-1204.tar mysql:ott
-cat test.tar | sudo docker import - mysql:ott
+docker import /home/myubuntu-save-1204.tar mysql:latest
+cat test.tar | sudo docker import - mysql:latest
 
 
 解决Windows10下无法对docker容器进行端口访问
@@ -94,26 +94,25 @@ docker pull ubuntu:18.04
 docker run --name ubuntu -it ubuntu:18.04 /bin/bash
 
 
-docker pull mongo
-docker run -p 27017:27017 --name mongo -v $PWD/db:/data/db -d mongo:3.2
+docker pull mongo:3.6
+docker run -p 27017:27017 --name mongo -v $PWD/db:/data/db -d mongo:3.6
 
 docker pull elasticsearch:7.4.2
 docker run -p 9200:9200 --name elasticsearch -d elasticsearch:7.4.2 
 
 docker pull mysql:8.0
-docker run -p 3306:3306 --name mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql:8.0
+docker run -p 3306:3306 --name mysql -e MYSQL_ROOT_PASSWORD=ott@123456 -d mysql:8.0
 docker run -p 3306:3306 --name mysql -v $PWD/mysqldb:/docker-entrypoint-initdb.d -e MYSQL_ROOT_PASSWORD=123456 -d mysql:8.0
 
 docker启动mysql容器，开启外部访问
 docker exec -it mysql bash
 mysql -u root -p
-GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '123456' WITH GRANT OPTION;
-ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '123456';
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%';
+ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'ott@123456';
 FLUSH PRIVILEGES;
 
 use mysql;
 update user set host = '%' where user = 'root';
-
 select host,user from user;
 
 docker run -p 3306:3306 --name mymysql -v $PWD/conf:/etc/mysql/conf.d -v $PWD/logs:/logs -v $PWD/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.6
@@ -135,14 +134,21 @@ FLUSH PRIVILEGES;
 data数据目录
 /var/lib/mysql
 
-docker pull python:3.6
-docker run -p 4040:80 --name python-app -it python-app:latest
+docker pull python:3.7
+docker run -p 4040:80 --name python-app -it python:3.7
 
-docker run  -v $PWD/myapp:/usr/src/myapp  -w /usr/src/myapp python:3.6 python helloworld.py
+docker run -v $PWD/myapp:/usr/src/myapp -w /home python:3.6 python helloworld.py
 -w /usr/src/myapp :指定容器的/usr/src/myapp目录为工作目录
+
+连接mysql
+docker run --name drms-python --link mysql:mysql -p 50081:50081 -v $PWD/drms-python:/home/app -w /home/app -d python-env-docker python runserver.py
+Cannot link to /mysql, as it does not belong to the default network.
+docker network ls
+docker run --name zdns-python --link mysql:mysql --net net_docker_default -p 8630:8630 -v $PWD/zdns-python:/home/app -w /home/app -d python-env-docker python runserver.py
 
 
 docker pull nginx
+docker run --name web-app -p 80:80 -v $PWD/web-app:/usr/share/nginx/html -d nginx
 docker run -d -p 8082:80 --name runoob-nginx-test-web -v ~/nginx/www:/usr/share/nginx/html -v ~/nginx/conf/nginx.conf:/etc/nginx/nginx.conf -v ~/nginx/logs:/var/log/nginx nginx
 docker run --name nginx-test -p 8082:80 -v /media/xian/Work/docker/nginx/html:/usr/share/nginx/html -d nginx
 -p 8082:80： 将容器的 80 端口映射到主机的 8082 端口。
@@ -150,4 +156,28 @@ docker run --name nginx-test -p 8082:80 -v /media/xian/Work/docker/nginx/html:/u
 -v ~/nginx/www:/usr/share/nginx/html：将我们自己创建的 www 目录挂载到容器的 /usr/share/nginx/html。
 -v ~/nginx/conf/nginx.conf:/etc/nginx/nginx.conf：将我们自己创建的 nginx.conf 挂载到容器的 /etc/nginx/nginx.conf。
 -v ~/nginx/logs:/var/log/nginx：将我们自己创建的 logs 挂载到容器的 /var/log/nginx。
+
+Failed to get D-Bus connection: Operation not permitted
+以特权模式运行容器
+--privileged=true
+
+
+1、Docker 命令修改
+
+docker container update --restart=always 容器名
+
+2、直接改配置文件
+
+首先停止容器，不然无法修改配置文件
+
+配置文件路径为：/var/lib/docker/containers/容器ID
+
+在该目录下找到一个文件 hostconfig.json ，找到该文件中关键字 RestartPolicy
+
+修改前配置："RestartPolicy":{"Name":"no","MaximumRetryCount":0}
+
+修改后配置："RestartPolicy":{"Name":"always","MaximumRetryCount":0}
+
+最后启动容器。
+
 

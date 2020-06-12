@@ -1,0 +1,848 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="#B4E6FB"> 
+        <title>行情</title>  
+    </head>
+<style type="text/css">   
+    body{position: relative; width: 100%; height: 100%; overflow: auto} 
+    .box{width: 100%; max-width: 1200px; margin: 0 auto;}
+</style>
+<body>
+    <div class="box">
+        <div id="m_line" style="width:100%; height:200px; margin-bottom: 5px;"></div>
+        <div id="k_line" style="width:100%; height:400px;"></div>
+    </div>
+
+
+<script type="text/javascript" src="https://echarts.cdn.apache.org/examples/vendors/jquery/jquery.js"></script>
+<script type="text/javascript" src="echarts.min.js"></script>
+<script type="text/javascript">
+    
+
+var m_line = echarts.init(document.getElementById('m_line'));
+var k_line = echarts.init(document.getElementById('k_line'));
+
+
+var bgColor = "#1f212d";//背景
+var upColor="#F9293E";//涨颜色
+var downColor="#00aa3b";//跌颜色
+// ma  颜色
+var ma5Color = "#39afe6";
+var ma10Color = "#da6ee8";
+var ma20Color = "#ffab42";
+var ma30Color = "#00940b";
+
+
+//=================================================MADC计算公式
+
+var calcEMA,calcDIF,calcDEA,calcMACD;
+
+/*
+ * 计算EMA指数平滑移动平均线，用于MACD
+ * @param {number} n 时间窗口
+ * @param {array} data 输入数据
+ * @param {string} field 计算字段配置
+ */
+calcEMA=function(n,data,field){
+    var i,l,ema,a;
+    a=2/(n+1);
+    if(field){
+        //二维数组
+        ema=[data[0][field]];  
+        for(i=1,l=data.length;i<l;i++){
+            ema.push((a*data[i][field]+(1-a)*ema[i-1]).toFixed(3));
+        }
+    }else{
+        //普通一维数组
+        ema=[data[0]];
+        for(i=1,l=data.length;i<l;i++){
+            ema.push((a*data[i]+(1-a)*ema[i-1]).toFixed(3) );
+        }
+    } 
+    return ema;
+};
+
+/*
+ * 计算DIF快线，用于MACD
+ * @param {number} short 快速EMA时间窗口
+ * @param {number} long 慢速EMA时间窗口
+ * @param {array} data 输入数据
+ * @param {string} field 计算字段配置
+ */
+calcDIF=function(short,long,data,field){
+    var i,l,dif,emaShort,emaLong;
+    dif=[];
+    emaShort=calcEMA(short,data,field);
+    emaLong=calcEMA(long,data,field);
+    for(i=0,l=data.length;i<l;i++){
+        dif.push((emaShort[i]-emaLong[i]).toFixed(3));
+    }
+    return dif;
+};
+
+/*
+ * 计算DEA慢线，用于MACD
+ * @param {number} mid 对dif的时间窗口
+ * @param {array} dif 输入数据
+ */
+calcDEA=function(mid,dif){
+    return calcEMA(mid,dif);
+};
+
+/*
+ * 计算MACD
+ * @param {number} short 快速EMA时间窗口
+ * @param {number} long 慢速EMA时间窗口
+ * @param {number} mid dea时间窗口
+ * @param {array} data 输入数据
+ * @param {string} field 计算字段配置
+ */
+calcMACD=function(short,long,mid,data,field){
+    var i,l,dif,dea,macd,result;
+    result={};
+    macd=[];
+    dif=calcDIF(short,long,data,field);
+    dea=calcDEA(mid,dif);
+    for(i=0,l=data.length;i<l;i++){
+        macd.push(((dif[i]-dea[i])*2).toFixed(3));
+    }
+    result.dif=dif;
+    result.dea=dea;
+    result.macd=macd;
+    return result;
+};
+ 
+ 
+ //=================================================MADC计算公式 end
+
+
+function calculateMA(dayCount, data) {
+    var result = [];
+    for (var i = 0, len = data.values.length; i < len; i++) {
+        if (i < dayCount) {
+            result.push('-');
+            continue;
+        }
+        var sum = 0;
+        for (var j = 0; j < dayCount; j++) {
+            sum += data.values[i - j][1];
+        }
+        result.push(+(sum / dayCount).toFixed(3));
+    }
+    return result;
+}
+
+
+function splitData(rawData) {
+
+    // "2004-01-02",10452.74,10409.85,10367.41,10554.96,168890000
+    // 2020-05-22, 150.76, 144.25, 150.78, 143.65, 383526, 5597327872, 4.7%, 1.01
+    var time = [];
+    var values = [];
+    var volumes = [];
+    for (var i = 0; i < rawData.length; i++) {
+        var arr = rawData[i].split(',')
+        time.push(arr[0]);
+        values.push([ Number(arr[1]), Number(arr[2]), Number(arr[4]), Number(arr[3]), Number(arr[5]), Number(arr[7].replace('%', '')), Number(arr[8]), Number(arr[6])]);
+        volumes.push([i, Number(arr[5]), Number(arr[1]) > Number(arr[2]) ? 1 : -1]);
+    }
+
+    return {
+        time: time,
+        values: values,
+        volumes: volumes
+    };
+}
+
+
+$.get('./k_line.json', function (rawData) {
+
+
+    var data = splitData(rawData.data);
+    // console.log(data)
+    var macd=calcMACD(12,26,9,data.values,1); 
+    // console.log(macd)
+    var option = {
+        backgroundColor: bgColor,
+        animation: false,
+        color: [ma5Color, ma10Color, ma20Color, ma30Color],
+        legend: {
+            icon: 'rect',
+            type: 'scroll',
+            itemWidth: 14,
+            itemHeight: 2,
+            left: "20px",
+            top: 0,
+            textStyle: {
+                fontSize: 12,
+                color: '#0e99e2'
+            },
+            data: ['K线', 'MA5', 'MA10', 'MA20', 'MA30' ]
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'cross'
+            },
+            backgroundColor: 'rgba(245, 245, 245, 0.8)',
+            borderWidth: 1,
+            borderColor: '#ccc',
+            padding: 10,
+            textStyle: {
+                color: '#000'
+            },
+            formatter: function (param) {
+                // console.log(param)
+                var bar_index = param[0].dataIndex;
+                var pre_data = data.values[bar_index-1]
+
+                if (param[0].seriesName == 'K线') {
+                    param_k = param[0];
+                    param_MA5 = param[1];
+                    param_MA10 = param[2];
+                    param_MA20 = param[3];
+                    param_MA30 = param[4];
+                    return [
+                        '时间: ' + param_k.name + '<hr size=1 style="margin: 3px 0">',
+                        '涨幅: ' + ((param_k.data[2]-pre_data[1])/pre_data[1]*100).toFixed(2) + '%<br/>',
+                        '开盘: ' + param_k.data[1] + '<br/>',
+                        '收盘: ' + param_k.data[2] + '<br/>',
+                        '最低: ' + param_k.data[3] + '<br/>',
+                        '最高: ' + param_k.data[4] + '<br/>',
+                        '振幅: ' + param_k.data[6] + '%<br/>',
+                        '换手率: ' + param_k.data[7] + '%<br/>',
+                        // '成交量: ' + (param_k.data[5]/10000).toFixed(2) + '万<br/>',
+                        // '成交额: ' + (param_k.data[8]/10000/10000).toFixed(2) + '亿<br/>',
+                        'MA5: ' + Number(param_MA5.data).toFixed(2) + '<br/>',
+                        'MA10: ' + Number(param_MA10.data).toFixed(2) + '<br/>',
+                        'MA20: ' + Number(param_MA20.data).toFixed(2) + '<br/>',
+                        'MA30: ' + Number(param_MA30.data).toFixed(2) + '<br/>'
+                    ].join('');
+                }
+                if (param[0].seriesName == '成交量') {
+                    param_k = param[0];
+                    return [
+                        '时间: ' + param_k.name + '<hr size=1 style="margin: 3px 0">',
+                        '成交量: ' + (param_k.data[1]/10000).toFixed(2) + '万<br/>',
+                    ].join('');
+                }
+                if (param[0].seriesName == 'MACD') {
+                    param_k = param[0];
+                    param_DIF = param[1];
+                    param_DEA = param[2];
+                    return [
+                        '时间: ' + param_k.name + '<hr size=1 style="margin: 3px 0">',
+                        'MACD: ' + param_k.data + '<br/>',
+                        'DIF: ' + param_DIF.data + '<br/>',
+                        'DEA: ' + param_DEA.data + '<br/>'
+                    ].join('');
+                }
+            }
+            // position: function (pos, params, el, elRect, size) {
+            //     var obj = {top: 10};
+            //     obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 30;
+            //     return obj;
+            // }
+        },
+        axisPointer: {
+            show: true
+        },
+        visualMap: {
+            show: false,
+            seriesIndex: 5,
+            dimension: 2,
+            pieces: [{
+                value: 1,
+                color: downColor
+            }, {
+                value: -1,
+                color: upColor
+            }]
+        },
+        grid: [{
+                left: '0%',
+                right: '1%',
+                top: '0%',
+                height: '60%' //主K线的高度,
+            }, {
+                left: '0%',
+                right: '1%',
+                top: '65%',
+                height: '15%' //交易量图的高度
+            }, {
+                left: '0%',
+                right: '1%',
+                top: '80%', //MACD 指标
+                height: '15%'
+            }
+        ],
+        xAxis: [
+            {
+                type: 'category',
+                data: data.time,
+                scale: true,
+                axisLabel: { //label文字设置
+                    color: '#d6d6d6',
+                    fontSize: 10
+                },
+                boundaryGap: false,
+                axisLine: {onZero: false},
+                splitLine: {show: false},
+                // splitNumber: 20,
+                min: 'dataMin',
+                max: 'dataMax',
+                axisPointer: {
+                    z: 100
+                }
+            },
+            { //交易量图
+                type: 'category',
+                scale: true,
+                gridIndex: 1,
+                data: data.time,
+                axisLabel: { //label文字设置
+                    color: '#9b9da9',
+                    fontSize: 10
+                },
+                axisLabel: {
+                    show: false
+                }
+            }, 
+            { //MACD
+                type: 'category',
+                scale: true,
+                gridIndex: 2,
+                data: data.time,
+                axisLabel: {
+                    show: false
+                }
+            }
+        ],
+        yAxis: [
+            {
+                scale: true,
+                splitArea: { show: false },
+                splitLine: {
+                    show: true, 
+                    lineStyle: {
+                        color: "#fff",
+                        type: "dashed",
+                        opacity: 0.2
+                    }
+                },
+                axisLabel: {
+                    inside: true,
+                    color: '#d6d6d6',
+                    fontSize: 10
+                },
+            },
+            { //交易量
+                scale: true,
+                gridIndex: 1, 
+                // splitNumber: 2, 
+                axisLine: {
+                    onZero: false
+                },
+                axisTick: {
+                    show: false
+                },
+                splitLine: {
+                    show: false
+                },
+                axisLabel: { //label文字设置
+                    color: '#c7c7c7',
+                    inside: true, //label文字朝内对齐 
+                    fontSize: 8,
+                    formatter:function(val){
+                        return (val/10000).toFixed(2)+'万'
+                    }
+                },
+            }, 
+            { //MACD
+                scale: true,
+                gridIndex: 2,
+                // splitNumber: 2,
+                axisLine: {
+                    onZero: false
+                },
+                axisTick: {
+                    show: false
+                },
+                splitLine: {
+                    show: false
+                },
+                axisLabel: { //label文字设置
+                    color: '#c7c7c7',
+                    inside: true, //label文字朝内对齐 
+                    fontSize: 8
+                },
+            }
+        ],
+        dataZoom: [
+            // {
+            //     type: 'inside',
+            //     xAxisIndex: [0, 1, 2], //平移缩放控件
+            //     start: 96,
+            //     end: 100
+            // },
+            {
+                type: 'slider',
+                xAxisIndex: [0, 1, 2], //控件联动
+                // start: 96,
+                // end: 100,
+                startValue: data.time.length-100,
+	            endValue: data.time.length-1,
+                throttle: 10,
+                top: '96%',
+                height: '3%',
+                borderColor: '#696969'
+            }
+
+        ],
+        series: [
+            {
+                name: 'K线',
+                type: 'candlestick',
+                data: data.values,
+                itemStyle: {
+                    color: upColor,
+                    color0: downColor,
+                    borderColor: null,
+                    borderColor0: null
+                }
+
+            },
+            {
+                name: 'MA5',
+                type: 'line',
+                showSymbol: false,
+                data: calculateMA(5, data),
+                smooth: true,
+                lineStyle: {
+                    opacity: 1,
+                    width: 1,
+                    color: ma5Color
+                }
+            },
+            {
+                name: 'MA10',
+                type: 'line',
+                showSymbol: false,
+                data: calculateMA(10, data),
+                smooth: true,
+                lineStyle: {
+                    opacity: 1,
+                    width: 1,
+                    color: ma10Color
+                }
+            },
+            {
+                name: 'MA20',
+                type: 'line',
+                showSymbol: false,
+                data: calculateMA(20, data),
+                smooth: true,
+                lineStyle: {
+                    opacity: 1,
+                    width: 1,
+                    color: ma20Color
+                }
+            },
+            {
+                name: 'MA30',
+                type: 'line',
+                showSymbol: false,
+                data: calculateMA(30, data),
+                smooth: true,
+                lineStyle: {
+                    opacity: 1,
+                    width: 1,
+                    color: ma30Color
+                }
+            },
+            {
+                name: '成交量',
+                type: 'bar',
+                xAxisIndex: 1,
+                yAxisIndex: 1,
+                data: data.volumes
+            }, 
+            {
+                name: 'MACD',
+                type: 'bar',
+                xAxisIndex: 2,
+                yAxisIndex: 2,
+                data: macd.macd,
+                barWidth: '20%',
+                itemStyle: {
+                    normal: {
+                        color: function(params) {
+                            var colorStr;
+                            if (params.data >= 0) {
+                                colorStr = upColor;
+                            } else {
+                                colorStr = downColor;
+                            }
+                            return colorStr;
+                        },
+                    }
+                }
+            }, 
+            {
+                name: 'DIF',
+                type: 'line',
+                symbol: "none",
+                xAxisIndex: 2,
+                yAxisIndex: 2,
+                data: macd.dif,
+                lineStyle: {
+                    normal: {
+                        color: '#da6ee8',
+                        width: 1
+                    }
+                }
+            }, 
+            {
+                name: 'DEA',
+                type: 'line',
+                symbol: "none",
+                xAxisIndex: 2,
+                yAxisIndex: 2,
+                data: macd.dea,
+                lineStyle: {
+                    normal: {
+                        color: '#39afe6',
+                        width: 1
+                    }
+                }
+            }
+        ]
+    }
+
+    k_line.setOption(option, true);
+
+    // var timer = setInterval(() => {
+    //     if (option.dataZoom[0].startValue > 0) {
+    //         option.dataZoom[0].endValue -= 1;
+    //         option.dataZoom[0].startValue -= 1;
+    //         k_line.setOption(option, true);
+    //     }else{
+    //         clearInterval(timer);
+    //     }
+    // }, 0);
+
+    k_line.on('datazoom',function(params){
+        console.log(params);
+    });
+
+    k_line.on('contextmenu',function(params){
+        var menuStyle = {"left": params.event.offsetX + 40 + "px", "top": params.event.offsetY + 40 + "px" }
+        console.log(menuStyle)
+    });
+
+});
+
+
+/**
+ * 计算价格涨跌幅百分比
+ * @param {Object} price 当前价
+ * @param {Object} yclose 昨收价
+ */
+ function ratioCalculate(price,yclose){
+    return ((price-yclose)/yclose*100).toFixed(2);
+}
+
+function get_m_data(rawData) {
+
+    // "2020-05-22 14:58, 144.36, 94, 145.959 ,0"
+    var time = [];
+    var priceArr = [];
+    var avgPrice = [];
+    var vol = [];
+    for (var i = 0; i < rawData.length; i++) {
+        var arr = rawData[i].split(',')
+        time.push(arr[0].split(' ')[1]);
+        priceArr.push(Number(arr[1]).toFixed(2));
+        avgPrice.push(Number(arr[3]).toFixed(2));
+        vol.push(Number(arr[2]).toFixed(0));
+    }
+
+    return {
+        time: time,
+        priceArr: priceArr,
+        avgPrice: avgPrice,
+        vol: vol
+    };
+}
+
+$.get('./m_line.json', function (rawData) {
+
+
+    var m_datas = get_m_data(rawData.data);
+    var preClose = rawData.info.yc;
+    // console.log(m_datas)
+
+    m_line.setOption(option = {
+        backgroundColor: bgColor,
+        animation: false,
+        color: [ma5Color, ma10Color, ma20Color, ma30Color],
+        legend: {
+            icon: 'rect',
+            type: 'scroll',
+            itemWidth: 14,
+            itemHeight: 2,
+            left: "20px",
+            top: 0,
+            textStyle: {
+                fontSize: 12,
+                color: '#0e99e2'
+            },
+            data: ['当前价', '均价']
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'cross'
+            },
+            backgroundColor: 'rgba(245, 245, 245, 0.8)',
+            borderWidth: 1,
+            borderColor: '#ccc',
+            padding: 10,
+            textStyle: {
+                color: '#000'
+            },
+            formatter: function(params, ticket, callback) {
+                var i = params[0].dataIndex;
+    
+                var color;
+                if (m_datas.priceArr[i] > preClose) {
+                    color ='style="color:#ff4242"';
+                } else {
+                    color ='style="color:#26bf66"'; 
+                }
+    
+                var html = '<div class="commColor" style="width:100px;"><div>当前价 <span  '+color+' >' + m_datas.priceArr[i] + '</span></div>';
+                html += '<div>均价 <span  '+color+' >' + m_datas.avgPrice[i] + '</span></div>';
+                html += '<div>涨幅 <span  '+color+' >' + ratioCalculate(m_datas.priceArr[i],preClose)+ '%</span></div>';
+                html += '<div>成交量 <span  '+color+' >' + m_datas.vol[i] + '</span></div></div>'
+                return html;
+            }
+        },
+        axisPointer: {
+            show: true
+        },
+        grid: [{
+                left: '0%',
+                right: '1%',
+                top: '0%',
+                height: '70%' //当前价高度,
+            }, {
+                left: '0%',
+                right: '1%',
+                top: '0%',
+                height: '70%' //均价高度,
+            }, {
+                left: '0%',
+                right: '1%',
+                top: '70%', //成交量高度,
+                height: '20%'
+            }
+        ],
+        xAxis: [
+        { //当前价图
+                gridIndex: 0,
+                data: m_datas.time,
+                axisLabel: { //label文字设置
+                    show: false
+                },
+                splitLine: {
+                    show: false,
+                }
+            },
+            {   //均价图
+                show:false,
+                gridIndex: 1,
+                data: m_datas.time,
+                axisLabel: { //label文字设置
+                    show: false
+                },
+                splitLine: {
+                    show: false,
+                }
+            }, 
+            { //成交量图
+                splitNumber: 2,
+                type: 'category',
+                gridIndex: 2,
+                data: m_datas.time,
+                axisLabel: { //label文字设置
+                    color: '#9b9da9',
+                    fontSize: 10
+                },
+            }
+        ],
+        yAxis: [ //y轴
+            {
+                gridIndex: 0,
+                scale: true, 
+                splitNumber: 3,  
+                axisLabel: { //label文字设置 
+                    inside: true, //label文字朝内对齐 
+                    // fontWeight:'bold',
+                    color:function(val){ 
+                        if(val==preClose){
+                            return '#aaa'
+                        }
+                        return val>preClose? upColor:downColor;
+                    }
+                },z:4,splitLine: { //分割线设置
+                    show: false,
+                    lineStyle: {
+                        color: '#181a23'
+                    }
+                },  
+            }, 
+            { 
+                scale: true,  gridIndex: 1, splitNumber: 3,  
+                position: 'right', z:4,
+                axisLabel: { //label文字设置
+                    color:function(val){ 
+                        if(val==preClose){
+                            return '#aaa'
+                        }
+                        return val>preClose? upColor:downColor; 
+                    },
+                    inside: true, //label文字朝内对齐 
+                    // fontWeight:'bold',
+                    formatter:function(val){
+                        var resul=ratioCalculate(val,preClose);
+                        return  Number(resul).toFixed(2)+' %'
+                    }
+                },
+                splitLine: { //分割线设置
+                    show: false,
+                    lineStyle: {
+                        color: '#181a23'
+                    }
+                },
+                axisPointer:{show:true,
+                    label:{
+                        formatter:function(params){ //计算右边Y轴对应的当前价的涨幅比例
+                            return  ratioCalculate(params.value,preClose)+'%';
+                        }
+                    }
+                }
+            }, 
+            { //交易图
+                gridIndex: 2,z:4,
+                splitNumber: 3,
+                axisLine: {
+                    onZero: false
+                },
+                axisTick: {
+                    show: false
+                },
+                splitLine: {
+                    show: false
+                },
+                axisLabel: { //label文字设置
+                    color: '#c7c7c7',
+                    inside: true, //label文字朝内对齐 
+                    fontSize: 8
+                },
+            }
+        ],
+        dataZoom: [
+        ],
+        series: [{
+                name: '当前价',
+                type: 'line',
+                data: m_datas.priceArr,
+                smooth: true,
+                symbol: "circle", //中时有小圆点 
+                lineStyle: {
+                    normal: {
+                        opacity: 0.8,
+                        color: '#39afe6',
+                        width: 1
+                    }
+                },
+                areaStyle: {
+                    normal: {
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                            offset: 0,
+                            color: 'rgba(0, 136, 212, 0.7)'
+                        }, {
+                            offset: 0.8,
+                            color: 'rgba(0, 136, 212, 0.02)'
+                        }], false),
+                        shadowColor: 'rgba(0, 0, 0, 0.1)',
+                        shadowBlur: 10
+                    }
+                }
+            },
+            {
+                name: '均价',
+                type: 'line',
+                data: m_datas.avgPrice,
+                smooth: true,
+                symbol: "circle",
+                lineStyle: { //标线的样式
+                    normal: {
+                        opacity: 0.8,
+                        color: '#da6ee8',
+                        width: 1
+                    }
+                }
+            },{  
+                type: 'line', 
+                data: m_datas.priceArr,
+                smooth: true,
+                symbol: "none",
+                gridIndex: 1,
+                xAxisIndex: 1,
+                yAxisIndex: 1,
+                lineStyle: { //标线的样式 
+                    normal: { 
+                        width: 0
+                    }
+                }
+            },
+            {
+                name: '成交量',
+                type: 'bar',
+                gridIndex: 2,
+                xAxisIndex: 2,
+                yAxisIndex: 2,
+                data: m_datas.vol,
+                barWidth: '60%',
+                itemStyle: {
+                    normal: {
+                        color: function(params) {
+                            var colorList;
+                            if (m_datas.priceArr[params.dataIndex] > m_datas.priceArr[params.dataIndex-1]) {
+                                colorList = upColor;
+                            } else {
+                                colorList = downColor;
+                            }
+                            return colorList;
+                        },
+                    }
+                }
+            }
+        ]
+    }, true);
+    
+});
+
+
+
+</script>
+
+
+</body>
+</html>

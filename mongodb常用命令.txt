@@ -45,7 +45,8 @@ db.collectionName.renameCollection( "collectionName2" )
 删除一个聚集集合
 db.collectionName.drop();  
 
-
+显示集合
+show collections;
 
 查询所有数据
 db.collectionName.find(); 

@@ -10,6 +10,12 @@ git commit -m "first commit"
 git remote add origin git@github.com:SpkCoder/MyInformation.git
 git push -u origin master
 
+cd existing_folder
+git init
+git remote add origin https://git.code.tencent.com/yamu/zdns-python.git
+git add .
+git commit -m "init"
+git push -u origin master
 
 查看用户名和邮箱地址
 git config --list
@@ -107,6 +113,12 @@ git rm hello.php
 强制删除文件
 git rm -f hello.php 
 
+忽略文件
+.gitignore 里面添加 logs/
+git rm -f --cached logs/*
+git add .
+git commit -m "Update .gitignore"
+git push
 
 
 移动或重命名一个文件、目录、软连接
@@ -135,7 +147,9 @@ git branch -d (branchname)
 
 
 分支合并
-git merge newbranch
+合并dev到master
+git checkout master
+git merge dev
 
 
 

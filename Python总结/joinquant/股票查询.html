@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+</head>
+<style type="text/css">
+   #btnApp{margin-top: 10px; margin-bottom: 10px;}
+   .el-table .red-row {color: Red; }
+   .el-table .green-row {color: Green;} 
+   .el-table--small td, .el-table--small th {padding: 0;}
+</style>
+<body>
+
+        <div id="btnApp">
+            <el-input size="small" v-model="gid" placeholder="请输入股票编号" style="width: 150px"></el-input>
+			<el-button-group>
+			  <el-button id="btn_add" size="small"><i class="el-icon-plus"></i>增加</el-button>
+			  <el-button id="btn_ref" size="small"><i class="el-icon-refresh"></i>重置</el-button>
+			  <!--<el-button id="btn_search" size="small"><i class="layui-icon">&#xe615;</i>Search</el-button>-->
+			</el-button-group>
+			<el-switch v-model="switchValue" @change="switchChange" active-text="自动刷新" style="margin-left: 40px"> </el-switch> </div>
+	    
+		<div id="searchApp"></div>
+	    <div id="tableApp"></div>
+	    <div id="pageApp"></div>
+	    <div id="formApp" class="formBox"> </div>
+
+</body>
+  <script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+  <script type="text/javascript">
+		//dataDB
+		function dataDB() {
+	       this.get = function (url,reqData,callback) {
+	           $("head").remove("#oScript");
+	           var eleScript= document.createElement("script");
+			   eleScript.type = "text/javascript";
+			   eleScript.src = url + "?timeStamp=" +Date.now() + "&" + reqData;
+			   eleScript.id = "oScript";
+			   document.getElementsByTagName("head")[0].appendChild(eleScript);
+			   setTimeout(function () {
+			   	    data.rows = [];
+			        origin_rows = [];
+			        gid_arr.forEach( function(item, index) {
+			        	  var hq_str = window["hq_str_" + item];
+			        	  if(hq_str){
+		                      var hq_arr = hq_str.split(",");
+				        	  var obj = {
+				        	  	  gid : item,
+				        	  	  name : hq_arr[0],
+				        	  	  todayStartPri : Number(Number(hq_arr[1]).toFixed(2)),
+				        	  	  yestodEndPri : Number(Number(hq_arr[2]).toFixed(2)),
+				        	  	  nowPri : Number(Number(hq_arr[3]).toFixed(2)),
+				        	  	  increase : Number(((hq_arr[3]-hq_arr[2])/hq_arr[2]*100).toFixed(2)),
+				        	  	  todayMax : Number(Number(hq_arr[4]).toFixed(2)),
+				        	  	  todayMin : Number(Number(hq_arr[5]).toFixed(2)),
+				        	  	  competitivePri : Number(Number(hq_arr[6]).toFixed(2)),
+				        	  	  reservePri : Number(Number(hq_arr[7]).toFixed(2)),
+				        	  	  traNumber : Number((hq_arr[8]/100).toFixed(0)),
+				        	  	  traAmount : Number((hq_arr[9]/100000000).toFixed(2)),
+				        	  	  buyOne : Number((hq_arr[10]/100).toFixed(0)),
+				        	  	  buyOnePri : Number(Number(hq_arr[11]).toFixed(2)),
+				        	  	  buyTwo : Number((hq_arr[12]/100).toFixed(0)),
+				        	  	  buyTwoPri : Number(Number(hq_arr[13]).toFixed(2)),
+				        	  	  buyThree : Number((hq_arr[14]/100).toFixed(0)),
+				        	  	  buyThreePri : Number(Number(hq_arr[15]).toFixed(2)),
+				        	  	  buyFour : Number((hq_arr[16]/100).toFixed(0)),
+				        	  	  buyFourPri : Number(Number(hq_arr[17]).toFixed(2)),
+				        	  	  buyFive : Number((hq_arr[18]/100).toFixed(0)),
+				        	  	  buyFivePri : Number(Number(hq_arr[19]).toFixed(2)),
+				        	  	  sellOne : Number((hq_arr[20]/100).toFixed(0)),
+				        	  	  sellOnePri : Number(Number(hq_arr[21]).toFixed(2)),
+				        	  	  sellTwo : Number((hq_arr[22]/100).toFixed(0)),
+				        	  	  sellTwoPri : Number(Number(hq_arr[23]).toFixed(2)),
+				        	  	  sellThree : Number((hq_arr[24]/100).toFixed(0)),
+				        	  	  sellThreePri : Number(Number(hq_arr[25]).toFixed(2)),
+				        	  	  sellFour : Number((hq_arr[26]/100).toFixed(0)),
+				        	  	  sellFourPri : Number(Number(hq_arr[27]).toFixed(2)),
+				        	  	  sellFive : Number((hq_arr[28]/100).toFixed(0)),
+				        	  	  sellFivePri : Number(Number(hq_arr[29]).toFixed(2)),
+				        	  	  date : hq_arr[30],
+				        	  	  time : hq_arr[31]
+				        	  }
+			        	  }else{
+		                      var obj = {
+				        	  	  gid : item,
+				        	  	  name : "",
+				        	  	  todayStartPri : "",
+				        	  	  yestodEndPri : "",
+				        	  	  nowPri : "",
+				        	  	  increase : "",
+				        	  	  todayMax : "",
+				        	  	  todayMin : "",
+				        	  	  competitivePri : "",
+				        	  	  reservePri : "",
+				        	  	  traNumber : "",
+				        	  	  traAmount : "",
+				        	  	  buyOne : "",
+				        	  	  buyOnePri : "",
+				        	  	  buyTwo : "",
+				        	  	  buyTwoPri : "",
+				        	  	  buyThree : "",
+				        	  	  buyThreePri : "",
+				        	  	  buyFour : "",
+				        	  	  buyFourPri : "",
+				        	  	  buyFive : "",
+				        	  	  buyFivePri : "",
+				        	  	  sellOne : "",
+				        	  	  sellOnePri : "",
+				        	  	  sellTwo : "",
+				        	  	  sellTwoPri : "",
+				        	  	  sellThree : "",
+				        	  	  sellThreePri : "",
+				        	  	  sellFour : "",
+				        	  	  sellFourPri : "",
+				        	  	  sellFive : "",
+				        	  	  sellFivePri : "",
+				        	  	  date : "",
+				        	  	  time : "",
+				        	  }
+			        	  }
+			        	  
+			        	  data.rows.push(obj);
+			        	  origin_rows.push(obj);
+			        });
+
+			   	  callback(data);
+			   },400)
+	       }
+	       
+	    }
+	  
+	    //查询数据
+	    dataDB.prototype.findData = function(url,reqData,callback){
+	          this.get(url,reqData,callback);
+	    };
+		//dataDB
+
+
+        function dataInit(data) {
+        	tableApp.tableData = data.rows;
+        }
+
+
+	    var url = "http://hq.sinajs.cn/";
+	    if(localStorage.getItem("local_gid_arr")){
+	    	var gid_arr = JSON.parse(localStorage.getItem("local_gid_arr")); 
+	    }else{
+	    	var gid_arr = ["sh000001", "sz399001", "sz399006", "sh000300" , "sh000016", "sh000905", "sh601398", "sz000333", "sh603605", "sz300144"]; 
+	    }
+	    var origin_rows = [];
+		var data = {};
+		data.colArr = [
+	           {"title":"股票名称","field":"name","width":"100","data_type":"text"},
+	           {"title":"股票编号","field":"gid","width":"100","data_type":"text"},
+	           {"title":"昨日收盘价","field":"yestodEndPri","width":"110","data_type":"text"},
+	           {"title":"当前价格","field":"nowPri","width":"100","data_type":"text"},
+	           {"title":"涨幅(%)","field":"increase","width":"100","data_type":"text"},
+	           {"title":"当日开盘价","field":"todayStartPri","width":"110","data_type":"text"},
+	           {"title":"当日最高价","field":"todayMax","width":"110","data_type":"text"},
+	           {"title":"当日最低价","field":"todayMin","width":"110","data_type":"text"},
+	           {"title":"成交量(手)","field":"traNumber","width":"110","data_type":"text"},
+	           {"title":"成交额(亿)","field":"traAmount","width":"110","data_type":"text"},
+	           {"title":"竞买价","field":"competitivePri","width":"100","data_type":"text"},
+	           {"title":"竞卖价","field":"reservePri","width":"100","data_type":"text"},
+	           {"title":"买1(手)","field":"buyOne","width":"100","data_type":"text"},
+	           {"title":"买1报价","field":"buyOnePri","width":"100","data_type":"text"},
+	           // {"title":"买2(手)","field":"buyTwo","width":"100","data_type":"text"},
+	           // {"title":"买2报价","field":"buyTwoPri","width":"100","data_type":"text"},
+	           // {"title":"买3(手)","field":"buyThree","width":"100","data_type":"text"},
+	           // {"title":"买3报价","field":"buyThreePri","width":"100","data_type":"text"},
+	           // {"title":"买4(手)","field":"buyFour","width":"100","data_type":"text"},
+	           // {"title":"买4报价","field":"buyFourPri","width":"100","data_type":"text"},
+	           // {"title":"买5(手)","field":"buyFive","width":"100","data_type":"text"},
+	           // {"title":"买5报价","field":"buyFivePri","width":"100","data_type":"text"},
+	           {"title":"卖1(手)","field":"sellOne","width":"100","data_type":"text"},
+	           {"title":"卖1报价","field":"sellOnePri","width":"100","data_type":"text"},
+	           // {"title":"卖2(手)","field":"sellTwo","width":"100","data_type":"text"},
+	           // {"title":"卖2报价","field":"sellTwoPri","width":"100","data_type":"text"},
+	           // {"title":"卖3(手)","field":"sellThree","width":"100","data_type":"text"},
+	           // {"title":"卖3报价","field":"sellThreePri","width":"100","data_type":"text"},
+	           // {"title":"卖4(手)","field":"sellFour","width":"100","data_type":"text"},
+	           // {"title":"卖4报价","field":"sellFourPri","width":"100","data_type":"text"},
+	           // {"title":"卖5(手)","field":"sellFive","width":"100","data_type":"text"},
+	           // {"title":"卖5报价","field":"sellFivePri","width":"100","data_type":"text"},
+	           {"title":"时间","field":"time","width":"100","data_type":"text"},
+	           {"title":"日期","field":"date","width":"100","data_type":"text"}
+	    ];
+
+		
+	    Vue.use(ELEMENT);
+
+	    var dataDBInt = new dataDB();  
+        
+        var searchStatus = { 
+        	whereStr : '',
+        	prePageNum : 10,
+        	currPage : 1,
+        	sortStr : ''
+        };
+        
+        
+        //按钮组
+	    var btnApp = new Vue({
+	    	el: '#btnApp',
+	    	data: {
+	    		gid : "",
+	    		switchValue : false,
+	    	},
+	    	methods: {
+	    		switchChange(value){
+	    			// console.log(value);
+	    			if(value == true){
+	    				window.timer = setInterval(function(argument) {
+	    					var reqData = "list=" + gid_arr.join(",");
+		                    dataDBInt.findData(url,reqData,dataInit);
+	    				},600);
+	    			}else{
+	    				clearInterval(window.timer);
+	    			}
+	    		}
+	    	}
+	    });
+	    
+	    
+        var tableHtml ='<el-table :data="tableData" :row-class-name="tableRowClassName" border ref="multipleTable" tooltip-effect="dark" size="small" style="width:100%"  @selection-change="selectionChange">';
+        tableHtml +='<el-table-column fixed="left" type="selection" width="40"> </el-table-column>';
+        data.colArr.forEach(function (item,index) {
+        	if(index == 0){
+        		tableHtml+='<el-table-column fixed="left" show-overflow-tooltip sortable prop="'+item.field+'" label="'+item.title+'" width="'+item.width+'"> </el-table-column>';
+        	}else{
+        		tableHtml+='<el-table-column show-overflow-tooltip sortable prop="'+item.field+'" label="'+item.title+'" width="'+item.width+'"> </el-table-column>';
+        	}
+        	
+        });
+
+        tableHtml+='<el-table-column fixed="right" label="操作" width="130"> <template slot-scope="scope"> <el-button @click="details(scope.row)" type="text" size="small">查看</el-button> <el-button @click="del(scope.row)" type="text" size="small">删除</el-button> </template> </el-table-column>';
+               
+		$("#tableApp").html(tableHtml);
+		
+        
+        var tableApp = new Vue({
+	        el: '#tableApp',
+            data:{
+			        tableData: [],
+			        multipleSelection: []
+			    },
+	        methods: {
+			   toggleSelection(rows) {
+			   //      if(rows) {
+			   //        rows.forEach(function (row) {
+						// this.$refs.multipleTable.toggleRowSelection(row);
+					 //  });
+			   //      }else {
+			   //        this.$refs.multipleTable.clearSelection();
+			   //      }
+		      },
+		      selectionChange(dataArr) {
+			        //this.multipleSelection = dataArr;
+			        //选中的dataArr
+			        //console.log(dataArr);
+		      },
+		      sortChange(obj) {
+			        //排序
+			        //console.log(obj.prop +":"+obj.order);
+			        // var sortStr = (obj.order == "descending") ? obj.prop + ' DESC' : obj.prop + ' ASC';
+		      	  //   searchStatus.sortStr = sortStr;
+		         //    var reqData2 = 'action=findData&whereStr='+searchStatus.whereStr+'&prePageNum='+searchStatus.prePageNum+'&currPage='+searchStatus.currPage+'&sortStr='+searchStatus.sortStr;
+			        // dataDBInt.findData(url,reqData2,dataInit);
+		      },
+		      tableRowClassName({row, rowIndex}) {
+		        if(row.increase > 0) {
+		          return 'red-row';
+		        }else if (row.increase < 0) {
+		          return 'green-row';
+		        }
+		        return '';
+		      },
+		      details(row){
+		      	    //查看
+			      	//console.log(row);
+			      	this_url = "http://finance.sina.com.cn/realstock/company/"+row.gid+"/nc.shtml";
+			      	window.open(this_url, '_blank');
+		      },
+		      add(){
+		      	var _this = this;
+		      	// console.log(btnApp.gid);
+		      	if(btnApp.gid){
+		      		btnApp.gid = $.trim(btnApp.gid.toLowerCase());
+		      		if(gid_arr.indexOf(btnApp.gid) == -1){
+                        gid_arr.push(btnApp.gid);
+                        if(! window.timer){
+                        	var reqData2 = "list=" + gid_arr.join(",");
+                            dataDBInt.findData(url,reqData2,dataInit);
+                        }
+                        localStorage.setItem("local_gid_arr", JSON.stringify(gid_arr));
+		      		}else{
+                        _this.$message({duration: 1000, message: "该股票已存在" });
+                        return;
+		      		}
+		      		
+		      	}
+		      },
+		      del(row){
+		      	var _this = this;
+		      	// console.log(row.gid);
+		      	gid_arr.splice(gid_arr.indexOf(row.gid),1);
+		      	if(! window.timer){
+		      		var reqData2 = "list=" + gid_arr.join(",");
+                	dataDBInt.findData(url,reqData2,dataInit);
+		      	}
+                localStorage.setItem("local_gid_arr", JSON.stringify(gid_arr));
+
+		      }
+		    }
+	    });
+        
+        //设置勾选状态
+        //tableApp.toggleSelection([tableApp.tableData[1], tableApp.tableData[2]]);
+        
+
+        //新增
+        $("#btn_add").on("click",function(){
+       	   tableApp.add();
+        });
+
+
+        //重置
+        $("#btn_ref").on("click",function(){
+       	   localStorage.removeItem("local_gid_arr");
+       	   location.reload();
+        });
+
+
+        //查询
+        $("#btn_search").on("click",function(){
+       	   tableApp.search();
+        });
+        
+        
+        
+        //搜索
+        var seaColArr = [
+	           {"title":"股票名称","field":"name","width":"100","data_type":"text"},
+	           {"title":"股票编号","field":"gid","width":"100","data_type":"text"}
+	    ];
+        function search(){
+	      	var row = {}; 
+	      	var formHtml = '<el-form :model="formData" ref="formData" :rules="rules" :inline="true" label-width="120px" size="small" name="search" class="demo-ruleForm clearfix">';
+            for(var i = 0; i < seaColArr.length; i++){
+               var data_type = seaColArr[i].data_type;
+               var field = seaColArr[i].field;
+               var title = seaColArr[i].title;
+               row[field]="";
+               if(field == "Permission"){
+               	  //
+               }else{
+                  formHtml+='<el-form-item label="'+title+'" prop="'+field+'"> <el-input v-model="formData.'+field+'" data-type="'+data_type+'" name="'+field+'"></el-input> </el-form-item>';
+               }
+
+            }
+            formHtml+='<el-form-item> <el-button size="small" type="primary" @click="submitForm()">查询</el-button> <el-button size="small" @click="resetForm()">取消</el-button> </el-form-item>';
+            formHtml+='</el-form>';
+	      	$("#searchApp").html(formHtml); 
+
+	      	var formApp = new Vue({
+		            el: '#searchApp',
+			        data() {
+					      return {
+					        formData: row,
+					        rules:{}
+					      };
+					},
+				    methods: {
+				      submitForm() {
+				        this.$refs["formData"].validate (function (valid) {
+							if(valid) {
+								// console.log(formApp.formData.gid);
+								formApp.formData.gid = $.trim(formApp.formData.gid);
+								formApp.formData.name = $.trim(formApp.formData.name);
+								if(formApp.formData.gid){
+									var arr = [];
+									tableApp.tableData.forEach( function(item, index) {
+										if(item.gid == formApp.formData.gid){
+                                           arr.push(item);
+										}
+									});
+									tableApp.tableData = arr;
+								}
+								if(formApp.formData.name){
+									var arr = [];
+									tableApp.tableData.forEach( function(item, index) {
+										if(item.name == formApp.formData.name){
+                                           arr.push(item);
+										}
+									});
+									tableApp.tableData = arr;
+								}
+								
+							}else {
+								//console.log('error submit');
+								return false;
+							}
+						});
+				      },
+				      resetForm() {
+				        this.$refs["formData"].resetFields();
+				        tableApp.tableData = origin_rows;
+				      }
+				    }
+		         
+	        });
+        }
+        // search();
+
+
+    
+        //初始化数据
+		var reqData = "list=" + gid_arr.join(",");
+		dataDBInt.findData(url,reqData,dataInit);
+		//初始化数据 结束
+
+
+
+        
+    </script>
+</html>
+

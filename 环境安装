@@ -1,0 +1,65 @@
+#安装依赖
+yum -y install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel libffi-devel
+
+# 安装nodejs
+wget https://nodejs.org/dist/latest-v8.x/node-v8.17.0-linux-x64.tar.gz
+tar -xzvf node-v8.17.0-linux-x64.tar.gz
+mv ./node-v8.17.0-linux-x64 /usr/local/lib/node-v8.17.0
+cd /usr/local/lib/node-v8.17.0
+./bin/node -v
+./bin/npm -v
+ln -s /usr/local/lib/node-v8.17.0/bin/node   /usr/local/bin/node
+ln -s /usr/local/lib/node-v8.17.0/bin/npm   /usr/local/bin/npm
+
+
+# 安装Python
+wget https://www.python.org/ftp/python/3.7.6/Python-3.7.6.tgz
+tar -xzvf ./Python-3.7.6.tgz
+mv ./Python-3.7.6 /usr/local/lib/Python-3.7.6
+cd /usr/local/lib/Python-3.7.6
+vi Modules/Setup
+=============================
+SSL=/opt/openssl1.0.2r
+_ssl _ssl.c \
+    -DUSE_SSL -I$(SSL)/include -I$(SSL)/include/openssl \
+    -L$(SSL)/lib -lssl -lcrypto
+==============================
+./configure
+make && make install
+python3 -V
+# 安装pip
+wget --no-check-certificate  https://pypi.python.org/packages/source/s/setuptools/setuptools-19.6.tar.gz
+tar -xzvf setuptools-19.6.tar.gz
+cd setuptools-19.6/
+python3 setup.py build
+python3 setup.py install
+ln -s /usr/local/lib/python3.7/site-packages/pip/pip3.7 /usr/local/bin/pip3
+pip3 -V
+pip3 install --upgrade pip
+
+
+#安装MySQL
+wget https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm
+rpm -ivh mysql80-community-release-el7-3.noarch.rpm
+yum update
+yum install mysql-server
+权限设置
+chown mysql:mysql -R /var/lib/mysql
+初始化 MySQL
+mysqld --initialize
+启动 MySQL
+nohup /usr/sbin/mysqld --defaults-file=/etc/my.cnf &
+查看初始化密码
+cat /var/log/mysqld.log
+cat /var/log/mysqld.log | grep password
+查看mysql
+ps -aux|grep /usr/sbin/mysqld
+
+
+修改docker默认存储位置
+vi /etc/systemd/system/multi-user.target.wants/docker.service
+ExecStart=/usr/bin/dockerd --graph=/home/docker --storage-driver=overlay --registry-mirror=https://jxus37ad.mirror.aliyuncs.com 
+systemctl daemon-reload
+systemctl restart docker
+docker info
+

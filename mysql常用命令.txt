@@ -93,6 +93,8 @@ alter table tablename modify column num VARCHAR(50) NOT NULL default ''
 删除字段
 alter table tablename drop numxx
 
+查看字段
+desc tablename
 
 创建单列索引
 alter table table_name add index index_name (column_list);
@@ -185,7 +187,7 @@ SELECT × FROM users WHERE name="xx" INTO OUTFILE '/home/users.csv'
 
 导入数据
 mysql -u username -p password -h hostname -P port databasename < file.sql
-mysql> source E:\test.sql
+mysql> source /home/test.sql
 
 
 sqlite3 /media/xian/Work/myproject-suqueen/ott-dns-info-docker/volumes/src/db/ott-dns-info.db '.dump power_list' > power_list.sql
@@ -199,7 +201,7 @@ set global wait_timeout=28800000;
 
 
 select @@sql_mode;
-set  @@global.sql_mode="STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION"
+set @@global.sql_mode="STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION"
 
 
 #启动MySQL
@@ -210,20 +212,31 @@ cat /var/log/mysqld.log | grep password
  
 #登录MySQL修改mysql用户密码
 mysql -u root -p
-mysql> ALTER USER 'root'@'%' IDENTIFIED BY 'yourpassword';
+mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY 'yourpassword';
 #远程设置
 mysql> use mysql;
 mysql> update user set host='%' where user='root';
 #授权用户名的权限，赋予任何主机访问数据的权限
-mysql> GRANT ALL PRIVILEGES ON *.* TO 'root'@'%'WITH GRANT OPTION;
+mysql> GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
 mysql> FLUSH PRIVILEGES;
 
 select host,user,authentication_string from mysql.user;
 
+/etc/my.cnf
 /etc/mysql/my.cnf
 default_authentication_plugin=mysql_native_password
+sql_mode="STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION"
 ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'ott@123456';
+FLUSH PRIVILEGES;
 
+修改时区
+show variables like "%time_zone%";
+/etc/my.cnf
+default-time_zone = '+8:00'
+
+安全更新开关
+show variables like 'SQL_SAFE_UPDATES';
+SET SQL_SAFE_UPDATES = 0;
 
 查看数据存放目录
 show variables like '%datadir%';
